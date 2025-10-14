@@ -103,8 +103,8 @@ main {
     display: grid;
     /* 2fr (Izquierda) | 1fr (Derecha) */
     grid-template-columns: 2fr 1fr; 
-    /* auto (Fechas) | 1fr (Goles) | 1fr (Asistencias) */
-    grid-template-rows: auto 1fr 1fr; 
+    /* CORRECCIÓN: Usamos 'auto' para que las filas de la derecha ocupen solo el espacio de su contenido */
+    grid-template-rows: auto auto auto; 
     gap: 20px; 
     width: 95%;
     max-width: 1400px;
