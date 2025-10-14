@@ -1,10 +1,10 @@
 /* ========================= VARIABLES CSS ========================= */
 :root {
-    --color-primary: #b30000;       /* Rojo principal (encabezados, fondo body) */
-    --color-secondary: #ff3333;     /* Rojo brillante (acentos, hover) */
-    --color-discord: #5865f2;       /* Azul Discord */
-    --color-text-dark: #2c3e50;     /* Texto oscuro moderno */
-    --color-text-light: #ecf0f1;    /* Texto claro */
+    --color-primary: #b30000;       
+    --color-secondary: #ff3333;     
+    --color-discord: #5865f2;       
+    --color-text-dark: #2c3e50;     /* Color de texto oscuro para visibilidad */
+    --color-text-light: #ecf0f1;    
     --shadow-default: 0 4px 15px rgba(0, 0, 0, 0.2);
     --shadow-lift: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
@@ -14,7 +14,7 @@ body {
     margin: 0;
     font-family: 'Montserrat', sans-serif; 
     background: linear-gradient(180deg, var(--color-primary), #ffffff);
-    color: var(--color-text-dark); 
+    color: var(--color-text-dark); /* Color de texto general oscuro */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -115,23 +115,23 @@ main {
 
 /* Posicionamiento de los elementos */
 .tabla-puntos {
-    grid-column: 1 / 2;     /* Columna 1 */
-    grid-row: 1 / span 3;   /* Se extiende por las 3 filas */
+    grid-column: 1 / 2;     
+    grid-row: 1 / span 3;   /* Ocupa toda la altura izquierda */
 }
 
 .fechas-container {
-    grid-column: 2 / 3;     /* Columna 2 */
-    grid-row: 1 / 2;        /* Fila 1 */
+    grid-column: 2 / 3;     
+    grid-row: 1 / 2;        
 }
 
 .tabla-goles {
-    grid-column: 2 / 3;     /* Columna 2 */
-    grid-row: 2 / 3;        /* Fila 2 */
+    grid-column: 2 / 3;     
+    grid-row: 2 / 3;        
 }
 
 .tabla-asis {
-    grid-column: 2 / 3;     /* Columna 2 */
-    grid-row: 3 / 4;        /* Fila 3 */
+    grid-column: 2 / 3;     
+    grid-row: 3 / 4;        
 }
 
 .estadisticas-generales {
@@ -151,7 +151,6 @@ main {
 /* MEDIA QUERIES (Para móviles: apila los elementos) */
 @media (max-width: 800px) {
     .content-grid {
-        /* En pantallas pequeñas, todo se apila en una sola columna */
         grid-template-columns: 1fr;
         grid-template-rows: auto;
     }
@@ -186,7 +185,7 @@ th, td {
 }
 
 td {
-    /* SOLUCIÓN AL PROBLEMA DE VISIBILIDAD: Color de texto oscuro */
+    /* SOLUCIÓN AL PROBLEMA DE VISIBILIDAD: Color de texto oscuro para que se vea */
     color: var(--color-text-dark); 
     border-bottom: 1px solid #eee; 
     font-weight: 500;
@@ -210,7 +209,7 @@ td:nth-child(2) {
 }
 
 .top-three td:nth-child(1) {
-    background-color: gold; /* Medalla de oro para los 3 primeros */
+    background-color: gold; 
     color: var(--color-primary);
     font-weight: 700;
 }
