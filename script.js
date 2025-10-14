@@ -17,7 +17,7 @@ let equipos = [
   { nombre: "El Rejunte De Amigos", pts: 2, pj: 5, pg: 0, pe: 2, pp: 3 },
   { nombre: "Bristol", pts: 0, pj: 4, pg: 0, pe: 0, pp: 4 },
   { nombre: "Joga Bonito", pts: 0, pj: 4, pg: 0, pe: 0, pp: 4 },
-  { nombre: "Wanderers", pts: 0, pj: 4, pg: 0, pe: 0, pp: 4 },
+  { nombre: "Wanderers", pts: 0, pj: 4, pg: 4, pe: 0, pp: 0 },
 ];
 
 let goleadores = [
