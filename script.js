@@ -4,7 +4,7 @@
 //
 // ===================================================================
 
-// --- Datos de Tablas (Modifica estos datos con los valores reales)
+// --- Datos de Tablas (MODIFICA ESTOS VALORES)
 let equipos = [
   { nombre: "Machetitos", pts: 10, pj: 4, pg: 3, pe: 1, pp: 0 },
   { nombre: "Cornudos", pts: 8, pj: 4, pg: 2, pe: 2, pp: 0 },
@@ -34,21 +34,21 @@ let asistencias = [
   { jugador: "Asistente Q", equipo: "Loan", asis: 3 }
 ];
 
-// --- Datos de Resultados (Modifica estos contenidos)
+// --- Datos de Resultados (MODIFICA ESTOS CONTENIDOS)
 const resultadosFechas = {
     "1": `
         <p><strong>Resultados Fecha 1:</strong></p>
         <ul class="score-list">
-            <li>Machetitos <span class="score win">3</span> - <span class="score lose">1</span> Cornudos</li>
-            <li>Calyndra <span class="score draw">2</span> - <span class="score draw">2</span> Banfield</li>
-            <li>Loan <span class="score lose">0</span> - <span class="score win">1</span> Laira</li>
+            <li>Machetitos <span class="score">3</span> - <span class="score">1</span> Cornudos</li>
+            <li>Calyndra <span class="score">2</span> - <span class="score">2</span> Banfield</li>
+            <li>Loan <span class="score">0</span> - <span class="score">1</span> Laira</li>
         </ul>
     `,
     "2": `
         <p><strong>Resultados Fecha 2:</strong></p>
         <ul class="score-list">
-            <li>Joga Bonito <span class="score win">1</span> - <span class="score lose">0</span> Bristol</li>
-            <li>Wanderers <span class="score win">4</span> - <span class="score lose">3</span> Valunir</li>
+            <li>Joga Bonito <span class="score">1</span> - <span class="score">0</span> Bristol</li>
+            <li>Wanderers <span class="score">4</span> - <span class="score">3</span> Valunir</li>
         </ul>
     `,
     "3": `<p class="placeholder-text">¡Resultados de la Fecha 3, pendientes!</p>`
@@ -58,9 +58,6 @@ const resultadosFechas = {
 //                            FUNCIONES DE RENDERIZADO
 // ===================================================================
 
-/**
- * Renderiza y ordena la Tabla de Posiciones.
- */
 function mostrarTablaPosiciones() {
   const tbody = document.querySelector("#tablaPosiciones tbody");
   if (!tbody) return;
@@ -72,6 +69,7 @@ function mostrarTablaPosiciones() {
   });
 
   const filasHTML = equipos.map((eq, i) => {
+    // Aplica clase 'top-three' para estilos de medalla
     const claseFila = (i < 3) ? 'top-three' : '';
 
     return `
@@ -90,14 +88,10 @@ function mostrarTablaPosiciones() {
   tbody.innerHTML = filasHTML;
 }
 
-/**
- * Renderiza y ordena la Tabla de Goleadores.
- */
 function mostrarGoleadores() {
   const tbody = document.querySelector("#tablaGoleadores tbody");
   if (!tbody) return;
 
-  // Ordenamiento por Goles (descendente)
   goleadores.sort((a, b) => b.goles - a.goles);
 
   const filasHTML = goleadores.map((jug, i) => {
@@ -114,14 +108,10 @@ function mostrarGoleadores() {
   tbody.innerHTML = filasHTML;
 }
 
-/**
- * Renderiza y ordena la Tabla de Asistencias. (Nueva función)
- */
 function mostrarAsistencias() {
   const tbody = document.querySelector("#tablaAsistencias tbody");
   if (!tbody) return;
 
-  // Ordenamiento por Asistencias (descendente)
   asistencias.sort((a, b) => b.asis - a.asis);
 
   const filasHTML = asistencias.map((jug, i) => {
@@ -138,22 +128,17 @@ function mostrarAsistencias() {
   tbody.innerHTML = filasHTML;
 }
 
-/**
- * Configura la interactividad de los botones de fechas.
- */
 function configurarBotonesFechas() {
     const botones = document.querySelectorAll('.date-buttons .date-btn');
     const contenidoResultados = document.getElementById('resultadosFecha');
 
     botones.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Desactiva todos, activa el clickeado
             botones.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
             const fechaID = this.getAttribute('data-fecha');
             
-            // Carga el contenido del objeto resultadosFechas
             contenidoResultados.innerHTML = resultadosFechas[fechaID] || 
                                             `<p class="placeholder-text">Aún no hay resultados para la Fecha ${fechaID}.</p>`;
         });
