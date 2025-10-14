@@ -1,10 +1,10 @@
 // ===================================================================
 //
-//               SCRIPT JRS - Lógica de Tablas
+//               SCRIPT JRS - Lógica de Tablas y Datos
 //
 // ===================================================================
 
-// --- Datos de Tablas (MODIFICA ESTOS VALORES)
+// --- Datos de Tablas (VALORES DE PRUEBA: ESTOS DEBEN SER CARGADOS)
 let equipos = [
   { nombre: "Machetitos", pts: 10, pj: 4, pg: 3, pe: 1, pp: 0 },
   { nombre: "Cornudos", pts: 8, pj: 4, pg: 2, pe: 2, pp: 0 },
@@ -34,21 +34,21 @@ let asistencias = [
   { jugador: "Asistente Q", equipo: "Loan", asis: 3 }
 ];
 
-// --- Datos de Resultados (MODIFICA ESTOS CONTENIDOS)
+// --- Datos de Resultados
 const resultadosFechas = {
     "1": `
         <p><strong>Resultados Fecha 1:</strong></p>
         <ul class="score-list">
-            <li>Machetitos <span class="score">3</span> - <span class="score">1</span> Cornudos</li>
-            <li>Calyndra <span class="score">2</span> - <span class="score">2</span> Banfield</li>
-            <li>Loan <span class="score">0</span> - <span class="score">1</span> Laira</li>
+            <li>Machetitos 3 - 1 Cornudos</li>
+            <li>Calyndra 2 - 2 Banfield</li>
+            <li>Loan 0 - 1 Laira</li>
         </ul>
     `,
     "2": `
         <p><strong>Resultados Fecha 2:</strong></p>
         <ul class="score-list">
-            <li>Joga Bonito <span class="score">1</span> - <span class="score">0</span> Bristol</li>
-            <li>Wanderers <span class="score">4</span> - <span class="score">3</span> Valunir</li>
+            <li>Joga Bonito 1 - 0 Bristol</li>
+            <li>Wanderers 4 - 3 Valunir</li>
         </ul>
     `,
     "3": `<p class="placeholder-text">¡Resultados de la Fecha 3, pendientes!</p>`
@@ -62,14 +62,12 @@ function mostrarTablaPosiciones() {
   const tbody = document.querySelector("#tablaPosiciones tbody");
   if (!tbody) return;
 
-  // Criterio de Ordenamiento: 1. Puntos (desc) 2. Partidos Ganados (desc)
   equipos.sort((a, b) => {
     if (b.pts !== a.pts) return b.pts - a.pts;
     return b.pg - a.pg;
   });
 
   const filasHTML = equipos.map((eq, i) => {
-    // Aplica clase 'top-three' para estilos de medalla
     const claseFila = (i < 3) ? 'top-three' : '';
 
     return `
@@ -155,17 +153,11 @@ function configurarBotonesFechas() {
 // ===================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("JRS League: Script de datos inicializado.");
-  
-  // 1. Mostrar las tablas
   mostrarTablaPosiciones();
   mostrarGoleadores();
   mostrarAsistencias();
-
-  // 2. Configurar la interactividad
   configurarBotonesFechas();
   
-  // 3. Funcionalidad del Botón Discord
   const discordButton = document.getElementById('discordBtn');
   if(discordButton) {
       discordButton.addEventListener('click', () => {
