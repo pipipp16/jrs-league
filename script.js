@@ -14,7 +14,9 @@ let equipos = [
   { nombre: "Valunir", pts: 3, pj: 4, pg: 1, pe: 0, pp: 3 },
   { nombre: "Loan", pts: 3, pj: 4, pg: 0, pe: 3, pp: 1 },
   { nombre: "Laira", pts: 2, pj: 4, pg: 0, pe: 2, pp: 2 },
-  { nombre: "El Rejunte De Amigos", pts: 1, pj: 4, pg: 0, pe: 1, pp: 3 },
+  { nombre: "El Rejunte De Amigos", pts: 2, pj: 5, pg: 0, pe: 2, pp: 3 },
+  { nombre: "Bristol", pts: 0, pj: 4, pg: 0, pe: 0, pp: 4 },
+  { nombre: "Joga Bonito", pts: 0, pj: 4, pg: 0, pe: 0, pp: 4 },
   { nombre: "Wanderers", pts: 0, pj: 4, pg: 0, pe: 0, pp: 4 },
 ];
 
