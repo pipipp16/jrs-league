@@ -1,20 +1,22 @@
 /* ========================= VARIABLES CSS ========================= */
 :root {
-    --color-primary: #b30000;       
-    --color-secondary: #ff3333;     
-    --color-discord: #5865f2;       
-    --color-text-dark: #2c3e50;     
-    --color-text-light: #ecf0f1;    
-    --color-sidebar-bg: #222;       /* Fondo del menú lateral */
-    --shadow-default: 0 4px 15px rgba(0, 0, 0, 0.2);
-    --shadow-lift: 0 8px 25px rgba(0, 0, 0, 0.3);
+    --color-primary: #b30000;       /* Rojo Oscuro Principal */
+    --color-secondary: #ff3333;     /* Rojo Brillante (Acento) */
+    --color-discord: #5865f2;       /* Discord Azul */
+    --color-text-dark: #2c3e50;     /* Gris Azulado Oscuro */
+    --color-text-light: #ecf0f1;    /* Blanco Roto */
+    --color-sidebar-bg: #1c1c1c;    /* Negro Oscuro para el menú */
+    --shadow-default: 0 6px 15px rgba(0, 0, 0, 0.25);
+    --shadow-lift: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --border-radius-lg: 12px;
 }
 
 /* ========================= BASE Y ESTRUCTURA ========================= */
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif; 
-    background: linear-gradient(180deg, var(--color-primary), #ffffff);
+    /* Fondo con degradado suave y limpio */
+    background: linear-gradient(180deg, var(--color-primary) 0%, #f0f0f0 40%, #ffffff 100%);
     color: var(--color-text-dark); 
     min-height: 100vh;
     display: flex;
@@ -22,213 +24,49 @@ body {
     line-height: 1.6;
 }
 
-/* --- HEADER --- */
+/* --- ENCABEZADOS DE SECCIÓN --- */
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: var(--color-text-dark);
+    text-align: center;
+    position: relative;
+    font-weight: 800; /* Más impactante */
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 80px; /* Un poco más largo */
+    height: 5px; /* Un poco más grueso */
+    background-color: var(--color-secondary);
+    margin: 10px auto 0;
+    border-radius: 3px;
+}
+
+
+/* ========================= HEADER Y NAVEGACIÓN PRINCIPAL ========================= */
+
 header {
-    background: rgba(255, 255, 255, 0.95); 
-    padding: 20px 40px; 
+    background: rgba(255, 255, 255, 0.98); /* Fondo casi blanco, muy limpio */
+    padding: 15px 40px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-default); 
-    border-bottom: 3px solid var(--color-secondary); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    border-bottom: 5px solid var(--color-primary); /* Borde fuerte */
     position: sticky; 
     top: 0;
     z-index: 1000;
 }
-/* ... (Estilos de logo-container, h1, trophy-icon, discordBtn) ... */
+
 .logo-container {
     display: flex;
     align-items: center;
-    position: absolute; /* Para centrarlo horizontalmente */
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.trophy-icon {
-    font-size: 2.2rem;
-    margin-right: 10px;
-    color: var(--color-primary);
-}
-
-h1 {
-    margin: 0;
-    font-size: 2.2rem; 
-    color: var(--color-primary);
-    font-weight: 800; 
-    letter-spacing: -0.5px; 
-}
-
-#discordBtn {
-    background-color: var(--color-discord);
-    color: white;
-    border: none;
-    padding: 12px 25px; 
-    border-radius: 50px; 
-    cursor: pointer;
-    font-size: 1.05rem;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-    margin-left: auto; /* Mueve el botón Discord a la derecha */
-}
-/* ------------------------------------------- */
-
-/* ========================= SIDEBAR (Menú Lateral) ========================= */
-
-.sidebar {
-    height: 100%; 
-    width: 0; /* Inicialmente cerrado */
-    position: fixed; 
-    z-index: 2000; /* Sobre todo lo demás */
-    top: 0;
-    left: 0;
-    background-color: var(--color-sidebar-bg); 
-    overflow-x: hidden; 
-    padding-top: 60px;
-    transition: 0.5s; 
-    box-shadow: var(--shadow-lift);
-}
-
-.sidebar a {
-    padding: 15px 8px 15px 32px;
-    text-decoration: none;
-    font-size: 1.1rem;
-    color: var(--color-text-light);
-    display: block;
-    transition: 0.3s;
-}
-
-.sidebar a:hover {
-    color: var(--color-secondary);
-    background-color: #333;
-}
-
-.sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-.sidebar-title {
-    color: var(--color-secondary);
-    padding: 15px 8px 5px 32px;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-top: 20px;
-}
-
-.sidebar-divider {
-    height: 1px;
-    background-color: #444;
-    margin: 20px 32px;
-}
-
-/* Botón de Abrir Menú */
-.openbtn {
-    font-size: 1.2rem;
-    cursor: pointer;
-    background-color: var(--color-primary);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    transition: 0.3s;
-    font-weight: 600;
-}
-
-.openbtn:hover {
-    background-color: var(--color-secondary);
-}
-
-/* Contenido Principal (Se desplaza cuando el menú está abierto) */
-#main {
-    transition: margin-left .5s; 
-    padding: 40px 20px;
-    flex: 1;
-}
-
-/* ========================= SECCIÓN DE INFORMACIÓN PRINCIPAL ========================= */
-
-.info-section {
-    max-width: 900px;
-    margin: 0 auto 40px auto;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.98); 
-    border-radius: 12px;
-    box-shadow: var(--shadow-lift);
-    text-align: center;
-}
-
-.admin-info {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
-
-.info-section h2, .admin-info h3 {
-    color: var(--color-primary);
-    position: static;
-    margin-bottom: 10px;
-}
-
-.info-section h2::after, .admin-info h3::after {
-    display: none;
-}
-
-/* ========================= SECCIÓN HOST PRIVADO ========================= */
-.host-privado-section {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-    padding: 40px 20px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: var(--shadow-lift);
-    max-width: 900px;
-    margin: 40px auto;
-}
-
-.host-privado-section h2 {
-    color: var(--color-text-light);
-    font-size: 2rem;
-}
-
-.host-privado-section h2::after {
-    background-color: var(--color-secondary);
-}
-
-/* ========================= FOOTER ========================= */
-footer {
-    background-color: var(--color-text-dark);
-    color: var(--color-text-light);
-    text-align: center;
-    padding: 20px;
-    margin-top: auto;
-    font-size: 0.9rem;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* ========================= MEDIA QUERIES (Para móviles) ========================= */
-@media (max-width: 800px) {
-    header {
-        padding: 15px 20px;
-    }
-    
-    .logo-container {
-        position: static;
-        transform: none;
-        order: 2; /* Centrar el logo en móvil si es necesario */
-        margin: 0 auto;
-    }
-    
-    .openbtn {
-        order: 1;
-    }
-    
-    #discordBtn {
-        order: 3;
-        padding: 8px 15px;
-        font-size: 0.9rem;
-    }
-}
+.trophy
