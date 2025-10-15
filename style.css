@@ -1,29 +1,28 @@
-/* --- ESTILOS GENERALES Y LAYOUT --- */
+/* --- VARIABLES DE COLOR (DISEÑO BLANCO Y ROJO) --- */
 :root {
-    --color-primary: #FF3B3F; /* Rojo Principal */
-    --color-secondary: #E3E3E3; /* Gris claro para texto */
-    --color-bg-dark: #121212; /* Fondo muy oscuro */
-    --color-card-dark: #1e1e1e; /* Color de fondo de las tarjetas */
-    --color-border: #333;
-    --color-text: #E3E3E3;
-    --color-table-header: var(--color-primary);
+    --color-primary: #FF3B3F; /* Rojo */
+    --color-secondary: #000;  /* Negro para texto principal */
+    --color-bg-light: #F0F0F0; /* Fondo general muy claro */
+    --color-bg-dark: #333; /* Fondo de banners/footer si usas oscuro */
+    --color-card-light: #FFFFFF; /* Fondo de las tarjetas (Blanco) */
+    --color-border: #DDD;
+    --color-text-dark: #333; /* Texto oscuro */
+    --color-text-light: #FFF; /* Texto claro */
+    --color-table-header: var(--color-primary); /* Encabezados rojos */
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--color-bg-dark);
-    color: var(--color-text);
+    font-family: 'Montserrat', sans-serif; 
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
     margin: 0;
-    padding-top: 60px; /* Espacio para el header fijo */
+    padding-top: 60px;
     line-height: 1.6;
-    background-image: url('assets/background-jakjus.png'); /* Asegúrate de que esta ruta sea correcta */
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
+    /* Si tenías un fondo de imagen, añádelo aquí */
 }
 
 header {
-    background-color: var(--color-bg-dark);
+    background-color: var(--color-bg-dark); /* El header sí es oscuro/negro */
     border-bottom: 2px solid var(--color-primary);
     padding: 10px 20px;
     display: flex;
@@ -36,48 +35,8 @@ header {
     z-index: 1000;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-
-.trophy-icon {
-    color: var(--color-primary);
-    font-size: 24px;
-    margin-right: 10px;
-}
-
-header h1 {
-    font-size: 24px;
-    font-weight: 900;
-    margin: 0;
-    color: var(--color-text);
-}
-
-.nav-btn {
-    color: var(--color-text);
-    text-decoration: none;
-    padding: 8px 15px;
-    margin-left: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    background: none;
-}
-
-.nav-btn:hover, .nav-btn.active {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.discord-btn {
-    background-color: var(--color-primary);
-    color: white;
-}
-
-.discord-btn:hover {
-    background-color: #e6373b;
+header h1, .nav-btn {
+    color: var(--color-text-light);
 }
 
 main {
@@ -96,7 +55,6 @@ main h2 {
 }
 
 /* --- GRID LAYOUT --- */
-
 .content-grid-3col {
     display: grid;
     gap: 20px;
@@ -106,72 +64,52 @@ main h2 {
     grid-template-columns: 2fr 1fr 1fr;
 }
 
-/* Asignación de áreas */
 #posiciones { grid-area: posiciones; }
 #goleadores { grid-area: goleadores; }
 #fechas { grid-area: fechas; }
 #asistencias { grid-area: asistencias; }
 
-
 .grid-item {
-    background-color: var(--color-card-dark);
+    background-color: var(--color-card-light); /* Fondo BLANCO de las tarjetas */
+    border: 1px solid var(--color-border);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .grid-item h2 {
-    color: var(--color-primary);
-    font-size: 1.5em;
-    margin-top: 0;
+    color: var(--color-primary); /* Título de la tarjeta ROJO */
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 10px;
 }
 
 /* --- ESTILOS DE TABLAS --- */
-
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9em;
-    text-align: center;
 }
 
 thead th {
-    background-color: var(--color-table-header);
+    background-color: var(--color-table-header); /* Encabezado ROJO */
     color: white;
     padding: 10px 5px;
     font-weight: 700;
-    text-transform: uppercase;
 }
 
 tbody tr {
     border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-dark); 
 }
 
 tbody tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.05); /* Ligeramente más claro */
+    background-color: #F8F8F8;
 }
 
 tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #EEE;
 }
 
-tbody td {
-    padding: 10px 5px;
-}
-
-/* Estilo para los 3 primeros puestos */
-.top-three {
-    font-weight: 700;
-}
-
-/* Colores para los 3 primeros */
-tbody tr:nth-child(1) { background-color: rgba(255, 215, 0, 0.2); /* Oro */ }
-tbody tr:nth-child(2) { background-color: rgba(192, 192, 192, 0.2); /* Plata */ }
-tbody tr:nth-child(3) { background-color: rgba(205, 127, 50, 0.2); /* Bronce */ }
-
-/* Estilo para la celda del nombre del equipo y el logo */
+/* Estilo de la celda del equipo con logo */
 .team-name-cell {
     text-align: left;
     display: flex;
@@ -184,141 +122,29 @@ tbody tr:nth-child(3) { background-color: rgba(205, 127, 50, 0.2); /* Bronce */ 
     height: 25px;
     border-radius: 50%;
     margin-right: 8px;
-    background-color: #444; /* Fondo para el placeholder */
     object-fit: cover;
-    flex-shrink: 0; /* Evita que el logo se achique */
+    flex-shrink: 0; 
 }
 
 /* --- ESTILOS DE RESULTADOS DE FECHAS --- */
-
-.date-buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-    justify-content: center;
-}
-
 .date-btn {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: 700;
-}
-
-.date-btn:hover {
-    background-color: #555;
+    background-color: #DDD;
+    color: var(--color-text-dark);
+    /* ... otros estilos ... */
 }
 
 .date-btn.active {
     background-color: var(--color-primary);
+    color: white;
 }
 
 .resultados-content {
-    background-color: #2a2a2a;
-    padding: 15px;
-    border-radius: 8px;
-    min-height: 100px; 
+    background-color: #F8F8F8; /* Fondo más claro para los resultados */
+    /* ... otros estilos ... */
 }
 
-.placeholder-text {
-    text-align: center;
-    color: #888;
-    font-style: italic;
-    padding: 20px 0;
-}
-
-.score-list {
-    list-style: none;
-    padding: 0;
-}
-
-.score-list li {
-    background-color: #333;
-    padding: 8px;
-    margin-bottom: 5px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-}
-
-/* --- FOOTER --- */
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: var(--color-card-dark);
-    color: #999;
-    border-top: 1px solid var(--color-border);
-    font-size: 0.8em;
-    margin-top: 30px;
-}
-
-/* --- MODAL (Estilos Rápidos para el ejemplo) --- */
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.7);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: var(--color-card-dark);
-    margin: 15% auto;
-    padding: 30px;
-    border: 1px solid var(--color-primary);
-    width: 80%;
-    max-width: 400px;
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
-}
-
-.close-modal-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-}
-
-.close-modal-btn:hover,
-.close-modal-btn:focus {
-    color: var(--color-primary);
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.social-buttons a {
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.youtube-btn { background-color: #FF0000; }
-.instagram-btn { background-color: #E4405F; }
-.tiktok-btn { background-color: #69C9D0; }
-
-
-/* --- MEDIA QUERIES para Responsive Design --- */
+/* --- MEDIA QUERIES --- */
 @media (max-width: 1000px) {
-    /* En pantallas medianas, cambia a 2 columnas */
     .content-grid-3col {
         grid-template-areas:
             "posiciones posiciones"
@@ -327,9 +153,7 @@ footer {
         grid-template-columns: 1fr 1fr;
     }
 }
-
 @media (max-width: 600px) {
-    /* En móviles, apila todo en una columna */
     .content-grid-3col {
         grid-template-areas:
             "posiciones"
@@ -337,13 +161,5 @@ footer {
             "asistencias"
             "fechas";
         grid-template-columns: 1fr;
-    }
-    
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
-    .main-nav {
-        padding-top: 10px;
     }
 }
