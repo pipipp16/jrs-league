@@ -1,28 +1,30 @@
-/* --- VARIABLES DE COLOR (DISEÑO BLANCO Y ROJO) --- */
+/* --- VARIABLES DE COLOR (DISEÑO OSCURO Y ROJO) --- */
 :root {
-    --color-primary: #FF3B3F; /* Rojo */
-    --color-secondary: #000;  /* Negro para texto principal */
-    --color-bg-light: #F0F0F0; /* Fondo general muy claro */
-    --color-bg-dark: #333; /* Fondo de banners/footer si usas oscuro */
-    --color-card-light: #FFFFFF; /* Fondo de las tarjetas (Blanco) */
-    --color-border: #DDD;
-    --color-text-dark: #333; /* Texto oscuro */
-    --color-text-light: #FFF; /* Texto claro */
+    --color-primary: #FF3B3F; /* Rojo Principal */
+    --color-secondary: #E3E3E3; /* Gris claro para texto */
+    --color-bg-dark: #121212; /* Fondo muy oscuro (casi negro) */
+    --color-card-dark: #1e1e1e; /* Color de fondo de las tarjetas (Gris oscuro) */
+    --color-border: #333;
+    --color-text: #E3E3E3;
     --color-table-header: var(--color-primary); /* Encabezados rojos */
 }
 
 body {
-    font-family: 'Montserrat', sans-serif; 
-    background-color: var(--color-bg-light);
-    color: var(--color-text-dark);
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text);
     margin: 0;
-    padding-top: 60px;
+    padding-top: 60px; 
     line-height: 1.6;
-    /* Si tenías un fondo de imagen, añádelo aquí */
+    /* Fondo de JAKJUS (ajustar la ruta si es necesario) */
+    background-image: url('assets/background-jakjus.png'); 
+    background-size: cover;
+    background-attachment: fixed; 
+    background-position: center;
 }
 
 header {
-    background-color: var(--color-bg-dark); /* El header sí es oscuro/negro */
+    background-color: var(--color-bg-dark);
     border-bottom: 2px solid var(--color-primary);
     padding: 10px 20px;
     display: flex;
@@ -36,8 +38,11 @@ header {
 }
 
 header h1, .nav-btn {
-    color: var(--color-text-light);
+    color: var(--color-text);
 }
+
+.trophy-icon { color: var(--color-primary); }
+.discord-btn { background-color: var(--color-primary); color: white; }
 
 main {
     padding: 20px;
@@ -47,7 +52,7 @@ main {
 
 main h2 {
     text-align: center;
-    color: var(--color-primary);
+    color: var(--color-primary); 
     font-weight: 700;
     margin-bottom: 30px;
     padding: 5px 0;
@@ -70,11 +75,11 @@ main h2 {
 #asistencias { grid-area: asistencias; }
 
 .grid-item {
-    background-color: var(--color-card-light); /* Fondo BLANCO de las tarjetas */
+    background-color: var(--color-card-dark); /* Fondo oscuro de las tarjetas */
     border: 1px solid var(--color-border);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .grid-item h2 {
@@ -87,6 +92,8 @@ main h2 {
 table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 0.9em;
+    text-align: center;
 }
 
 thead th {
@@ -98,18 +105,18 @@ thead th {
 
 tbody tr {
     border-bottom: 1px solid var(--color-border);
-    color: var(--color-text-dark); 
+    color: var(--color-text); /* Texto claro en filas */
 }
 
 tbody tr:nth-child(even) {
-    background-color: #F8F8F8;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 tbody tr:hover {
-    background-color: #EEE;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Estilo de la celda del equipo con logo */
+/* Estilo para la celda del equipo con logo */
 .team-name-cell {
     text-align: left;
     display: flex;
@@ -122,15 +129,19 @@ tbody tr:hover {
     height: 25px;
     border-radius: 50%;
     margin-right: 8px;
+    background-color: #444; 
     object-fit: cover;
     flex-shrink: 0; 
 }
 
 /* --- ESTILOS DE RESULTADOS DE FECHAS --- */
 .date-btn {
-    background-color: #DDD;
-    color: var(--color-text-dark);
-    /* ... otros estilos ... */
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .date-btn.active {
@@ -139,11 +150,21 @@ tbody tr:hover {
 }
 
 .resultados-content {
-    background-color: #F8F8F8; /* Fondo más claro para los resultados */
-    /* ... otros estilos ... */
+    background-color: #2a2a2a; 
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 100px; 
 }
 
-/* --- MEDIA QUERIES --- */
+footer {
+    background-color: var(--color-card-dark);
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+/* --- MEDIA QUERIES (Asegura la adaptabilidad) --- */
 @media (max-width: 1000px) {
     .content-grid-3col {
         grid-template-areas:
