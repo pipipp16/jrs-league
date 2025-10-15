@@ -13,7 +13,6 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif; 
-    /* Fondo con degradado (rojo a blanco) */
     background: linear-gradient(180deg, var(--color-primary), #ffffff);
     color: var(--color-text-dark); 
     min-height: 100vh;
@@ -43,6 +42,7 @@ header {
 .trophy-icon {
     font-size: 2.2rem;
     margin-right: 10px;
+    color: var(--color-primary);
 }
 
 h1 {
@@ -92,49 +92,44 @@ h2::after {
     border-radius: 2px;
 }
 
-/* ========================= CSS GRID LAYOUT ========================= */
+/* ========================= CSS GRID LAYOUT 2x2 ========================= */
 
 main {
     flex: 1;
     padding: 40px 20px; 
 }
 
-.content-grid {
+.content-grid-2x2 {
     display: grid;
-    /* 2fr (Izquierda) | 1fr (Derecha) */
-    grid-template-columns: 2fr 1fr; 
-    /* CORRECCIÓN: Usamos 'auto' para que las filas de la derecha ocupen solo el espacio de su contenido */
-    grid-template-rows: auto auto auto; 
-    gap: 20px; 
+    /* Dos columnas iguales */
+    grid-template-columns: 1fr 1fr; 
+    /* Dos filas iguales */
+    grid-template-rows: auto auto; 
+    gap: 25px; /* Más espacio entre los bloques */
     width: 95%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Posicionamiento de los elementos */
+/* Posicionamiento de los elementos (automático en 2x2, pero lo definimos para claridad) */
+.tabla-goles {
+    grid-column: 1 / 2;     /* Arriba Izquierda */
+    grid-row: 1 / 2;
+}
+
 .tabla-puntos {
-    grid-column: 1 / 2;     /* Columna 1 */
-    grid-row: 1 / span 3;   /* Se extiende por 3 filas */
+    grid-column: 2 / 3;     /* Arriba Derecha */
+    grid-row: 1 / 2;
 }
 
 .fechas-container {
-    grid-column: 2 / 3;     /* Columna 2 */
-    grid-row: 1 / 2;        /* Fila 1 */
-}
-
-.tabla-goles {
-    grid-column: 2 / 3;     /* Columna 2 */
-    grid-row: 2 / 3;        /* Fila 2 */
+    grid-column: 1 / 2;     /* Abajo Izquierda */
+    grid-row: 2 / 3;
 }
 
 .tabla-asis {
-    grid-column: 2 / 3;     /* Columna 2 */
-    grid-row: 3 / 4;        /* Fila 3 */
-}
-
-.estadisticas-generales {
-    grid-column: 1 / -1; /* Ocupa el ancho completo debajo del grid */
-    margin-top: 20px;
+    grid-column: 2 / 3;     /* Abajo Derecha */
+    grid-row: 2 / 3;
 }
 
 .grid-item {
@@ -145,18 +140,19 @@ main {
     overflow: auto; 
 }
 
-/* MEDIA QUERIES (Para móviles) */
+/* MEDIA QUERIES (Para móviles: apila los elementos) */
 @media (max-width: 800px) {
-    .content-grid {
+    .content-grid-2x2 {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
     }
 
-    .tabla-puntos, .fechas-container, .tabla-goles, .tabla-asis {
+    .tabla-goles, .tabla-puntos, .fechas-container, .tabla-asis {
         grid-column: 1 / 2;
         grid-row: auto;
     }
 }
+
 
 /* ========================= ESTILOS DE TABLAS ========================= */
 
@@ -197,7 +193,8 @@ tr:hover {
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-td:nth-child(2) {
+/* Estilos específicos para tabla de posiciones */
+.tabla-puntos td:nth-child(2) {
     text-align: left; 
     font-weight: 600; 
 }
@@ -215,6 +212,7 @@ td:nth-child(2) {
     flex-wrap: wrap; 
     gap: 8px;
     margin-bottom: 15px;
+    justify-content: center;
 }
 
 .date-btn {
