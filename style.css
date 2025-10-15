@@ -343,7 +343,7 @@ footer {
     padding: 15px 0;
     text-align: center;
     font-size: 0.9rem;
-    margin-top: auto; /* Empuja el footer hacia abajo */
+    margin-top: auto;
 }
 
 /* ========================= MEDIA QUERIES ========================= */
