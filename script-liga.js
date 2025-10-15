@@ -8,7 +8,6 @@
 const datosLiga = {
     equipos: [
         // ESTADÍSTICAS EN CERO (0) y LOGOS EN PLACEHOLDER ('#') con campos GF y GC
-        // (Debes tener los 13 equipos para que la tabla no se vea incompleta)
         { nombre: "Machetitos", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "Cornudos", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "White Phanter Kings", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
@@ -45,7 +44,7 @@ const datosLiga = {
 };
 
 // ===================================================================
-//                            FUNCIONES DE RENDERIZADO (CORRECTAS)
+//                            FUNCIONES DE RENDERIZADO
 // ===================================================================
 
 function mostrarTablaPosiciones(data) {
