@@ -11,40 +11,26 @@
 </head>
 <body>
 
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        
-        <h3 class="sidebar-title">LIGA X6</h3>
-        <a href="liga-x6.html#posiciones" onclick="closeNav()">Tabla de Posiciones</a>
-        <a href="liga-x6.html#goleadores" onclick="closeNav()">Tabla de Goleadores</a>
-        <a href="liga-x6.html#asistencias" onclick="closeNav()">Tabla de Asistencias</a>
-        <a href="liga-x6.html#fechas" onclick="closeNav()">Fechas y Resultados</a>
-
-        <div class="sidebar-divider"></div>
-        
-        <h3 class="sidebar-title">LIGA X4</h3>
-        <a href="liga-x4.html#posiciones" onclick="closeNav()">Tabla de Posiciones</a>
-        <a href="liga-x4.html#goleadores" onclick="closeNav()">Tabla de Goleadores</a>
-        <a href="liga-x4.html#asistencias" onclick="closeNav()">Tabla de Asistencias</a>
-        <a href="liga-x4.html#fechas" onclick="closeNav()">Fechas y Resultados</a>
-    </div>
-
     <header>
-        <button class="openbtn" onclick="openNav()">&#9776; Menú</button>
-
         <div class="logo-container">
             <span class="trophy-icon">🏆</span>
             <h1>JRS League</h1>
         </div>
-        <button id="discordBtn">Discord</button>
+        
+        <nav class="main-nav">
+            <a href="index.html" class="nav-btn">INICIO</a>
+            <a href="liga.html" class="nav-btn">LIGA</a>
+            <button id="redesBtn" class="nav-btn">REDES</button>
+            <button id="discordBtn" class="nav-btn discord-btn">Discord</button>
+        </nav>
     </header>
 
-    <main id="main">
+    <main>
         
         <section class="info-section">
             <h2>Bienvenido a la Liga Oficial JRS</h2>
             <p>Esta es la página principal de la liga JRS, donde puedes encontrar toda la información clave, incluyendo reglas, anuncios importantes y datos de contacto de los administradores.</p>
-            <p>Utiliza el botón **Menú** para navegar a las diferentes tablas y resultados de las ligas X6 y X4.</p>
+            <p>Utiliza el botón **LIGA** para ver las tablas de posiciones y estadísticas actualizadas.</p>
             
             <div class="admin-info">
                 <h3>Administradores Clave</h3>
@@ -59,6 +45,19 @@
             </section>
 
     </main>
+
+    <div id="redesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal-btn">&times;</span>
+            <h2>Nuestras Redes</h2>
+            <p>Síguenos para no perderte ninguna novedad de la liga.</p>
+            <div class="social-buttons">
+                <a href="URL_YOUTUBE" target="_blank" class="social-btn youtube-btn">YouTube</a>
+                <a href="URL_INSTAGRAM" target="_blank" class="social-btn instagram-btn">Instagram</a>
+                <a href="URL_TIKTOK" target="_blank" class="social-btn tiktok-btn">TikTok</a>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2025 JRS League - Desarrollado para la comunidad.</p>
