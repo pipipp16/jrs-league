@@ -7,37 +7,50 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- Lógica del MODAL de Redes ---
+    // Seleccionamos todos los botones con id="redesBtn" (ya que están en index.html y liga.html)
+    const redButtons = document.querySelectorAll("#redesBtn");
     const modal = document.getElementById("redesModal");
-    const btn = document.getElementById("redesBtn");
-    const span = document.getElementsByClassName("close-modal-btn")[0];
+    const closeModalBtn = document.getElementsByClassName("close-modal-btn")[0]; // Solo hay uno
 
-    // Abrir el modal
-    if(btn) {
-        btn.onclick = function() {
+    // Función para abrir el modal
+    function openModal() {
+        if (modal) {
             modal.style.display = "block";
         }
     }
 
-    // Cerrar el modal con la X
-    if(span) {
-        span.onclick = function() {
+    // Función para cerrar el modal
+    function closeModal() {
+        if (modal) {
             modal.style.display = "none";
         }
+    }
+
+    // Abrir el modal al hacer clic en cualquiera de los botones "REDES"
+    redButtons.forEach(btn => {
+        btn.onclick = openModal;
+    });
+
+    // Cerrar el modal con la X
+    if(closeModalBtn) {
+        closeModalBtn.onclick = closeModal;
     }
 
     // Cerrar el modal al hacer clic fuera de él
     window.onclick = function(event) {
         if (event.target == modal) {
-            modal.style.display = "none";
+            closeModal();
         }
     }
 
     // --- Funcionalidad del Botón Discord ---
-    const discordButton = document.getElementById('discordBtn');
+    const discordButton = document.querySelectorAll('.discord-btn');
     if(discordButton) {
-        discordButton.addEventListener('click', () => {
-            // REEMPLAZA ESTE LINK CON TU ENLACE REAL DE DISCORD
-            window.open('https://discord.gg/ejemplodeinvitacion', '_blank'); 
+        discordButton.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // REEMPLAZA ESTE LINK CON TU ENLACE REAL DE DISCORD
+                window.open('https://discord.gg/ejemplodeinvitacion', '_blank'); 
+            });
         });
     }
 });
