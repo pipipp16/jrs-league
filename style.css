@@ -4,10 +4,10 @@
     --color-secondary: #E3E3E3; /* Gris claro para texto */
     --color-bg-dark: #121212; /* Fondo muy oscuro (casi negro) */
     --color-card-dark: #1e1e1e; /* Color de fondo de las tarjetas (Gris oscuro) */
-    --color-border: #444; /* Borde un poco más visible */
+    --color-border: #444; /* Borde de las tarjetas */
     --color-text: #E3E3E3;
     --color-table-header: var(--color-primary); 
-    --spacing: 15px; /* Nueva variable para controlar el espacio */
+    --spacing: 25px; /* Aumentamos el espacio general para más "aire" */
 }
 
 body {
@@ -15,10 +15,9 @@ body {
     background-color: var(--color-bg-dark);
     color: var(--color-text);
     margin: 0;
-    padding-top: 60px; 
+    padding-top: 70px; /* Más espacio en el header */
     line-height: 1.6;
-    /* --- FONDO ACTUALIZADO CON TU NUEVA IMAGEN --- */
-    /* Asegúrate que esta ruta sea correcta. La imagen debe estar en la raíz del proyecto. */
+    /* --- FONDO JAKJUS --- */
     background-image: url('JAKJUS_REAL_SOCCER_2.jpg'); 
     background-size: cover; 
     background-attachment: fixed; 
@@ -28,7 +27,7 @@ body {
 header {
     background-color: var(--color-bg-dark);
     border-bottom: 2px solid var(--color-primary);
-    padding: 10px 20px;
+    padding: 10px var(--spacing);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,6 +42,7 @@ header {
     font-weight: 700;
     text-transform: uppercase;
     margin-left: var(--spacing);
+    transition: color 0.2s;
 }
 
 .trophy-icon { color: var(--color-primary); }
@@ -54,55 +54,73 @@ header {
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
+    transition: background-color 0.2s;
 }
+.discord-btn:hover { background-color: #d13034; }
 
 main {
-    padding: var(--spacing) * 2; /* Aumentamos el padding en Main */
-    max-width: 1200px;
-    margin: 20px auto;
+    padding: var(--spacing);
+    max-width: 1300px; /* Un poco más ancho para la simetría */
+    margin: var(--spacing) auto;
 }
 
 main h2 {
     text-align: center;
     color: var(--color-primary); 
-    font-weight: 700;
-    margin-bottom: 30px;
-    padding: 5px 0;
-    border-bottom: 2px solid var(--color-primary);
+    font-weight: 900;
+    margin-bottom: var(--spacing) * 1.5;
+    padding: 10px 0;
+    border-bottom: 3px solid var(--color-primary);
+    text-transform: uppercase;
 }
 
-/* --- GRID LAYOUT --- */
+/* --- GRID LAYOUT CRÍTICO PARA SIMETRÍA --- */
 .content-grid-3col {
     display: grid;
     gap: 30px; /* Aumentamos la separación entre tablas */
+    /* Definimos tres columnas. La primera es un poco más ancha (1.5fr) */
     grid-template-areas:
         "posiciones goleadores fechas"
-        "posiciones asistencias .";
-    grid-template-columns: 2fr 1fr 1fr;
+        "posiciones asistencias fechas"; /* Ajustamos la distribución de asistencias y fechas */
+    grid-template-columns: 1.5fr 1fr 1fr; /* Relación de tamaño de las 3 columnas */
 }
+
+#posiciones { grid-area: posiciones; }
+#goleadores { grid-area: goleadores; }
+#fechas { 
+    grid-area: fechas; 
+    /* CRÍTICO: Para hacer que Fechas y Resultados ocupe el doble de altura */
+    min-height: 400px; /* Aseguramos que la columna de fechas/resultados tenga altura */
+    display: flex;
+    flex-direction: column;
+}
+#asistencias { grid-area: asistencias; }
 
 .grid-item {
     background-color: var(--color-card-dark); 
     border: 1px solid var(--color-border);
-    padding: 25px; /* Aumentamos el padding interno */
+    padding: var(--spacing); /* Usamos el espaciado para uniformidad */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
 .grid-item h2 {
     color: var(--color-primary); 
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 10px;
-    margin-top: 0; /* Aseguramos que no haya margen superior en h2 */
+    margin-top: 0; 
+    margin-bottom: var(--spacing); /* Espacio después del título de la tarjeta */
+    font-weight: 700;
+    text-align: center;
 }
 
-/* --- ESTILOS DE TABLAS (Se mantienen para el diseño oscuro) --- */
+/* --- ESTILOS DE TABLAS --- */
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9em;
     text-align: center;
-    margin-top: 15px; /* Espacio después del título H2 de la tabla */
+    margin-top: 0;
 }
 
 thead th {
@@ -110,7 +128,8 @@ thead th {
     color: white;
     padding: 10px 5px;
     font-weight: 700;
-    font-size: 0.85em; /* Ligeramente más pequeño para el header */
+    font-size: 0.85em; 
+    text-transform: uppercase;
 }
 
 tbody tr {
@@ -118,7 +137,7 @@ tbody tr {
 }
 
 tbody tr td {
-    padding: 8px 5px; /* Más espacio vertical en las celdas */
+    padding: 10px 5px; /* Más espacio vertical */
 }
 
 .team-name-cell {
@@ -133,9 +152,11 @@ tbody tr td {
     display: flex;
     gap: 10px;
     margin-bottom: 15px;
+    justify-content: center; /* Centrar botones */
 }
 
 .date-btn {
+    /* Estilos se mantienen, pero se ven mejor con la nueva simetría */
     background-color: #333;
     color: var(--color-text);
     border: 1px solid var(--color-border);
@@ -144,10 +165,6 @@ tbody tr td {
     cursor: pointer;
     font-weight: 600;
     transition: background-color 0.2s;
-}
-
-.date-btn:hover {
-    background-color: #444;
 }
 
 .date-btn.active {
@@ -162,29 +179,26 @@ tbody tr td {
     border-radius: 8px;
     min-height: 100px; 
     margin-top: 10px;
+    flex-grow: 1; /* Permite que este div se estire y llene el espacio */
 }
-
-.score-list li {
-    padding: 5px 0;
-    border-bottom: 1px dotted #444;
-    list-style: none;
-    margin-left: 0;
-}
-.score-list li:last-child {
-    border-bottom: none;
-}
-
 
 footer {
     background-color: var(--color-card-dark);
     color: #999;
-    padding: 10px 0;
+    padding: 15px 0; /* Más espacio */
     text-align: center;
     font-size: 0.8em;
 }
 
-/* --- MEDIA QUERIES --- */
+/* --- MEDIA QUERIES (Asegura la adaptabilidad) --- */
+@media (max-width: 1200px) {
+    /* Ajuste para pantallas medianas */
+    .content-grid-3col {
+        grid-template-columns: 1fr 1fr 1fr; /* Hace las 3 columnas iguales */
+    }
+}
 @media (max-width: 1000px) {
+    /* Se rompe a 2 columnas */
     .content-grid-3col {
         grid-template-areas:
             "posiciones posiciones"
@@ -192,8 +206,10 @@ footer {
             "fechas fechas";
         grid-template-columns: 1fr 1fr;
     }
+    #fechas { min-height: auto; }
 }
 @media (max-width: 600px) {
+    /* Se rompe a 1 columna */
     .content-grid-3col {
         grid-template-areas:
             "posiciones"
