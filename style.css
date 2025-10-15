@@ -83,7 +83,7 @@ h1 {
     font-weight: 700;
     transition: all 0.2s ease;
     text-transform: uppercase;
-    cursor: pointer; /* Importante para los botones */
+    cursor: pointer;
 }
 
 .nav-btn:hover {
@@ -280,13 +280,70 @@ tr:hover {
     animation: fadeIn 0.3s;
 }
 
-/* El resto de estilos del modal y los botones sociales se mantienen */
+.close-modal-btn {
+    color: #888;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal-btn:hover,
+.close-modal-btn:focus {
+    color: var(--color-secondary);
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.social-btn {
+    text-decoration: none;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.youtube-btn {
+    background-color: var(--color-youtube);
+}
+.youtube-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+}
+
+.instagram-btn {
+    background-color: var(--color-instagram);
+}
+.instagram-btn:hover {
+    background-color: #c42b5d;
+    transform: translateY(-2px);
+}
+
+.tiktok-btn {
+    background-color: var(--color-tiktok);
+}
+.tiktok-btn:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
 
 /* ========================= FOOTER ========================= */
 footer {
     background-color: black;
     color: #555;
-    font-weight: 400;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: auto; /* Empuja el footer hacia abajo */
 }
 
 /* ========================= MEDIA QUERIES ========================= */
