@@ -11,16 +11,16 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--color-bg-dark);
+    background-color: var(--color-bg-dark); /* Color de fondo oscuro si la imagen no carga */
     color: var(--color-text);
     margin: 0;
     padding-top: 60px; 
     line-height: 1.6;
-    /* Fondo de JAKJUS (ajustar la ruta si es necesario) */
-    background-image: url('assets/background-jakjus.png'); 
-    background-size: cover;
-    background-attachment: fixed; 
-    background-position: center;
+    /* --- FONDO ACTUALIZADO CON TU NUEVA IMAGEN --- */
+    background-image: url('background-jrs-red-jakjus.png'); /* Ruta a tu nueva imagen */
+    background-size: cover; /* Cubre todo el área */
+    background-attachment: fixed; /* La imagen de fondo no se desplaza con el scroll */
+    background-position: center; /* Centra la imagen */
 }
 
 header {
@@ -80,107 +80,4 @@ main h2 {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.grid-item h2 {
-    color: var(--color-primary); /* Título de la tarjeta ROJO */
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 10px;
-}
-
-/* --- ESTILOS DE TABLAS --- */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9em;
-    text-align: center;
-}
-
-thead th {
-    background-color: var(--color-table-header); /* Encabezado ROJO */
-    color: white;
-    padding: 10px 5px;
-    font-weight: 700;
-}
-
-tbody tr {
-    border-bottom: 1px solid var(--color-border);
-    color: var(--color-text); /* Texto claro en filas */
-}
-
-tbody tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Estilo para la celda del equipo con logo */
-.team-name-cell {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    padding-left: 10px; 
-}
-
-.team-logo {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 8px;
-    background-color: #444; 
-    object-fit: cover;
-    flex-shrink: 0; 
-}
-
-/* --- ESTILOS DE RESULTADOS DE FECHAS --- */
-.date-btn {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.date-btn.active {
-    background-color: var(--color-primary);
-    color: white;
-}
-
-.resultados-content {
-    background-color: #2a2a2a; 
-    padding: 15px;
-    border-radius: 8px;
-    min-height: 100px; 
-}
-
-footer {
-    background-color: var(--color-card-dark);
-    color: #999;
-    padding: 10px 0;
-    text-align: center;
-    font-size: 0.8em;
-}
-
-/* --- MEDIA QUERIES (Asegura la adaptabilidad) --- */
-@media (max-width: 1000px) {
-    .content-grid-3col {
-        grid-template-areas:
-            "posiciones posiciones"
-            "goleadores asistencias"
-            "fechas fechas";
-        grid-template-columns: 1fr 1fr;
-    }
-}
-@media (max-width: 600px) {
-    .content-grid-3col {
-        grid-template-areas:
-            "posiciones"
-            "goleadores"
-            "asistencias"
-            "fechas";
-        grid-template-columns: 1fr;
-    }
 }
