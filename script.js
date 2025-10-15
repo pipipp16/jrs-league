@@ -7,20 +7,16 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- Lógica del MODAL de Redes ---
-    // Seleccionamos todos los botones con id="redesBtn" (están en index.html y liga.html)
     const redButtons = document.querySelectorAll("#redesBtn");
     const modal = document.getElementById("redesModal");
-    // Seleccionamos el botón de cierre (la 'X')
     const closeModalBtn = document.getElementsByClassName("close-modal-btn")[0]; 
 
-    // Función para abrir el modal, asegurando que se muestre (display: block)
     function openModal() {
         if (modal) {
             modal.style.display = "block";
         }
     }
 
-    // Función para cerrar el modal (display: none)
     function closeModal() {
         if (modal) {
             modal.style.display = "none";
@@ -45,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- Funcionalidad del Botón Discord ---
-    // Seleccionamos todos los botones de Discord
     const discordButtons = document.querySelectorAll('.discord-btn');
     if(discordButtons.length > 0) {
         discordButtons.forEach(btn => {
