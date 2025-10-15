@@ -72,9 +72,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const dateButtonsContainer = container.previousElementSibling;
         dateButtonsContainer.innerHTML = '';
 
-        const fechasIDs = Object.keys(fechasData).sort((a,b)=>a-b);
-
-        fechasIDs.forEach(id => {
+        Object.keys(fechasData).sort((a,b)=>a-b).forEach(id => {
             const btn = document.createElement('button');
             btn.className = 'date-btn';
             btn.dataset.fecha = id;
@@ -98,6 +96,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     mostrarGoleadores(goleadores);
     mostrarAsistencias(asistencias);
     configurarBotonesFechas(fechas);
-
 });
-
