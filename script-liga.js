@@ -1,10 +1,10 @@
 // ===================================================================
 //
-//               SCRIPT JRS - Lógica de Tablas para Ligas
+//          SCRIPT JRS - Lógica de Tablas (Datos Estáticos para Edición Manual)
 //
 // ===================================================================
 
-// --- Datos Fijos de la Liga Principal (SIMULACIÓN DE DATOS) ---
+// --- Datos Fijos de la Liga Principal (EDITA ESTO PARA ACTUALIZAR LAS ESTADÍSTICAS) ---
 const datosLiga = {
     equipos: [
         { nombre: "Machetitos", pts: 10, pj: 4, pg: 3, pe: 1, pp: 0 },
@@ -60,6 +60,7 @@ function mostrarTablaPosiciones(data) {
     const tbody = document.querySelector("#tablaPosiciones tbody");
     if (!tbody) return;
 
+    // Ordenamiento: 1. Puntos (desc) 2. Partidos Ganados (desc)
     data.equipos.sort((a, b) => {
         if (b.pts !== a.pts) return b.pts - a.pts;
         return b.pg - a.pg;
@@ -128,8 +129,10 @@ function configurarBotonesFechas(resultadosFechas) {
     const container = document.getElementById('resultadosFecha');
     if (!container) return;
     
+    // El div.date-buttons es el elemento anterior a #resultadosFecha en el HTML
     const dateButtonsContainer = container.previousElementSibling; 
 
+    // Generar botones dinámicamente
     dateButtonsContainer.innerHTML = '';
     const fechas = Object.keys(resultadosFechas).sort((a, b) => a - b);
 
@@ -145,6 +148,7 @@ function configurarBotonesFechas(resultadosFechas) {
 
     botones.forEach(btn => {
         btn.addEventListener('click', function() {
+            // Desactiva todos los botones y activa el presionado
             botones.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
@@ -155,6 +159,7 @@ function configurarBotonesFechas(resultadosFechas) {
         });
     });
 
+    // Carga la primera fecha automáticamente al iniciar
     if (botones.length > 0) {
         botones[0].click(); 
     }
@@ -166,8 +171,10 @@ function configurarBotonesFechas(resultadosFechas) {
 // ===================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Si estamos en liga.html
     if (document.body.getAttribute('data-liga') === 'principal') {
         
+        // Cargar y mostrar todas las tablas con los datos fijos de la constante datosLiga
         mostrarGoleadores(datosLiga);
         mostrarTablaPosiciones(datosLiga);
         mostrarAsistencias(datosLiga);
