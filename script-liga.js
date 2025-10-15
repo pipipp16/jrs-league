@@ -1,43 +1,49 @@
 // ===================================================================
 //
-//          SCRIPT JRS - Lógica de Tablas (Datos Estáticos para Edición Manual)
+//          SCRIPT JRS - Lógica de Tablas (Datos para restaurar el aspecto)
 //
 // ===================================================================
 
-// --- Datos Fijos de la Liga Principal (EDITA ESTO PARA ACTUALIZAR LAS ESTADÍSTICAS) ---
+// --- Datos Fijos de la Liga Principal (ACTUALIZA ESTO MANUALMENTE) ---
 const datosLiga = {
     equipos: [
-        // ESTADÍSTICAS EN CERO (0) y LOGOS EN PLACEHOLDER ('#') con campos GF y GC
+        // Ordenados por la imagen 58847c.jpg. Edita los puntos y PJ!
+        { nombre: "Wanderers", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "Machetitos", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "Cornudos", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
-        { nombre: "White Phanter Kings", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "Calyndra", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
-        { nombre: "Banfield", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
-        { nombre: "Valunir", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
-        { nombre: "Loan", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
-        { nombre: "Laira", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
-        { nombre: "El Rejunte De Amigos", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
-        { nombre: "Wanderers", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
+        { nombre: "White Phanter Kings", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
+        { nombre: "Loan FC", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
+        { nombre: "Laira FC", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "Bristol City", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
+        { nombre: "El rejunte de amigos", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
+        { nombre: "Valunir", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
+        { nombre: "Banfield", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "Joga Bonito", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "Mamas FC", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
     ],
     goleadores: [
-        { jugador: "Goleador A", equipo: "Equipo Ejemplo", goles: 0 },
-        { jugador: "Goleador B", equipo: "Equipo Ejemplo", goles: 0 },
-        { jugador: "Goleador C", equipo: "Equipo Ejemplo", goles: 0 },
-        { jugador: "Goleador D", equipo: "Equipo Ejemplo", goles: 0 },
-        { jugador: "Goleador E", equipo: "Equipo Ejemplo", goles: 0 }
+        { jugador: "Goleador A", equipo: "Machetitos", goles: 0 },
+        { jugador: "Goleador B", equipo: "Cornudos", goles: 0 },
+        { jugador: "Goleador C", equipo: "White Phanter Kings", goles: 0 },
+        { jugador: "Goleador D", equipo: "Calyndra", goles: 0 },
+        { jugador: "Goleador E", equipo: "Banfield", goles: 0 }
     ],
     asistencias: [
-        { jugador: "Asistente X", equipo: "Equipo Ejemplo", asis: 0 },
-        { jugador: "Asistente Y", equipo: "Equipo Ejemplo", asis: 0 },
-        { jugador: "Asistente Z", equipo: "Equipo Ejemplo", asis: 0 },
-        { jugador: "Asistente W", equipo: "Equipo Ejemplo", asis: 0 },
-        { jugador: "Asistente Q", equipo: "Equipo Ejemplo", asis: 0 }
+        { jugador: "Asistente X", equipo: "Machetitos", asis: 0 },
+        { jugador: "Asistente Y", equipo: "Calyndra", asis: 0 },
+        { jugador: "Asistente Z", equipo: "Banfield", asis: 0 },
+        { jugador: "Asistente W", equipo: "Cornudos", asis: 0 },
+        { jugador: "Asistente Q", equipo: "Loan", asis: 0 }
     ],
     resultadosFechas: {
-        "1": `<p class="placeholder-text">¡Resultados de la Fecha 1, pendientes!</p>`,
+        "1": `
+            <ul class="score-list">
+                <li>Machetitos 3 - 1 Cornudos</li>
+                <li>Calyndra 2 - 2 Banfield</li>
+                <li>Loan 0 - 1 Laira</li>
+            </ul>
+        `,
         "2": `<p class="placeholder-text">¡Resultados de la Fecha 2, pendientes!</p>`,
         "3": `<p class="placeholder-text">¡Resultados de la Fecha 3, pendientes!</p>`
     }
@@ -51,14 +57,12 @@ function mostrarTablaPosiciones(data) {
     const tbody = document.querySelector("#tablaPosiciones tbody");
     if (!tbody) return;
 
-    // Asegura que los campos existen para evitar errores de NaN
     data.equipos.forEach(eq => {
         eq.gf = eq.gf || 0; 
         eq.gc = eq.gc || 0; 
         eq.logo = eq.logo || '#';
     });
 
-    // Ordenamiento: 1. Puntos 2. Diferencia de Gol 3. Goles a Favor
     data.equipos.sort((a, b) => {
         const difA = a.gf - a.gc;
         const difB = b.gf - b.gc;
@@ -72,8 +76,8 @@ function mostrarTablaPosiciones(data) {
         const claseFila = (i < 3) ? 'top-three' : '';
         const difGoles = eq.gf - eq.gc; 
         
-        // Placeholder SVG para el logo cuando es '#'
-        const logoSrc = eq.logo && eq.logo !== '#' ? eq.logo : 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><rect width="25" height="25" fill="%23CCC"/><text x="12.5" y="16" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">L</text></svg>';
+        // Placeholder SVG para el logo
+        const logoSrc = eq.logo && eq.logo !== '#' ? eq.logo : 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><rect width="25" height="25" fill="%23444"/><text x="12.5" y="16" font-family="Arial" font-size="10" fill="white" text-anchor="middle">L</text></svg>';
         
         const logoAlt = eq.logo && eq.logo !== '#' ? `Logo ${eq.nombre}` : 'Logo Pendiente';
 
@@ -145,7 +149,6 @@ function configurarBotonesFechas(resultadosFechas) {
     
     const dateButtonsContainer = container.previousElementSibling; 
 
-    // Generar botones dinámicamente
     dateButtonsContainer.innerHTML = '';
     const fechas = Object.keys(resultadosFechas).sort((a, b) => a - b);
 
@@ -161,7 +164,6 @@ function configurarBotonesFechas(resultadosFechas) {
 
     botones.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Desactiva todos los botones y activa el presionado
             botones.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
@@ -172,7 +174,6 @@ function configurarBotonesFechas(resultadosFechas) {
         });
     });
 
-    // Carga la primera fecha automáticamente al iniciar
     if (botones.length > 0) {
         botones[0].click(); 
     }
@@ -184,10 +185,7 @@ function configurarBotonesFechas(resultadosFechas) {
 // ===================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Si estamos en liga.html
     if (document.body.getAttribute('data-liga') === 'principal') {
-        
-        // Cargar y mostrar todas las tablas con los datos fijos de la constante datosLiga
         mostrarGoleadores(datosLiga);
         mostrarTablaPosiciones(datosLiga);
         mostrarAsistencias(datosLiga);
