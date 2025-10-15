@@ -72,8 +72,8 @@ function mostrarTablaPosiciones(data) {
         const claseFila = (i < 3) ? 'top-three' : '';
         const difGoles = eq.gf - eq.gc; 
         
-        // Determina la fuente de la imagen (usa el placeholder SVG si es '#')
-        const logoSrc = eq.logo && eq.logo !== '#' ? eq.logo : 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><rect width="25" height="25" fill="%23444"/><text x="12.5" y="16" font-family="Arial" font-size="10" fill="white" text-anchor="middle">L</text></svg>';
+        // Placeholder SVG para el logo cuando es '#'
+        const logoSrc = eq.logo && eq.logo !== '#' ? eq.logo : 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><rect width="25" height="25" fill="%23CCC"/><text x="12.5" y="16" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">L</text></svg>';
         
         const logoAlt = eq.logo && eq.logo !== '#' ? `Logo ${eq.nombre}` : 'Logo Pendiente';
 
