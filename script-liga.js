@@ -1,13 +1,12 @@
 // ===================================================================
 //
-//          SCRIPT JRS - Lógica de Tablas (Datos para restaurar el aspecto)
+//          SCRIPT JRS - Lógica de Tablas (Nombres de equipos y Corrección de Sintaxis)
 //
 // ===================================================================
 
-// --- Datos Fijos de la Liga Principal (ACTUALIZA ESTO MANUALMENTE) ---
 const datosLiga = {
     equipos: [
-        // Ordenados por la imagen 58847c.jpg. Edita los puntos y PJ!
+        // Nombres de equipos confirmados y con datos iniciales
         { nombre: "Wanderers", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "Machetitos", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
         { nombre: "Cornudos", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
@@ -23,18 +22,18 @@ const datosLiga = {
         { nombre: "Mamas FC", pts: 0, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, logo: "#" },
     ],
     goleadores: [
-        { jugador: "Goleador A", equipo: "Machetitos", goles: 0 },
-        { jugador: "Goleador B", equipo: "Cornudos", goles: 0 },
-        { jugador: "Goleador C", equipo: "White Phanter Kings", goles: 0 },
-        { jugador: "Goleador D", equipo: "Calyndra", goles: 0 },
-        { jugador: "Goleador E", equipo: "Banfield", goles: 0 }
+        { jugador: "Goleador A", equipo: "Machetitos", goles: 9 },
+        { jugador: "Goleador B", equipo: "Cornudos", goles: 7 },
+        { jugador: "Goleador C", equipo: "White Phanter Kings", goles: 6 },
+        { jugador: "Goleador D", equipo: "Calyndra", goles: 5 },
+        { jugador: "Goleador E", equipo: "Banfield", goles: 4 }
     ],
     asistencias: [
-        { jugador: "Asistente X", equipo: "Machetitos", asis: 0 },
-        { jugador: "Asistente Y", equipo: "Calyndra", asis: 0 },
-        { jugador: "Asistente Z", equipo: "Banfield", asis: 0 },
-        { jugador: "Asistente W", equipo: "Cornudos", asis: 0 },
-        { jugador: "Asistente Q", equipo: "Loan", asis: 0 }
+        { jugador: "Asistente X", equipo: "Machetitos", asis: 8 },
+        { jugador: "Asistente Y", equipo: "Calyndra", asis: 6 },
+        { jugador: "Asistente Z", equipo: "Banfield", asis: 5 },
+        { jugador: "Asistente W", equipo: "Cornudos", asis: 4 },
+        { jugador: "Asistente Q", equipo: "Loan", asis: 3 }
     ],
     resultadosFechas: {
         "1": `
@@ -50,7 +49,7 @@ const datosLiga = {
 };
 
 // ===================================================================
-//                            FUNCIONES DE RENDERIZADO
+//                            FUNCIONES DE RENDERIZADO (Sin Cambios de Lógica)
 // ===================================================================
 
 function mostrarTablaPosiciones(data) {
@@ -76,7 +75,6 @@ function mostrarTablaPosiciones(data) {
         const claseFila = (i < 3) ? 'top-three' : '';
         const difGoles = eq.gf - eq.gc; 
         
-        // Placeholder SVG para el logo
         const logoSrc = eq.logo && eq.logo !== '#' ? eq.logo : 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><rect width="25" height="25" fill="%23444"/><text x="12.5" y="16" font-family="Arial" font-size="10" fill="white" text-anchor="middle">L</text></svg>';
         
         const logoAlt = eq.logo && eq.logo !== '#' ? `Logo ${eq.nombre}` : 'Logo Pendiente';
