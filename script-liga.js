@@ -129,7 +129,6 @@ function configurarBotonesFechas(resultadosFechas) {
     const container = document.getElementById('resultadosFecha');
     if (!container) return;
     
-    // El div.date-buttons es el elemento anterior a #resultadosFecha en el HTML
     const dateButtonsContainer = container.previousElementSibling; 
 
     // Generar botones dinámicamente
