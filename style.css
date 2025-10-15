@@ -13,6 +13,7 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif; 
+    /* Fondo con degradado (rojo a blanco) */
     background: linear-gradient(180deg, var(--color-primary), #ffffff);
     color: var(--color-text-dark); 
     min-height: 100vh;
@@ -21,6 +22,28 @@ body {
     line-height: 1.6;
 }
 
+/* --- ESTILOS DEL MENÚ SUPERIOR (NUEVO) --- */
+.top-nav {
+    background-color: var(--color-text-dark);
+    color: var(--color-text-light);
+    padding: 10px 40px;
+    text-align: right;
+    font-weight: 600;
+}
+
+.top-nav a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.top-nav a:hover {
+    color: var(--color-secondary);
+}
+
+
+/* --- ESTILOS DEL HEADER PRINCIPAL --- */
 header {
     background: rgba(255, 255, 255, 0.95); 
     padding: 20px 40px; 
@@ -33,7 +56,7 @@ header {
     top: 0;
     z-index: 1000;
 }
-
+/* ... (Resto de estilos de header, logo, h1, button, etc.) ... */
 .logo-container {
     display: flex;
     align-items: center;
@@ -91,54 +114,92 @@ h2::after {
     margin: 8px auto 0;
     border-radius: 2px;
 }
+/* ------------------------------------------- */
+
+/* ========================= SECCIONES ADICIONALES ========================= */
+
+.welcome-section {
+    padding: 30px 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.98); 
+    border-radius: 12px;
+    box-shadow: var(--shadow-lift);
+    max-width: 1200px;
+    margin: 20px auto 40px auto;
+}
+
+.welcome-section h2 {
+    color: var(--color-primary);
+}
+
+.host-privado-section {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 40px 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--shadow-lift);
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.host-privado-section h2 {
+    color: var(--color-text-light);
+    font-size: 2rem;
+}
+.host-privado-section h2::after {
+    background-color: var(--color-secondary);
+}
+
 
 /* ========================= CSS GRID LAYOUT 2x2 ========================= */
 
 main {
     flex: 1;
-    padding: 40px 20px; 
+    padding: 0 20px; /* Quitamos el padding vertical para que las secciones lo tengan */
 }
 
 .content-grid-2x2 {
     display: grid;
     /* Dos columnas iguales */
     grid-template-columns: 1fr 1fr; 
-    /* Dos filas iguales */
-    grid-template-rows: auto auto; 
-    gap: 25px; /* Más espacio entre los bloques */
+    /* Dos filas: auto para el contenido arriba, 1fr para que se repartan el espacio restante de forma equitativa abajo */
+    grid-template-rows: auto 1fr; 
+    gap: 25px; 
     width: 95%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Posicionamiento de los elementos (automático en 2x2, pero lo definimos para claridad) */
-.tabla-goles {
-    grid-column: 1 / 2;     /* Arriba Izquierda */
-    grid-row: 1 / 2;
-}
-
-.tabla-puntos {
-    grid-column: 2 / 3;     /* Arriba Derecha */
-    grid-row: 1 / 2;
-}
-
-.fechas-container {
-    grid-column: 1 / 2;     /* Abajo Izquierda */
-    grid-row: 2 / 3;
-}
-
-.tabla-asis {
-    grid-column: 2 / 3;     /* Abajo Derecha */
-    grid-row: 2 / 3;
-}
-
 .grid-item {
     padding: 20px;
-    background: rgba(255, 255, 255, 0.98); 
+    /* AJUSTE CLAVE: Hacemos el fondo transparente/casi transparente para ver el degradado, 
+       y solo las tablas tendrán fondo blanco */
+    background: rgba(255, 255, 255, 0.2); 
     border-radius: 12px;
     box-shadow: var(--shadow-lift);
-    overflow: auto; 
+    overflow: hidden; /* Oculta barras de scroll internas si no son necesarias */
 }
+
+/* ------------------------------------------------------------- */
+/* Secciones de las Tablas (Añadimos un contenedor para el fondo) */
+/* ------------------------------------------------------------- */
+
+/* Estilo de los bloques de las tablas y fechas para que su contenedor interno sea blanco */
+.tabla-goles table, 
+.tabla-puntos table, 
+.tabla-asis table,
+.resultados-content {
+    background: white; /* Asegura que el contenido interno sea blanco */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para ajustar el espacio de la tabla de posiciones si es necesario */
+.tabla-puntos table {
+    height: 100%;
+}
+
 
 /* MEDIA QUERIES (Para móviles: apila los elementos) */
 @media (max-width: 800px) {
@@ -146,25 +207,20 @@ main {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
     }
-
-    .tabla-goles, .tabla-puntos, .fechas-container, .tabla-asis {
-        grid-column: 1 / 2;
-        grid-row: auto;
-    }
 }
 
 
 /* ========================= ESTILOS DE TABLAS ========================= */
+/* NOTA: Las tablas internas tienen fondo blanco definido arriba para que se vean */
 
 table {
     width: 100%; 
     border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.98); 
-    border-radius: 12px;
     overflow: hidden;
     margin-bottom: 10px;
 }
 
+/* ... (Resto de estilos de tablas, thead, th, td, etc.) ... */
 thead {
     background-color: var(--color-primary); 
     color: var(--color-text-light); 
@@ -241,7 +297,5 @@ tr:hover {
 .resultados-content {
     padding: 15px;
     border: 1px solid #ddd;
-    border-radius: 8px;
     min-height: 150px; 
-    background-color: #fff;
 }
