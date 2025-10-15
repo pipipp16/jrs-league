@@ -3,69 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JRS League - Inicio</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css"> 
+    <title>JRSLEAGUE | JAKJUS REAL SOCCER LEAGUE</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header>
-        <div class="logo-container">
-            <span class="trophy-icon">🏆</span>
-            <h1>JRS League</h1>
-        </div>
-        
-        <nav class="main-nav">
-            <a href="index.html" class="nav-btn">INICIO</a>
-            <a href="liga.html" class="nav-btn">LIGA</a>
-            <button id="redesBtn" class="nav-btn">REDES</button>
-            <button id="discordBtn" class="nav-btn discord-btn">Discord</button>
+        <div class="logo">JRSLEAGUE</div>
+        <nav>
+            <button onclick="showSection('inicio')">INICIO</button>
+            <button onclick="showSection('liga')">LIGA</button>
+            <button id="redes-btn">REDES</button>
         </nav>
     </header>
 
     <main>
-        
-        <section class="info-section">
-            <h2>Bienvenido a la Liga Oficial JRS</h2>
-            <p>Esta es la página principal de la liga JRS, donde puedes encontrar toda la información clave, incluyendo reglas, anuncios importantes y datos de contacto de los administradores.</p>
-            <p>Utiliza el botón <strong>LIGA</strong> para ver las tablas de posiciones y estadísticas actualizadas.</p>
-            
-            <div class="admin-info">
-                <h3>Administradores Clave</h3>
-                <p><strong>Admin 1:</strong> Nombre (Contacto de Discord)</p>
-                <p><strong>Admin 2:</strong> Nombre (Contacto de Discord)</p>
+        <section id="inicio" class="content-section active">
+            <h1>BIENVENIDO A LA JRSLEAGUE</h1>
+            <div class="neon-box">
+                <h2>¿QUÉ ES JRSLEAGUE?</h2>
+                <p>La JAKJUS REAL SOCCER LEAGUE es la liga de fútbol virtual más competitiva de Discord. Buscamos llevar la pasión del fútbol a un nuevo nivel, combinando estrategia, habilidad y una comunidad dedicada.</p>
+                
+                <div class="info-grid">
+                    <div class="admin-card">
+                        <h3>HOST OFICIAL</h3>
+                        <p>JAKJUS</p>
+                    </div>
+                    <div class="admin-card">
+                        <h3>ADMINISTRADOR</h3>
+                        <p>USUARIO 1</p>
+                    </div>
+                    <div class="admin-card">
+                        <h3>CO-ADMIN</h3>
+                        <p>USUARIO 2</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="host-privado-section">
-            <h2>HOST PRIVADO</h2>
-            <p>¡Atención Jugadores! La sala de host privado se abre 15 minutos antes del inicio de la jornada. Asegúrate de tener la clave correcta y seguir las reglas para una experiencia de juego fluida.</p>
-        </section>
+        <section id="liga" class="content-section">
+            <h1>COMPETICIÓN Y ESTADÍSTICAS</h1>
+            
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <h2>TABLA DE POSICIONES</h2>
+                    <table id="tabla-posiciones">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Equipo</th>
+                                <th>PJ</th>
+                                <th>PG</th>
+                                <th>PE</th>
+                                <th>PP</th>
+                                <th>GF</th>
+                                <th>GC</th>
+                                <th>DG</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
 
+                <div class="stat-box">
+                    <h2>CALENDARIO DE FECHAS</h2>
+                    <div class="match-nav">
+                        <button onclick="prevFecha()"> &lt; </button>
+                        <span id="fecha-titulo">FECHA 1</span>
+                        <button onclick="nextFecha()"> &gt; </button>
+                    </div>
+                    <div id="partidos-container">
+                        </div>
+                </div>
+
+                <div class="stat-box">
+                    <h2>TABLA DE GOLEADORES</h2>
+                    <table class="leader-table">
+                        <thead><tr><th>Jugador</th><th>Goles</th></tr></thead>
+                        <tbody>
+                            <tr><td>Jugador A</td><td>10</td></tr>
+                            <tr><td>Jugador B</td><td>8</td></tr>
+                            <tr><td>Jugador C</td><td>7</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="stat-box">
+                    <h2>TABLA DE ASISTIDORES</h2>
+                    <table class="leader-table">
+                        <thead><tr><th>Jugador</th><th>Asistencias</th></tr></thead>
+                        <tbody>
+                            <tr><td>Jugador X</td><td>8</td></tr>
+                            <tr><td>Jugador Y</td><td>6</td></tr>
+                            <tr><td>Jugador Z</td><td>5</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 JRS League - Desarrollado para la comunidad.</p>
-    </footer>
-    
-    
-    <div id="redesModal" class="modal">
+    <div id="redes-modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal-btn">&times;</span>
-            <h2>Nuestras Redes</h2>
-            <p>Síguenos para no perderte ninguna novedad de la liga.</p>
-            <div class="social-buttons">
-                <a href="https://youtube.com/@jrsleaguehaxball?si=vv0zg3hMeUPLeM75" target="_blank" class="social-btn youtube-btn">YouTube</a>
-                <a href="#" onclick="alert('Instagram estará disponible próximamente!')" class="social-btn instagram-btn">Próximamente</a>
-                <a href="https://www.tiktok.com/@jrsleague7?is_from_webapp=1&sender_device=pc" target="_blank" class="social-btn tiktok-btn">TikTok</a>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>REDES DE JRSLEAGUE</h2>
+            <div class="redes-buttons">
+                <a href="TU_ENLACE_DISCORD" target="_blank" class="red-btn discord-btn">DISCORD</a>
+                <a href="TU_ENLACE_YOUTUBE" target="_blank" class="red-btn youtube-btn">YOUTUBE</a>
+                <a href="TU_ENLACE_INSTAGRAM" target="_blank" class="red-btn instagram-btn">INSTAGRAM</a>
+                <a href="TU_ENLACE_TIKTOK" target="_blank" class="red-btn tiktok-btn">TIKTOK</a>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-    
-
 </body>
 </html>
