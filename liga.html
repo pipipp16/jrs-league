@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRS League - Tablas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body data-liga="principal"> 
+
+    <header>
+        <div class="logo-container">
+            <span class="trophy-icon">🏆</span>
+            <h1>JRS League - Estadísticas</h1>
+        </div>
+        
+        <nav class="main-nav">
+            <a href="index.html" class="nav-btn">INICIO</a>
+            <a href="liga.html" class="nav-btn">LIGA</a>
+            <button id="redesBtn" class="nav-btn">REDES</button>
+            <button id="discordBtn" class="nav-btn discord-btn">Discord</button>
+        </nav>
+    </header>
+
+    <main>
+        <h2 style="text-align: center; margin-bottom: 40px; margin-top: 20px;">Tablas y Resultados Oficiales</h2>
+
+        <div class="content-grid-2x2">
+            
+            <section class="grid-item tabla-goles" id="goleadores">
+                <h2>Tabla de Goleadores</h2>
+                <table id="tablaGoleadores">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="text-align: left;">Jugador</th>
+                            <th>Equipo</th>
+                            <th>Goles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </section>
+
+            <section class="grid-item tabla-puntos" id="posiciones">
+                <h2>Tabla de Posiciones</h2>
+                <table id="tablaPosiciones">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="text-align: left;">Equipo</th>
+                            <th>Pts</th>
+                            <th>PJ</th>
+                            <th>PG</th>
+                            <th>PE</th>
+                            <th>PP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </section>
+
+            <section class="grid-item fechas-container" id="fechas">
+                <h2>Fechas y Resultados</h2>
+                <div class="date-buttons">
+                    </div>
+                
+                <div id="resultadosFecha" class="resultados-content">
+                    <p class="placeholder-text">Selecciona una fecha para ver los resultados.</p>
+                </div>
+            </section>
+
+            <section class="grid-item tabla-asis" id="asistencias">
+                <h2>Tabla de Asistencias</h2>
+                <table id="tablaAsistencias">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="text-align: left;">Jugador</th>
+                            <th>Equipo</th>
+                            <th>Asis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </section>
+
+        </div>
+    </main>
+    
+    <div id="redesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal-btn">&times;</span>
+            <h2>Nuestras Redes</h2>
+            <p>Síguenos para no perderte ninguna novedad de la liga.</p>
+            <div class="social-buttons">
+                <a href="URL_YOUTUBE" target="_blank" class="social-btn youtube-btn">YouTube</a>
+                <a href="URL_INSTAGRAM" target="_blank" class="social-btn instagram-btn">Instagram</a>
+                <a href="URL_TIKTOK" target="_blank" class="social-btn tiktok-btn">TikTok</a>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2025 JRS League - Datos oficiales.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="script-liga.js"></script> 
+</body>
+</html>
