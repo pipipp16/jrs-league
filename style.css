@@ -57,14 +57,22 @@ header {
     z-index: 1000;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
 .trophy-icon {
     color: gold; 
     text-shadow: 1px 1px 5px rgba(255, 215, 0, 0.5);
+    font-size: 1.8rem;
+    margin-right: 10px;
 }
 
 h1 {
     color: var(--color-text-light);
     font-weight: 900;
+    font-size: 1.6rem;
 }
 
 /* --- BARRA DE NAVEGACIÓN --- */
@@ -84,6 +92,7 @@ h1 {
     transition: all 0.2s ease;
     text-transform: uppercase;
     cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .nav-btn:hover {
@@ -160,14 +169,16 @@ main {
 }
 
 
-/* ========================= CSS GRID LAYOUT 2x2 (para liga.html) ========================= */
-.content-grid-2x2 {
+/* ========================= CSS GRID LAYOUT 3 COLUMNAS (para liga.html) ========================= */
+
+.content-grid-3col {
+    /* Define 3 columnas iguales */
     display: grid;
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: auto 1fr; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: auto auto; /* Dos filas de altura automática */
     gap: 25px; 
     width: 95%;
-    max-width: 1200px;
+    max-width: 1400px; /* Aumentamos el ancho máximo para 3 columnas */
     margin: 0 auto;
 }
 
@@ -177,6 +188,32 @@ main {
     border-radius: 12px;
     box-shadow: var(--shadow-lift);
     border: 1px solid rgba(255, 51, 51, 0.1);
+}
+
+/* POSICIONAMIENTO ESPECÍFICO DE 3 COLUMNAS */
+
+/* 1. Posiciones: Ocupa la Fila 1 y 2 en la Columna 1 */
+#posiciones {
+    grid-column: 1 / 2; /* Columna 1 */
+    grid-row: 1 / 3;    /* Ocupa Fila 1 y Fila 2 */
+}
+
+/* 2. Goleadores: Ocupa la Fila 1 en la Columna 2 */
+#goleadores {
+    grid-column: 2 / 3; /* Columna 2 */
+    grid-row: 1 / 2;    /* Fila 1 */
+}
+
+/* 3. Fechas: Ocupa la Fila 1 y 2 en la Columna 3 */
+#fechas {
+    grid-column: 3 / 4; /* Columna 3 */
+    grid-row: 1 / 3;    /* Ocupa Fila 1 y Fila 2 */
+}
+
+/* 4. Asistencias: Ocupa la Fila 2 en la Columna 2 (Debajo de Goleadores) */
+#asistencias {
+    grid-column: 2 / 3; /* Columna 2 */
+    grid-row: 2 / 3;    /* Fila 2 */
 }
 
 /* --- Estilos de Tablas --- */
@@ -225,10 +262,23 @@ tr:hover {
 }
 
 /* --- Estilos de Fechas --- */
+.date-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
 .date-btn {
     background-color: #333;
     color: var(--color-text-light);
     border: 1px solid #555;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .date-btn:hover {
@@ -249,6 +299,7 @@ tr:hover {
 }
 .resultados-content p {
     color: #ccc;
+    margin-top: 0;
 }
 
 
@@ -368,7 +419,15 @@ footer {
         font-size: 0.9rem;
     }
 
-    .content-grid-2x2 {
+    /* En móviles, volvemos a una sola columna para que todo quepa */
+    .content-grid-3col {
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    
+    /* En móvil, eliminamos las reglas de posicionamiento complejas */
+    #posiciones, #goleadores, #fechas, #asistencias {
+        grid-column: auto;
+        grid-row: auto;
     }
 }
