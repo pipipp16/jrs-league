@@ -40,13 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- Funcionalidad del Botón Discord ---
+    // --- Funcionalidad del Botón Discord (LINK INTEGRADO) ---
     const discordButtons = document.querySelectorAll('.discord-btn');
     if(discordButtons.length > 0) {
         discordButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                // REEMPLAZA ESTE LINK CON TU ENLACE REAL DE DISCORD
-                window.open('https://discord.gg/ejemplodeinvitacion', '_blank'); 
+                // LINK DE DISCORD REAL INTEGRADO
+                window.open('https://discord.gg/w4nN6njBX7', '_blank'); 
             });
         });
     }
