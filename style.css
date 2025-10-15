@@ -18,13 +18,34 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif; 
-    background: linear-gradient(180deg, #000000 0%, var(--color-bg-dark) 100%);
+    
+    /* === CÓDIGO DE IMAGEN DE FONDO INTEGRADO === */
+    background-image: url('https://media.discordapp.net/attachments/1388979450544394372/1427683380559876189/JAKJUS_REAL_SOCCER_2.png?ex=68f06a03&is=68ef1883&hm=d9a8d3a7ddad9b70c7849b3d82a5ef8827c1b70899c6adc19cd0faa0f29e4302&=&format=webp&quality=lossless&width=1318&height=466'); 
+    background-size: cover;          
+    background-attachment: fixed;    
+    background-position: center;     
+    background-color: #000000; 
+    /* ================================== */
+    
     color: var(--color-text-light); 
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     line-height: 1.6;
 }
+
+/* --- OVERLAY OSCURO (Para hacer la imagen más legible y mantener el tema) --- */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Capa semi-transparente */
+    z-index: -1; 
+}
+
 
 h2 {
     color: var(--color-secondary);
@@ -178,14 +199,14 @@ main {
     grid-template-rows: auto auto; /* Dos filas de altura automática */
     gap: 25px; 
     width: 95%;
-    max-width: 1400px; /* Aumentamos el ancho máximo para 3 columnas */
+    max-width: 1400px; 
     margin: 0 auto;
 }
 
 .grid-item {
     padding: 20px;
     background: var(--color-card-bg);
-    border-radius: 12px;
+    border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-lift);
     border: 1px solid rgba(255, 51, 51, 0.1);
 }
@@ -194,26 +215,26 @@ main {
 
 /* 1. Posiciones: Ocupa la Fila 1 y 2 en la Columna 1 */
 #posiciones {
-    grid-column: 1 / 2; /* Columna 1 */
-    grid-row: 1 / 3;    /* Ocupa Fila 1 y Fila 2 */
+    grid-column: 1 / 2; 
+    grid-row: 1 / 3;    
 }
 
 /* 2. Goleadores: Ocupa la Fila 1 en la Columna 2 */
 #goleadores {
-    grid-column: 2 / 3; /* Columna 2 */
-    grid-row: 1 / 2;    /* Fila 1 */
+    grid-column: 2 / 3; 
+    grid-row: 1 / 2;    
 }
 
 /* 3. Fechas: Ocupa la Fila 1 y 2 en la Columna 3 */
 #fechas {
-    grid-column: 3 / 4; /* Columna 3 */
-    grid-row: 1 / 3;    /* Ocupa Fila 1 y Fila 2 */
+    grid-column: 3 / 4; 
+    grid-row: 1 / 3;    
 }
 
 /* 4. Asistencias: Ocupa la Fila 2 en la Columna 2 (Debajo de Goleadores) */
 #asistencias {
-    grid-column: 2 / 3; /* Columna 2 */
-    grid-row: 2 / 3;    /* Fila 2 */
+    grid-column: 2 / 3; 
+    grid-row: 2 / 3;    
 }
 
 /* --- Estilos de Tablas --- */
@@ -268,166 +289,3 @@ tr:hover {
     gap: 8px;
     margin-bottom: 15px;
     justify-content: center;
-}
-
-.date-btn {
-    background-color: #333;
-    color: var(--color-text-light);
-    border: 1px solid #555;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.date-btn:hover {
-    background-color: var(--color-secondary);
-    color: black;
-}
-
-.date-btn.active {
-    background-color: var(--color-secondary); 
-    color: black;
-    border-color: var(--color-secondary);
-}
-
-.resultados-content {
-    padding: 15px;
-    border: 1px solid #333;
-    background-color: #252525;
-}
-.resultados-content p {
-    color: #ccc;
-    margin-top: 0;
-}
-
-
-/* ========================= MODAL Y REDES SOCIALES (CRÍTICO PARA FLOTAR) ========================= */
-
-.modal {
-    display: none; /* OCULTO por defecto */
-    position: fixed; /* CRÍTICO: Fija el modal a la ventana (viewport) */
-    z-index: 3000; /* CRÍTICO: Asegura que esté encima de todo */
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente y oscuro */
-    backdrop-filter: blur(5px);
-}
-
-.modal-content {
-    background-color: var(--color-card-bg);
-    margin: 10% auto;
-    padding: 30px;
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--color-secondary);
-    width: 80%;
-    max-width: 450px;
-    box-shadow: var(--shadow-lift);
-    text-align: center;
-    animation: fadeIn 0.3s;
-}
-
-.close-modal-btn {
-    color: #888;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close-modal-btn:hover,
-.close-modal-btn:focus {
-    color: var(--color-secondary);
-}
-
-.social-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 25px;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.social-btn {
-    text-decoration: none;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    min-width: 120px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.youtube-btn {
-    background-color: var(--color-youtube);
-}
-.youtube-btn:hover {
-    background-color: #cc0000;
-    transform: translateY(-2px);
-}
-
-.instagram-btn {
-    background-color: var(--color-instagram);
-}
-.instagram-btn:hover {
-    background-color: #c42b5d;
-    transform: translateY(-2px);
-}
-
-.tiktok-btn {
-    background-color: var(--color-tiktok);
-}
-.tiktok-btn:hover {
-    background-color: #333;
-    transform: translateY(-2px);
-}
-
-/* ========================= FOOTER ========================= */
-footer {
-    background-color: black;
-    color: #555;
-    padding: 15px 0;
-    text-align: center;
-    font-size: 0.9rem;
-    margin-top: auto;
-}
-
-/* ========================= MEDIA QUERIES ========================= */
-@media (max-width: 800px) {
-    header {
-        flex-direction: column;
-        padding: 15px 20px;
-    }
-    
-    .logo-container {
-        margin-bottom: 15px;
-    }
-    
-    .main-nav {
-        gap: 10px;
-        justify-content: center;
-        width: 100%;
-    }
-    
-    .nav-btn {
-        padding: 8px 10px;
-        font-size: 0.9rem;
-    }
-
-    /* En móviles, volvemos a una sola columna para que todo quepa */
-    .content-grid-3col {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
-    
-    /* En móvil, eliminamos las reglas de posicionamiento complejas */
-    #posiciones, #goleadores, #fechas, #asistencias {
-        grid-column: auto;
-        grid-row: auto;
-    }
-}
