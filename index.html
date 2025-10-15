@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JRS League - Liga Oficial</title>
+    <title>JRS League - Inicio</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     
@@ -11,13 +11,27 @@
 </head>
 <body>
 
-    <nav class="top-nav">
-        <a href="index.html">INICIO</a> | 
-        <a href="#">LIGAS</a> | 
-        <a href="#">REDES</a>
-    </nav>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        
+        <h3 class="sidebar-title">LIGA X6</h3>
+        <a href="#posiciones-x6" onclick="closeNav()">Tabla de Posiciones</a>
+        <a href="#goleadores-x6" onclick="closeNav()">Tabla de Goleadores</a>
+        <a href="#asistencias-x6" onclick="closeNav()">Tabla de Asistencias</a>
+        <a href="#fechas-x6" onclick="closeNav()">Fechas y Resultados</a>
+
+        <div class="sidebar-divider"></div>
+        
+        <h3 class="sidebar-title">LIGA X4</h3>
+        <a href="#posiciones-x4" onclick="closeNav()">Tabla de Posiciones</a>
+        <a href="#goleadores-x4" onclick="closeNav()">Tabla de Goleadores</a>
+        <a href="#asistencias-x4" onclick="closeNav()">Tabla de Asistencias</a>
+        <a href="#fechas-x4" onclick="closeNav()">Fechas y Resultados</a>
+    </div>
 
     <header>
+        <button class="openbtn" onclick="openNav()">&#9776; Menú</button>
+
         <div class="logo-container">
             <span class="trophy-icon">🏆</span>
             <h1>JRS League</h1>
@@ -25,81 +39,19 @@
         <button id="discordBtn">Discord</button>
     </header>
 
-    <main>
+    <main id="main">
         
-        <section class="welcome-section grid-item">
-            <h2>Bienvenida e información breve de la liga</h2>
-            <p>Bienvenidos a la Liga Oficial JRS. Aquí encontrarás toda la información actualizada sobre las tablas de posiciones, máximos goleadores, asistencias y resultados de las últimas jornadas.</p>
+        <section class="info-section grid-item">
+            <h2>Bienvenido a la Liga Oficial JRS</h2>
+            <p>Esta es la página principal de la liga JRS, donde puedes encontrar toda la información clave, incluyendo reglas, anuncios importantes y datos de contacto de los administradores. Utiliza el botón **Menú** para navegar a las diferentes tablas y resultados de las ligas X6 y X4.</p>
+            
+            <div class="admin-info">
+                <h3>Administradores Clave</h3>
+                <p><strong>Admin 1:</strong> Nombre (Contacto)</p>
+                <p><strong>Admin 2:</strong> Nombre (Contacto)</p>
+            </div>
         </section>
 
-        <div class="content-grid-2x2">
-            
-            <section class="grid-item tabla-goles">
-                <h2>Tabla de Goleadores</h2>
-                <table id="tablaGoleadores">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th style="text-align: left;">Jugador</th>
-                            <th>Equipo</th>
-                            <th>Goles</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        </tbody>
-                </table>
-            </section>
-
-            <section class="grid-item tabla-puntos">
-                <h2>Tabla de Posiciones</h2>
-                <table id="tablaPosiciones">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th style="text-align: left;">Equipo</th>
-                            <th>Pts</th>
-                            <th>PJ</th>
-                            <th>PG</th>
-                            <th>PE</th>
-                            <th>PP</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        </tbody>
-                </table>
-            </section>
-
-            <section class="grid-item fechas-container">
-                <h2>Fechas y Resultados</h2>
-                <div class="date-buttons">
-                    <button class="date-btn" data-fecha="1">Fecha 1</button>
-                    <button class="date-btn" data-fecha="2">Fecha 2</button>
-                    <button class="date-btn" data-fecha="3">Fecha 3</button>
-                </div>
-                
-                <div id="resultadosFecha" class="resultados-content">
-                    <p class="placeholder-text">Selecciona una fecha para ver los resultados.</p>
-                </div>
-            </section>
-
-            <section class="grid-item tabla-asis">
-                <h2>Tabla de Asistencias</h2>
-                <table id="tablaAsistencias">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th style="text-align: left;">Jugador</th>
-                            <th>Equipo</th>
-                            <th>Asis</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        </tbody>
-                </table>
-            </section>
-
-        </div>
-        
         <section class="host-privado-section">
             <h2>HOST PRIVADO</h2>
             <p>Aquí puedes agregar información clave y las reglas del host privado para los participantes de la liga. Asegúrate de incluir el enlace o la clave de acceso.</p>
