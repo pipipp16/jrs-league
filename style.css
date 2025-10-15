@@ -3,9 +3,11 @@
     --color-primary: #b30000;       /* Rojo Oscuro Principal */
     --color-secondary: #ff3333;     /* Rojo Brillante (Acento) */
     --color-discord: #5865f2;       /* Discord Azul */
+    --color-youtube: #ff0000;
+    --color-instagram: #e1306c;
+    --color-tiktok: #000000;
     --color-text-dark: #2c3e50;     /* Gris Azulado Oscuro */
     --color-text-light: #ecf0f1;    /* Blanco Roto */
-    --color-sidebar-bg: #1c1c1c;    /* Negro Oscuro para el menú */
     --shadow-default: 0 6px 15px rgba(0, 0, 0, 0.25);
     --shadow-lift: 0 10px 30px rgba(0, 0, 0, 0.4);
     --border-radius-lg: 12px;
@@ -15,7 +17,6 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif; 
-    /* Fondo con degradado suave y limpio */
     background: linear-gradient(180deg, var(--color-primary) 0%, #f0f0f0 40%, #ffffff 100%);
     color: var(--color-text-dark); 
     min-height: 100vh;
@@ -24,7 +25,6 @@ body {
     line-height: 1.6;
 }
 
-/* --- ENCABEZADOS DE SECCIÓN --- */
 h2 {
     margin-top: 0;
     margin-bottom: 20px;
@@ -32,14 +32,14 @@ h2 {
     color: var(--color-text-dark);
     text-align: center;
     position: relative;
-    font-weight: 800; /* Más impactante */
+    font-weight: 800;
 }
 
 h2::after {
     content: '';
     display: block;
-    width: 80px; /* Un poco más largo */
-    height: 5px; /* Un poco más grueso */
+    width: 80px;
+    height: 5px;
     background-color: var(--color-secondary);
     margin: 10px auto 0;
     border-radius: 3px;
@@ -49,13 +49,13 @@ h2::after {
 /* ========================= HEADER Y NAVEGACIÓN PRINCIPAL ========================= */
 
 header {
-    background: rgba(255, 255, 255, 0.98); /* Fondo casi blanco, muy limpio */
+    background: rgba(255, 255, 255, 0.98); 
     padding: 15px 40px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-    border-bottom: 5px solid var(--color-primary); /* Borde fuerte */
+    border-bottom: 5px solid var(--color-primary); 
     position: sticky; 
     top: 0;
     z-index: 1000;
@@ -64,9 +64,347 @@ header {
 .logo-container {
     display: flex;
     align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
-.trophy
+.trophy-icon {
+    font-size: 2.5rem;
+    margin-right: 12px;
+    color: gold; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.4rem; 
+    color: var(--color-primary);
+    font-weight: 900;
+    letter-spacing: 0.5px; 
+}
+
+/* --- ESTILOS DE LA BARRA DE NAVEGACIÓN DERECHA (4 botones) --- */
+.main-nav {
+    display: flex;
+    gap: 15px; /* Espacio entre botones */
+    align-items: center;
+}
+
+.nav-btn {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    color: var(--color-text-dark);
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--color-primary);
+}
+
+.discord-btn {
+    background-color: var(--color-discord);
+    color: white;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.discord-btn:hover {
+    background-color: #4752c4;
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* ========================= CONTENIDO PRINCIPAL (INICIO) ========================= */
+
+main {
+    flex: 1;
+    padding: 40px 20px;
+}
+
+.info-section {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.98); 
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-default);
+    text-align: center;
+    border-left: 8px solid var(--color-primary);
+}
+
+.admin-info {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.admin-info p {
+    margin: 5px 15px;
+    font-weight: 600;
+    color: #555;
+}
+.admin-info h3 {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    color: var(--color-text-dark);
+}
+
+/* --- SECCIÓN HOST PRIVADO --- */
+.host-privado-section {
+    background: linear-gradient(135deg, var(--color-primary), #8c0000); 
+    color: var(--color-text-light);
+    padding: 50px 30px;
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-lift);
+    max-width: 900px;
+    margin: 60px auto;
+    animation: pulseBorder 5s infinite;
+}
+
+.host-privado-section h2 {
+    color: var(--color-text-light);
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+
+.host-privado-section h2::after {
+    background-color: var(--color-text-light); 
+    width: 120px;
+}
+
+/* --- Animación de Borde --- */
+@keyframes pulseBorder {
+    0% { border: 3px solid rgba(255, 255, 255, 0.1); }
+    50% { border: 3px solid rgba(255, 255, 255, 0.5); }
+    100% { border: 3px solid rgba(255, 255, 255, 0.1); }
+}
+
+/* ========================= CSS GRID LAYOUT 2x2 (para liga.html) ========================= */
+.content-grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto 1fr; 
+    gap: 25px; 
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-item {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2); /* Fondo transparente para ver el degradado */
+    border-radius: 12px;
+    box-shadow: var(--shadow-lift);
+    overflow: hidden; 
+}
+
+.grid-item table,
+.resultados-content {
+    background: white; /* Asegura que el contenido interno sea blanco */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Estilos de Tablas --- */
+table {
+    width: 100%; 
+    border-collapse: collapse;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+thead {
+    background-color: var(--color-primary); 
+    color: var(--color-text-light); 
+    border-bottom: 5px solid var(--color-secondary); 
+}
+
+th, td {
+    padding: 10px; 
+    text-align: center;
+}
+
+td {
+    color: var(--color-text-dark); 
+    border-bottom: 1px solid #eee; 
+    font-weight: 500;
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.03); 
+}
+
+tr:hover {
+    background-color: rgba(255, 0, 0, 0.2); 
+    cursor: pointer;
+}
+
+.top-three td:nth-child(1) {
+    background-color: gold; 
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* --- Estilos de Fechas --- */
+.date-buttons {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 8px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.date-btn {
+    background-color: #eee;
+    color: var(--color-text-dark);
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+.date-btn:hover {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.date-btn.active {
+    background-color: var(--color-primary); 
+    color: white;
+    border-color: var(--color-primary);
+    transform: scale(1.05); 
+}
+
+.resultados-content {
+    padding: 15px;
+    border: 1px solid #ddd;
+    min-height: 150px; 
+}
+
+/* ========================= MODAL Y REDES SOCIALES ========================= */
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; 
+    z-index: 3000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Centrado vertical y horizontal */
+    padding: 30px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: var(--shadow-lift);
+    text-align: center;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal-btn:hover,
+.close-modal-btn:focus {
+    color: var(--color-secondary);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.social-btn {
+    text-decoration: none;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.youtube-btn {
+    background-color: var(--color-youtube);
+}
+.youtube-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+}
+
+.instagram-btn {
+    background-color: var(--color-instagram);
+}
+.instagram-btn:hover {
+    background-color: #c42b5d;
+    transform: translateY(-2px);
+}
+
+.tiktok-btn {
+    background-color: var(--color-tiktok);
+}
+.tiktok-btn:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+/* ========================= MEDIA QUERIES ========================= */
+@media (max-width: 800px) {
+    header {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+    
+    .logo-container {
+        margin-bottom: 15px;
+    }
+    
+    .main-nav {
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .nav-btn {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
+    .content-grid-2x2 {
+        grid-template-columns: 1fr;
+    }
+}
