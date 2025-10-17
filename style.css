@@ -1,45 +1,332 @@
-/* ... (Sección de Variables y Estilos Generales se mantiene igual) ... */
+/* VARIABLES DE COLOR */
+:root {
+    --color-bg-dark: #1a0000; /* Fondo negro rojizo */
+    --color-primary: #FF004C; /* Rojo Neón */
+    --color-secondary: #00FFFF; /* Cian (para contraste) */
+    --color-text: #EAEAEA;
+    --color-transparent-box-bg: rgba(0, 0, 0, 0.7); /* Fondo de caja más transparente */
+    --color-box-border: #FF004C; /* Borde rojo */
+    --color-border-dash: rgba(255, 0, 76, 0.3); /* Borde punteado más sutil */
+}
 
-/* ... (Sección de MODAL DE REDES - ESTILO CÍRCULO) ... */
+/* ESTILOS GENERALES Y FONDO */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Consolas', monospace; /* Fuente futurista */
+}
+
+body {
+    background-color: var(--color-bg-dark); /* Fondo negro rojizo sólido */
+    color: var(--color-text);
+    min-height: 100vh;
+    padding-top: 60px; /* Espacio para el header fijo */
+}
+
+/* HEADER Y NAVEGACIÓN */
+header {
+    background-color: rgba(0, 0, 0, 0.95); /* Negro casi opaco */
+    color: var(--color-text);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 2px solid var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-shadow: 0 0 5px var(--color-primary);
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: var(--color-text);
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+nav button:hover {
+    color: var(--color-secondary);
+    background-color: rgba(255, 0, 76, 0.2); /* Rojo transparente al hover */
+    text-shadow: 0 0 5px var(--color-secondary);
+}
+
+/* CONTENIDO PRINCIPAL */
+main {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.content-section {
+    display: none;
+    padding: 20px 0;
+}
+
+.content-section.active {
+    display: block;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 0 8px var(--color-primary);
+}
+
+/* SECCIÓN INICIO - AMPLIADA */
+.inicio-container {
+    min-height: calc(100vh - 100px); /* Ocupa más espacio, ajustado al header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.neon-box {
+    background-color: var(--color-transparent-box-bg); /* Fondo de caja más transparente */
+    padding: 30px;
+    border: 1px solid var(--color-box-border);
+    box-shadow: 0 0 15px var(--color-box-border), inset 0 0 5px var(--color-box-border);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 800px;
+    width: 100%;
+    backdrop-filter: blur(2px); /* Un poco más de blur para el efecto "cristal" */
+    -webkit-backdrop-filter: blur(2px); 
+}
+
+.neon-box h2 {
+    color: var(--color-secondary);
+    text-shadow: 0 0 5px var(--color-secondary);
+    margin-bottom: 15px;
+    border-bottom: 1px dashed var(--color-border-dash); /* Borde punteado más sutil */
+    padding-bottom: 5px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.admin-card {
+    background-color: rgba(0, 0, 0, 0.5); /* Tarjeta con más transparencia */
+    padding: 15px;
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    text-align: center;
+    backdrop-filter: blur(1px); /* Un poco de blur para las tarjetas */
+    -webkit-backdrop-filter: blur(1px); 
+}
+.admin-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 5px;
+}
+
+/* SECCIÓN LIGA - CUADRÍCULAS TRANSPARENTES Y SIMÉTRICAS */
+.stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas simétricas */
+    grid-template-areas: 
+        "posiciones posiciones"
+        "goleadores asistidores"
+        "fechas fechas";
+    gap: 20px;
+}
+/* Asignar áreas a los stat-box para el diseño de 4 cuadrados simétricos (imagen 4) */
+.stat-box:nth-child(1) { grid-area: posiciones; }
+.stat-box:nth-child(2) { grid-area: goleadores; }
+.stat-box:nth-child(3) { grid-area: asistidores; }
+.stat-box:nth-child(4) { grid-area: fechas; }
+
+
+.stat-box {
+    background-color: var(--color-transparent-box-bg); /* Fondo de caja más transparente */
+    border: 2px solid var(--color-box-border);
+    border-radius: 5px;
+    padding: 20px;
+    /* Efecto de 'vidrio' sutil */
+    backdrop-filter: blur(2px); 
+    -webkit-backdrop-filter: blur(2px); 
+    box-shadow: 0 0 10px rgba(255, 0, 76, 0.4);
+}
+
+
+.stat-box h2 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px var(--color-primary);
+    text-transform: uppercase;
+}
+
+/* TABLAS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center; /* Centrar todo el texto en las tablas */
+    border-bottom: 1px dashed var(--color-border-dash);
+}
+th:nth-child(2), td:nth-child(2) {
+    text-align: left; /* Dejar el nombre del equipo a la izquierda */
+}
+
+thead th {
+    background-color: rgba(255, 0, 76, 0.2); /* Fondo transparente para thead */
+    color: var(--color-secondary);
+    text-transform: uppercase;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 0, 76, 0.3); /* Un poco más de rojo transparente al hover */
+}
+
+/* NAVEGACIÓN DE FECHAS */
+.match-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.match-nav button {
+    background: var(--color-primary);
+    color: var(--color-bg-dark); /* Color del texto del botón de navegación */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 3px;
+    margin: 0 15px;
+    transition: background 0.2s;
+}
+
+.match-nav button:hover {
+    background: var(--color-secondary);
+}
+
+#fecha-titulo {
+    font-size: 1.2em;
+    color: var(--color-primary);
+    text-shadow: 0 0 3px var(--color-primary);
+}
+
+.match {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo de partido ligeramente más opaco */
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    border-left: 2px solid var(--color-secondary);
+    display: flex;
+    justify-content: space-around; /* Distribución de elementos */
+    align-items: center;
+    backdrop-filter: blur(1px); /* Blur para cada partido */
+    -webkit-backdrop-filter: blur(1px); 
+}
+
+.match span {
+    width: 33%; /* Para ayudar a centrar los resultados */
+    text-align: center;
+}
+.match span:first-child {
+    text-align: left;
+}
+.match span:last-child {
+    text-align: right;
+}
+
+.match-score {
+    color: var(--color-primary);
+    font-weight: bold;
+    text-align: center; /* El resultado debe estar centrado */
+}
+
+/* MODAL DE REDES */
+.modal {
+    display: none;
+    position: absolute; /* Cambiado a absolute para que se posicione dentro del header */
+    top: 0; /* Ajustar posición dentro del header */
+    right: 0;
+    width: 100%;
+    height: 100vh; /* Permite que el modal ocupe toda la altura */
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Asegurar que esté por debajo del header pero por encima del contenido */
+}
+
+.modal-content {
+    background-color: var(--color-transparent-box-bg); /* Fondo de caja más transparente */
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 20px var(--color-primary);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    backdrop-filter: blur(2px); 
+    -webkit-backdrop-filter: blur(2px); 
+}
 
 .redes-buttons {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap; /* Para rombos */
     justify-content: center;
-    gap: 20px; /* Reducimos un poco el gap para que se vea más limpio */
+    gap: 30px; /* Espacio entre rombos */
     margin-top: 30px;
 }
 
 .red-btn {
-    width: 60px; /* Reducimos el tamaño para un look más estético */
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background-color: var(--color-primary);
     color: white;
-    font-size: 24px; /* Ajustamos el tamaño del ícono */
+    font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     
-    /* Forma de CÍRCULO */
-    border-radius: 50%; 
-    
-    /* Eliminamos la transformación de rombo */
-    transform: none; 
-    
+    /* Forma de ROMBO (usando skew y rotación) */
+    transform: rotate(45deg) skewX(10deg);
     transition: all 0.3s ease;
+    border-radius: 10px;
     box-shadow: 0 0 10px var(--color-primary);
-    border: 2px solid var(--color-bg-dark); /* Borde para que destaque */
 }
 
 .red-btn i {
-    /* Eliminamos la transformación de rombo */
-    transform: none; 
+    /* Deshacer la rotación para que el ícono esté derecho */
+    transform: rotate(-45deg) skewX(-10deg);
 }
 
 .red-btn:hover {
-    /* Ajustamos el hover para un círculo */
-    transform: scale(1.1);
+    transform: rotate(45deg) skewX(10deg) scale(1.1);
     box-shadow: 0 0 20px var(--color-secondary);
     background-color: var(--color-secondary);
 }
@@ -51,4 +338,31 @@
     opacity: 0.5;
 }
 
-/* ... (Colores de botones y Responsive se mantienen igual) ... */
+/* Colores de rombos (solo para diferenciarlos) */
+.discord-btn { background-color: #5865F2; }
+.youtube-btn { background-color: #FF0000; }
+.tiktok-btn { background-color: #69C9D0; }
+.instagram-btn { background-color: #C13584; }
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    .stat-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "posiciones"
+            "goleadores"
+            "asistidores"
+            "fechas";
+    }
+}
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    .modal {
+        top: 60px; /* Ajuste para que no tape el header en móviles */
+    }
+    .modal-content {
+        max-width: 90%;
+    }
+}
