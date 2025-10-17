@@ -4,7 +4,7 @@
     --color-primary: #FF004C; /* Rojo Neón */
     --color-secondary: #00FFFF; /* Cian (para contraste) */
     --color-text: #EAEAEA;
-    --color-transparent-box-bg: rgba(0, 0, 0, 0.7); /* Fondo de caja más transparente */
+    --color-transparent-box-bg: rgba(0, 0, 0, 0.85); /* AUMENTADO: Hacemos las cajas más opacas */
     --color-box-border: #FF004C; /* Borde rojo */
     --color-border-dash: rgba(255, 0, 76, 0.3); /* Borde punteado más sutil */
 }
@@ -18,14 +18,14 @@
 }
 
 body {
-    /* 1. FONDO DE IMAGEN: Usando la URL que enviaste */
+    /* FONDO DE IMAGEN: Usando la URL externa */
     background: url('https://cdn.discordapp.com/attachments/1383879644545286244/1427675699472367616/JAKJUS_REAL_SOCCER_2.png?ex=68f3ae9b&is=68f25d1b&hm=9b694cb8a5966877befd619d06f6bc8c9b4ec1395d28542d6a846c0f43a3191f&') no-repeat center center fixed;
-    background-size: cover; /* Asegura que la imagen cubra todo */
-    background-color: #1a0000; /* Fallback si la imagen no carga */
+    background-size: cover;
+    background-color: #1a0000; /* Fallback */
     
     color: var(--color-text);
     min-height: 100vh;
-    padding-top: 60px; /* Espacio para el header fijo */
+    padding-top: 60px;
 }
 
 /* HEADER Y NAVEGACIÓN */
@@ -146,9 +146,10 @@ h1 {
     margin-bottom: 5px;
 }
 
-/* SECCIÓN LIGA */
+/* SECCIÓN LIGA - ARREGLO DE POSICIONAMIENTO Y CONTRASTE */
 .stat-grid {
     display: grid;
+    /* CORRECCIÓN: Usaremos 1fr para que las tablas de líderes sean simétricas */
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
         "posiciones posiciones"
@@ -158,4 +159,211 @@ h1 {
 }
 .stat-box:nth-child(1) { grid-area: posiciones; }
 .stat-box:nth-child(2) { grid-area: goleadores; }
-.stat-box
+.stat-box:nth-child(3) { grid-area: asistidores; }
+.stat-box:nth-child(4) { grid-area: fechas; }
+
+
+.stat-box {
+    /* AUMENTADO: Más opacidad para que el texto resalte sobre la imagen de fondo */
+    background-color: var(--color-transparent-box-bg); 
+    border: 2px solid var(--color-box-border);
+    border-radius: 5px;
+    padding: 20px;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(255, 0, 76, 0.4);
+}
+
+
+.stat-box h2 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px var(--color-primary);
+    text-transform: uppercase;
+}
+
+/* TABLAS - MEJORA DE LEGIBILIDAD */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    color: var(--color-text); /* Aseguramos que el texto de la tabla sea claro */
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px dashed var(--color-border-dash);
+}
+th:nth-child(2), td:nth-child(2) {
+    text-align: left;
+}
+
+thead th {
+    background-color: rgba(255, 0, 76, 0.2);
+    color: var(--color-secondary);
+    text-transform: uppercase;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 0, 76, 0.3);
+}
+
+/* NAVEGACIÓN DE FECHAS */
+.match-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.match-nav button {
+    background: var(--color-primary);
+    color: #1a0000; 
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 3px;
+    margin: 0 15px;
+    transition: background 0.2s;
+}
+
+.match-nav button:hover {
+    background: var(--color-secondary);
+}
+
+#fecha-titulo {
+    font-size: 1.2em;
+    color: var(--color-primary);
+    text-shadow: 0 0 3px var(--color-primary);
+}
+
+.match {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    border-left: 2px solid var(--color-secondary);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+.match span {
+    width: 33%;
+    text-align: center;
+}
+.match span:first-child {
+    text-align: left;
+}
+.match span:last-child {
+    text-align: right;
+}
+
+.match-score {
+    color: var(--color-primary);
+    font-weight: bold;
+    text-align: center;
+}
+
+/* MODAL DE REDES - ARREGLO DE FUNCIONALIDAD Y ESTILO CÍRCULO */
+.modal {
+    /* CORRECCIÓN: Usamos 'fixed' y 'display: flex' para que se centre y cubra toda la pantalla */
+    display: none;
+    position: fixed; 
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--color-transparent-box-bg);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 20px var(--color-primary);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.redes-buttons {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.red-btn {
+    /* RE-APLICAMOS el estilo CÍRCULO y estético */
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    
+    border-radius: 50%; /* Forma de CÍRCULO */
+    transform: none; /* Eliminamos el rombo */
+    
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--color-primary);
+    border: 2px solid rgba(0, 0, 0, 0.7);
+}
+
+.red-btn i {
+    transform: none; /* Icono sin rotar */
+}
+
+.red-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--color-secondary);
+    background-color: var(--color-secondary);
+}
+
+.inactive {
+    background-color: gray;
+    pointer-events: none;
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+/* Colores específicos de los botones de redes */
+.discord-btn { background-color: #5865F2; }
+.youtube-btn { background-color: #FF0000; }
+.tiktok-btn { background-color: #69C9D0; }
+.instagram-btn { background-color: #C13584; }
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    .stat-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "posiciones"
+            "goleadores"
+            "asistidores"
+            "fechas";
+    }
+}
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
