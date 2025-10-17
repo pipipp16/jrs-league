@@ -1,12 +1,12 @@
 /* VARIABLES DE COLOR */
 :root {
-    --color-bg: #111;
+    --color-bg-dark: #1a0000; /* Fondo negro rojizo */
     --color-primary: #FF004C; /* Rojo Neón */
     --color-secondary: #00FFFF; /* Cian (para contraste) */
     --color-text: #EAEAEA;
-    --color-transparency: rgba(255, 0, 76, 0.1); /* Rojo transparente (para tablas) */
-    --color-box-bg: rgba(0, 0, 0, 0.5); /* Fondo de caja semi-transparente */
+    --color-transparent-box-bg: rgba(0, 0, 0, 0.7); /* Fondo de caja más transparente */
     --color-box-border: #FF004C; /* Borde rojo */
+    --color-border-dash: rgba(255, 0, 76, 0.3); /* Borde punteado más sutil */
 }
 
 /* ESTILOS GENERALES Y FONDO */
@@ -18,8 +18,7 @@
 }
 
 body {
-    background: url('JAKJUS_REAL_SOCCER_2.jpg') no-repeat center center fixed; /* TU IMAGEN DE FONDO */
-    background-size: cover;
+    background-color: var(--color-bg-dark); /* Fondo negro rojizo sólido */
     color: var(--color-text);
     min-height: 100vh;
     padding-top: 60px; /* Espacio para el header fijo */
@@ -49,7 +48,6 @@ header {
 }
 
 nav button {
-    /* Estilo de botón consistente */
     background: none;
     border: none;
     color: var(--color-text);
@@ -64,7 +62,7 @@ nav button {
 
 nav button:hover {
     color: var(--color-secondary);
-    background-color: var(--color-transparency);
+    background-color: rgba(255, 0, 76, 0.2); /* Rojo transparente al hover */
     text-shadow: 0 0 5px var(--color-secondary);
 }
 
@@ -94,7 +92,7 @@ h1 {
 
 /* SECCIÓN INICIO - AMPLIADA */
 .inicio-container {
-    min-height: calc(100vh - 100px); /* Ocupa más espacio */
+    min-height: calc(100vh - 100px); /* Ocupa más espacio, ajustado al header */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,7 +100,7 @@ h1 {
 }
 
 .neon-box {
-    background-color: var(--color-box-bg); /* Fondo semi-transparente */
+    background-color: var(--color-transparent-box-bg); /* Fondo de caja más transparente */
     padding: 30px;
     border: 1px solid var(--color-box-border);
     box-shadow: 0 0 15px var(--color-box-border), inset 0 0 5px var(--color-box-border);
@@ -111,13 +109,15 @@ h1 {
     line-height: 1.6;
     max-width: 800px;
     width: 100%;
+    backdrop-filter: blur(2px); /* Un poco más de blur para el efecto "cristal" */
+    -webkit-backdrop-filter: blur(2px); 
 }
 
 .neon-box h2 {
     color: var(--color-secondary);
     text-shadow: 0 0 5px var(--color-secondary);
     margin-bottom: 15px;
-    border-bottom: 1px dashed var(--color-secondary);
+    border-bottom: 1px dashed var(--color-border-dash); /* Borde punteado más sutil */
     padding-bottom: 5px;
 }
 
@@ -129,11 +129,13 @@ h1 {
 }
 
 .admin-card {
-    background-color: rgba(0, 0, 0, 0.4); /* Tarjeta con más transparencia */
+    background-color: rgba(0, 0, 0, 0.5); /* Tarjeta con más transparencia */
     padding: 15px;
     border: 1px solid var(--color-primary);
     border-radius: 5px;
     text-align: center;
+    backdrop-filter: blur(1px); /* Un poco de blur para las tarjetas */
+    -webkit-backdrop-filter: blur(1px); 
 }
 .admin-card h3 {
     color: var(--color-primary);
@@ -158,13 +160,13 @@ h1 {
 
 
 .stat-box {
-    background-color: var(--color-box-bg); /* Fondo semi-transparente */
+    background-color: var(--color-transparent-box-bg); /* Fondo de caja más transparente */
     border: 2px solid var(--color-box-border);
     border-radius: 5px;
     padding: 20px;
     /* Efecto de 'vidrio' sutil */
-    backdrop-filter: blur(1px); 
-    -webkit-backdrop-filter: blur(1px); 
+    backdrop-filter: blur(2px); 
+    -webkit-backdrop-filter: blur(2px); 
     box-shadow: 0 0 10px rgba(255, 0, 76, 0.4);
 }
 
@@ -187,20 +189,20 @@ table {
 th, td {
     padding: 8px;
     text-align: center; /* Centrar todo el texto en las tablas */
-    border-bottom: 1px dashed var(--color-transparency);
+    border-bottom: 1px dashed var(--color-border-dash);
 }
 th:nth-child(2), td:nth-child(2) {
     text-align: left; /* Dejar el nombre del equipo a la izquierda */
 }
 
 thead th {
-    background-color: var(--color-transparency);
+    background-color: rgba(255, 0, 76, 0.2); /* Fondo transparente para thead */
     color: var(--color-secondary);
     text-transform: uppercase;
 }
 
 tbody tr:hover {
-    background-color: rgba(255, 0, 76, 0.2);
+    background-color: rgba(255, 0, 76, 0.3); /* Un poco más de rojo transparente al hover */
 }
 
 /* NAVEGACIÓN DE FECHAS */
@@ -213,7 +215,7 @@ tbody tr:hover {
 
 .match-nav button {
     background: var(--color-primary);
-    color: var(--color-bg);
+    color: var(--color-bg-dark); /* Color del texto del botón de navegación */
     border: none;
     padding: 5px 10px;
     cursor: pointer;
@@ -234,7 +236,7 @@ tbody tr:hover {
 }
 
 .match {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo de partido ligeramente más opaco */
     padding: 10px;
     margin-bottom: 5px;
     border-radius: 3px;
@@ -242,6 +244,8 @@ tbody tr:hover {
     display: flex;
     justify-content: space-around; /* Distribución de elementos */
     align-items: center;
+    backdrop-filter: blur(1px); /* Blur para cada partido */
+    -webkit-backdrop-filter: blur(1px); 
 }
 
 .match span {
@@ -261,10 +265,24 @@ tbody tr:hover {
     text-align: center; /* El resultado debe estar centrado */
 }
 
-/* MODAL DE REDES - ESTILO ROMBO */
+/* MODAL DE REDES */
+.modal {
+    display: none;
+    position: absolute; /* Cambiado a absolute para que se posicione dentro del header */
+    top: 0; /* Ajustar posición dentro del header */
+    right: 0;
+    width: 100%;
+    height: 100vh; /* Permite que el modal ocupe toda la altura */
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Asegurar que esté por debajo del header pero por encima del contenido */
+}
+
 .modal-content {
-    /* Mismo estilo de caja que las estadísticas */
-    background-color: var(--color-box-bg);
+    background-color: var(--color-transparent-box-bg); /* Fondo de caja más transparente */
     border: 2px solid var(--color-primary);
     box-shadow: 0 0 20px var(--color-primary);
     padding: 30px;
@@ -272,8 +290,8 @@ tbody tr:hover {
     width: 80%;
     max-width: 400px;
     text-align: center;
-    backdrop-filter: blur(1px); 
-    -webkit-backdrop-filter: blur(1px); 
+    backdrop-filter: blur(2px); 
+    -webkit-backdrop-filter: blur(2px); 
 }
 
 .redes-buttons {
@@ -337,8 +355,5 @@ tbody tr:hover {
             "fechas";
     }
 }
-@media (max-width: 600px) {
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-}
+@media (max-width: 600px
+    
