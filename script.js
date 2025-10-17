@@ -18,7 +18,6 @@ const initialStats = {
     "laira":                { PJ: 5, PG: 1, PE: 4, PP: 0, GF: 5, GC: 5, Pts: 0 },
     "el rejunte de amigos": { PJ: 5, PG: 1, PE: 3, PP: 1, GF: 4, GC: 5, Pts: 0 },
     "loan":                 { PJ: 5, PG: 1, PE: 2, PP: 2, GF: 7, GC: 11, Pts: 0 },
-    // "calyndra":           { PJ: 5, PG: 1, PE: 1, PP: 3, GF: 6, GC: 10, Pts: 0 }, <-- Eliminado
     "machetitos":           { PJ: 5, PG: 1, PE: 1, PP: 3, GF: 4, GC: 10, Pts: 0 },
     "cornudos":             { PJ: 5, PG: 0, PE: 3, PP: 2, GF: 2, GC: 5, Pts: 0 },
     "wanderers":            { PJ: 5, PG: 0, PE: 4, PP: 1, GF: 3, GC: 4, Pts: 0 },
@@ -31,7 +30,7 @@ const goleadores = [
     { jugador: "Jugador B", goles: 8 },
     { jugador: "Jugador C", goles: 7 },
     { jugador: "Jugador D", goles: 6 },
-    { jugador: "Jugador E", goles: 5 }, // El HTML tenía un error, lo corregí a E/5
+    { jugador: "Jugador E", goles: 5 }, 
 ];
 
 const asistidores = [
@@ -51,14 +50,12 @@ const fixture = [
         { local: "bristol", visitante: "joga bonito", resultado: "1 - 1" },
         { local: "white phanter kings", visitante: "laira", resultado: "3 - 0" },
         { local: "el rejunte de amigos", visitante: "loan", resultado: "0 - 0" },
-        // { local: "calyndra", visitante: "machetitos", resultado: "3 - 1" }, <-- Eliminado
         { local: "cornudos", visitante: "wanderers", resultado: "0 - 0" },
         { local: "mamas fc", visitante: "valunir", resultado: "0 - 1" }
     ],
     // FECHA 2
     [
         { local: "loan", visitante: "mamas fc", resultado: "1 - 0" },
-        // { local: "wanderers", visitante: "calyndra", resultado: "1 - 1" }, <-- Eliminado
         { local: "machetitos", visitante: "el rejunte de amigos", resultado: "2 - 1" },
         { local: "laira", visitante: "cornudos", resultado: "2 - 2" },
         { local: "joga bonito", visitante: "white phanter kings", resultado: "2 - 0" },
@@ -71,11 +68,9 @@ const fixture = [
         { local: "white phanter kings", visitante: "banfield", resultado: "2 - 4" },
         { local: "cornudos", visitante: "joga bonito", resultado: "0 - 0" },
         { local: "el rejunte de amigos", visitante: "laira", resultado: "1 - 1" },
-        // { local: "calyndra", visitante: "loan", resultado: "0 - 3" }, <-- Eliminado
         { local: "machetitos", visitante: "mamas fc", resultado: "1 - 0" },
         { local: "wanderers", visitante: "valunir", resultado: "1 - 1" }
     ]
-    // ... Puedes añadir más fechas aquí ...
 ];
 
 // ===================================
@@ -84,7 +79,6 @@ const fixture = [
 
 let leagueTable = [];
 
-// Calcula Puntos, DG y construye la tabla
 function calculateStats() {
     leagueTable = teams.map(teamName => {
         const stats = initialStats[teamName];
@@ -105,7 +99,6 @@ function calculateStats() {
     });
 }
 
-// Lógica de Ordenamiento
 function sortTable() {
     leagueTable.sort((a, b) => {
         if (b.Pts !== a.Pts) {
@@ -118,7 +111,6 @@ function sortTable() {
     });
 }
 
-// Renderiza la tabla de posiciones en HTML
 function renderTable() {
     const tableBody = document.querySelector('#tabla-posiciones tbody');
     tableBody.innerHTML = ''; 
@@ -141,11 +133,11 @@ function renderTable() {
 }
 
 // ===================================
-// LÓGICA DE GOLEADORES Y ASISTIDORES (NUEVA LÓGICA DE ORDENAMIENTO)
+// LÓGICA DE GOLEADORES Y ASISTIDORES
 // ===================================
 
 function sortAndRenderLeaders() {
-    // Ordenar Goleadores (por Goles, de mayor a menor)
+    // Ordenar Goleadores
     goleadores.sort((a, b) => b.goles - a.goles);
     
     const goleadoresBody = document.querySelector('#tabla-goleadores tbody');
@@ -155,12 +147,11 @@ function sortAndRenderLeaders() {
         row.innerHTML = `<td>${player.jugador}</td><td>${player.goles}</td>`;
     });
 
-    // Ordenar Asistidores (por Asistencias, de mayor a menor)
+    // Ordenar Asistidores
     asistidores.sort((a, b) => {
         if (b.asistencias !== a.asistencias) {
             return b.asistencias - a.asistencias;
         }
-        // Desempate por nombre si tienen las mismas asistencias
         return a.jugador.localeCompare(b.jugador); 
     });
 
@@ -221,7 +212,7 @@ function prevFecha() {
 }
 
 // ===================================
-// LÓGICA DE INTERFAZ Y MODAL (Se mantiene)
+// LÓGICA DE INTERFAZ Y MODAL (Funciones Globales Arregladas)
 // ===================================
 
 function showSection(id) {
@@ -231,25 +222,30 @@ function showSection(id) {
     document.getElementById(id).classList.add('active');
 }
 
-const redesBtn = document.getElementById('redes-btn');
-const modal = document.getElementById('redes-modal');
-const closeBtn = document.querySelector('.close-btn');
-
-redesBtn.addEventListener('click', () => {
-    // Importante: Usar 'flex' para centrar el modal con el CSS
-    modal.style.display = 'flex'; 
-});
-
 function closeModal() {
+    const modal = document.getElementById('redes-modal');
     modal.style.display = 'none';
 }
+
+// Hacemos las funciones globales para que los botones 'onclick' en el HTML funcionen
+window.showSection = showSection;
+window.closeModal = closeModal; 
+window.nextFecha = nextFecha;
+window.prevFecha = prevFecha;
+
+
+const redesBtn = document.getElementById('redes-btn');
+const modal = document.getElementById('redes-modal');
+
+redesBtn.addEventListener('click', () => {
+    modal.style.display = 'flex'; 
+});
 
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
-window.closeModal = closeModal; // Hacemos la función global para el onclick del HTML
 
 // ===================================
 // INICIALIZACIÓN (Al cargar la página)
