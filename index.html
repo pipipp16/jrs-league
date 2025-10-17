@@ -1,21 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JRSLEAGUE | JAKJUS REAL SOCCER LEAGUE</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <header>
-        <div class="logo">JRSLEAGUE</div>
-        <nav>
-            <button onclick="showSection('inicio')">INICIO</button>
-            <button onclick="showSection('liga')">LIGA</button>
-            <button id="redes-btn">REDES</button>
-        </nav>
+<section id="liga" class="content-section">
+            <h1>COMPETICIÓN Y ESTADÍSTICAS</h1>
+            
+            <div class="stat-grid">
+                <div class="stat-box half-width">
+                    <h2>TABLA DE GOLEADORES</h2>
+                    <table class="leader-table">
+                        <thead><tr><th>Jugador</th><th>Goles</th></tr></thead>
+                        <tbody>
+                            <tr><td>Jugador A</td><td>10</td></tr>
+                            <tr><td>Jugador B</td><td>8</td></tr>
+                            <tr><td>Jugador C</td><td>7</td></tr>
+                            <tr><td>Jugador D</td><td>6</td></tr>
+                            <tr><td>Jugador E</td><td>5</td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
+                <div class="stat-box half-width">
+                    <h2>TABLA DE ASISTIDORES</h2>
+                    <table class="leader-table">
+                        <thead><tr><th>Jugador</th><th>Asistencias</th></tr></thead>
+                        <tbody>
+                            <tr><td>Jugador X</td><td>8</td></tr>
+                            <tr><td>Jugador Y</td><td>6</td></tr>
+                            <tr><td>Jugador Z</td><td>5</td></tr>
+                            <tr><td>Jugador W</td><td>4</td></tr>
+                            <tr><td>Jugador Q</td><td>3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                </div>
+        </section>
+    </main>
+
+    <header>
         <div id="redes-modal" class="modal">
             <div class="modal-content">
                 <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -37,96 +56,6 @@
             </div>
         </div>
     </header>
-
-    <main>
-        <section id="inicio" class="content-section active">
-            <div class="inicio-container">
-                <h1>BIENVENIDO A LA JRSLEAGUE</h1>
-                <div class="neon-box">
-                    <h2>¿QUÉ ES JRSLEAGUE?</h2>
-                    <p>La JAKJUS REAL SOCCER LEAGUE es la liga de fútbol virtual más competitiva de Discord. Buscamos llevar la pasión del fútbol a un nuevo nivel, combinando estrategia, habilidad y una comunidad dedicada.</p>
-                    
-                    <div class="info-grid">
-                        <div class="admin-card">
-                            <h3>HOST OFICIAL</h3>
-                            <p>JAKJUS</p>
-                        </div>
-                        <div class="admin-card">
-                            <h3>ADMINISTRADOR</h3>
-                            <p>USUARIO 1</p>
-                        </div>
-                        <div class="admin-card">
-                            <h3>CO-ADMIN</h3>
-                            <p>USUARIO 2</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="liga" class="content-section">
-            <h1>COMPETICIÓN Y ESTADÍSTICAS</h1>
-            
-            <div class="stat-grid">
-                <div class="stat-box full-width">
-                    <h2>TABLA DE POSICIONES</h2>
-                    <table id="tabla-posiciones">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Equipo</th>
-                                <th>PJ</th>
-                                <th>PG</th>
-                                <th>PE</th>
-                                <th>PP</th>
-                                <th>GF</th>
-                                <th>GC</th>
-                                <th>DG</th>
-                                <th>Pts</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            </tbody>
-                    </table>
-                </div>
-
-                <div class="stat-box half-width">
-                    <h2>TABLA DE GOLEADORES</h2>
-                    <table class="leader-table">
-                        <thead><tr><th>Jugador</th><th>Goles</th></tr></thead>
-                        <tbody>
-                            <tr><td>Jugador A</td><td>10</td></tr>
-                            <tr><td>Jugador B</td><td>8</td></tr>
-                            <tr><td>Jugador C</td><td>7</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="stat-box half-width">
-                    <h2>TABLA DE ASISTIDORES</h2>
-                    <table class="leader-table">
-                        <thead><tr><th>Jugador</th><th>Asistencias</th></tr></thead>
-                        <tbody>
-                            <tr><td>Jugador X</td><td>8</td></tr>
-                            <tr><td>Jugador Y</td><td>6</td></tr>
-                            <tr><td>Jugador Z</td><td>5</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="stat-box full-width">
-                    <h2>CALENDARIO DE FECHAS</h2>
-                    <div class="match-nav">
-                        <button onclick="prevFecha()"> &lt; </button>
-                        <span id="fecha-titulo">FECHA 1</span>
-                        <button onclick="nextFecha()"> &gt; </button>
-                    </div>
-                    <div id="partidos-container">
-                        </div>
-                </div>
-            </div>
-        </section>
-    </main>
 
     <script src="script.js"></script>
 </body>
