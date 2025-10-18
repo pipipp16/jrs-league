@@ -1,504 +1,207 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liga JRS - Resultados y Posiciones</title>
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        /* ===================================
-           ESTILOS MÍNIMOS REQUERIDOS (CSS)
-           ===================================
-           Si usas un archivo style.css, estos estilos ya deberían estar ahí.
-           Los dejo aquí como fallback mínimo para que la estructura funcione.
-        */
-        :root {
-            --color-primary-red: #cc0000;
-            --color-dark-blue: #001f3f;
-            --color-light-gray: #f4f4f4;
-            --color-white: #ffffff;
-            --color-black: #222;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding-top: 60px; /* Espacio para el header fijo */
-            background-color: var(--color-light-gray);
-            color: var(--color-black);
-        }
-
-        /* HEADER */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--color-dark-blue);
-            color: var(--color-white);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            height: 60px;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: var(--color-white);
-        }
-
-        .header-nav button {
-            background: none;
-            border: none;
-            color: var(--color-white);
-            padding: 15px;
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
-
-        .header-nav button:hover {
-            background-color: var(--color-primary-red);
-        }
-
-        /* SECCIONES DE CONTENIDO */
-        .content-section {
-            display: none;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: var(--color-white);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        /* LIGA Y TABLA */
-        .league-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr; /* Tabla vs. Calendario/Líderes */
-            gap: 20px;
-        }
-
-        .standings, .side-info {
-            background: var(--color-light-gray);
-            padding: 15px;
-            border-radius: 5px;
-        }
-
-        .standings h2, .side-info h2 {
-            color: var(--color-primary-red);
-            border-bottom: 2px solid var(--color-primary-red);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
-
-        .standings table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .standings th, .standings td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            text-align: center;
-        }
-        
-        .standings th:nth-child(2), .standings td:nth-child(2) {
-             text-align: left; /* Equipo a la izquierda */
-        }
-
-        .standings th {
-            background-color: var(--color-dark-blue);
-            color: var(--color-white);
-            font-size: 0.8em;
-            text-transform: uppercase;
-        }
-
-        .team-link {
-            color: var(--color-dark-blue);
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.2s;
-        }
-
-        .team-link:hover {
-            color: var(--color-primary-red);
-        }
-        
-        /* CALENDARIO */
-        .calendar {
-            text-align: center;
-        }
-
-        .calendar h3 {
-            margin-top: 0;
-        }
-        
-        .calendar-nav button {
-            background-color: var(--color-dark-blue);
-            color: var(--color-white);
-            border: none;
-            padding: 8px 15px;
-            cursor: pointer;
-            margin: 0 5px;
-            border-radius: 4px;
-        }
-        
-        .match {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px dashed #ccc;
-        }
-
-        .match-score {
-            font-weight: bold;
-            color: var(--color-primary-red);
-            font-size: 1.1em;
-            min-width: 50px;
-            text-align: center;
-        }
-        
-        /* MODALES */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 2000; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.7); 
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: var(--color-white);
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: var(--color-primary-red);
-            text-decoration: none;
-        }
-
-        .profile-section h2 {
-            border-left: 4px solid var(--color-primary-red);
-            padding-left: 10px;
-            margin-top: 15px;
-            color: var(--color-dark-blue);
-        }
-
-        .player-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .player-list li {
-            padding: 5px 0;
-            border-bottom: 1px dotted #eee;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        /* ADMIN PANEL */
-        .admin-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .admin-controls {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-        }
-        
-        .admin-controls label, .admin-controls input, .admin-controls select {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-
-        .admin-match-edit {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border: 1px solid #ddd;
-            margin-bottom: 5px;
-            background: #f9f9f9;
-        }
-        
-        .admin-match-edit input[type="number"] {
-            width: 40px;
-            text-align: center;
-            padding: 5px;
-            margin: 0 5px;
-        }
-        
-        .admin-match-edit button {
-            background-color: var(--color-dark-blue);
-            color: var(--color-white);
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        
-        .btn-save-all {
-            background-color: var(--color-primary-red);
-            color: var(--color-white);
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-        
-        /* Modales de Stats */
-        .goal-slot {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-            background: #f4f4f4;
-        }
-        
-        .goal-slot select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 5px;
-        }
-        
-        /* FIN ESTILOS MÍNIMOS */
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRSLEAGUE | JAKJUS REAL SOCCER LEAGUE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <header>
+        <div class="header-title">JRSLEAGUE</div>
+        
+        <nav class="header-nav">
+            <button onclick="showSection('inicio')">INICIO</button>
+            <button onclick="showSection('liga')">LIGA</button>
+            <button id="redes-btn">REDES</button>
+            <button id="admin-btn">ADMIN</button>
+        </nav>
+    </header>
 
-    <header class="header">
-        <div class="logo">LIGA JRS</div>
-        <nav class="header-nav">
-            <button onclick="showSection('inicio')">INICIO</button>
-            <button onclick="showSection('liga')">LIGA</button>
-            
-            <button id="redes-btn">REDES</button>
-            <button id="admin-btn">ADMIN</button>
-        </nav>
-    </header>
+        <div id="redes-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('redes-modal')">&times;</span>
+            <h2>REDES DE JRSLEAGUE</h2>
+            <div class="redes-buttons">
+                <a href="https://discord.gg/w4nN6njBX7" target="_blank" class="red-btn discord-btn">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://youtube.com/@jrsleaguehaxball?si=vv0zg3hMeUPLeM75" target="_blank" class="red-btn youtube-btn">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/@jrsleague7?is_from_webapp=1&sender_device=pc" target="_blank" class="red-btn tiktok-btn">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="#" class="red-btn instagram-btn inactive">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="admin-login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('admin-login-modal')">&times;</span>
+            <h2>ACCESO DE ADMINISTRADOR</h2>
+            <input type="password" id="admin-password" placeholder="Contraseña de administrador">
+            <button onclick="checkAdminPassword()">INGRESAR</button>
+            <p id="password-message" style="color: var(--color-primary); margin-top: 10px;"></p>
+        </div>
+    </div>
 
-    <section id="inicio" class="content-section active">
-        <h1>¡Bienvenidos a la Liga JRS!</h1>
-        <p>Aquí encontrarás las últimas noticias, la tabla de posiciones actualizada al instante y el calendario de partidos.</p>
-        
-        <div class="home-highlights">
-            <h2>Últimas Noticias</h2>
-            <div class="news-item">
-                <h3>Comienza la Temporada 2025</h3>
-                <p>Prepárense para una nueva temporada llena de goles y emoción. Valunir defenderá su título ante 11 retadores.</p>
-            </div>
-            <div class="news-item">
-                <h3>Mercado de pases agitado</h3>
-                <p>Varios equipos reforzaron sus plantillas con miras a la copa. Se esperan sorpresas en las primeras fechas.</p>
-            </div>
-        </div>
-    </section>
+    <div id="team-profile-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('team-profile-modal')">×</span>
+            <h2 id="team-profile-title">Nombre del Equipo</h2>
+            <div id="team-profile-content">
+                </div>
+        </div>
+    </div>
 
-    <section id="liga" class="content-section">
-        <h1>Tabla de Posiciones y Resultados</h1>
-        <div class="league-container">
-            
-            <div class="standings">
-                <h2>Tabla de Posiciones</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>EQUIPO</th>
-                            <th>PJ</th>
-                            <th>PG</th>
-                            <th>PE</th>
-                            <th>PP</th>
-                            <th>GF</th>
-                            <th>GC</th>
-                            <th>DG</th>
-                            <th>PTS</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-posiciones-body">
-                        </tbody>
-                </table>
-            </div>
+    <div id="match-stats-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('match-stats-modal')">×</span>
+            <h2 id="stats-match-title">Goles y Asistencias</h2>
+            <p style="text-align: center; color: var(--color-primary-red); font-size: 0.9em;">Asigna goles y asistencias por cada tanto. ¡Deben coincidir con el marcador!</p>
+            
+            <div id="goal-slots-container">
+                    </div>
 
-            <div class="side-info">
-                
-                <div class="calendar">
-                    <h2 id="fecha-titulo">FECHA 1</h2>
-                    <div class="calendar-nav">
-                        <button onclick="prevFecha()">&#9664; Anterior</button>
-                        <button onclick="nextFecha()">Siguiente &#9658;</button>
-                    </div>
-                    <div id="partidos-container">
-                        </div>
-                </div>
+            <button onclick="saveMatchStats()" style="margin-top: 20px;">GUARDAR ESTADÍSTICAS DEL PARTIDO</button>
+        </div>
+    </div>
 
-                <div class="leaders">
-                    <h2 style="margin-top: 20px;">Top Goleadores</h2>
-                    <table>
-                        <thead>
-                            <tr><th>Jugador</th><th>Equipo</th><th>Goles</th></tr>
-                        </thead>
-                        <tbody id="tabla-goleadores">
-                            </tbody>
-                    </table>
+    <main>
+        <section id="inicio" class="content-section active">
+            <div class="inicio-container">
+                <h1>BIENVENIDO A LA JRSLEAGUE</h1>
+                
+                <div class="neon-box main-info">
+                    <h2>¿QUÉ ES JRSLEAGUE?</h2>
+                    <p> snow puto </p>
+                </div>
 
-                    <h2 style="margin-top: 20px;">Top Asistidores</h2>
-                    <table>
-                        <thead>
-                            <tr><th>Jugador</th><th>Equipo</th><th>Asistencias</th></tr>
-                        </thead>
-                        <tbody id="tabla-asistidores">
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="neon-box admin-rect">
+                    <div class="info-grid">
+                        <div class="admin-card">
+                            <h3>HOST OFICIAL</h3>
+                            <p>JAKJUS</p>
+                        </div>
+                        <div class="admin-card">
+                            <h3>ADMINISTRADOR</h3>
+                            <p>USUARIO 1</p>
+                        </div>
+                        <div class="admin-card">
+                            <h3>CO-ADMIN</h3>
+                            <p>USUARIO 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="admin" class="content-section">
-        <h1>Panel de Administración</h1>
-        <div class="admin-section">
-            
-            <div>
-                <h2>1. Resultados por Fecha</h2>
-                <div class="admin-controls">
-                    <label for="select-fecha">Seleccionar Fecha:</label>
-                    <select id="select-fecha"></select>
-                    <div id="admin-partidos">
-                        </div>
-                </div>
-            </div>
+        <section id="liga" class="content-section">
+            <h1>COMPETICIÓN Y ESTADÍSTICAS</h1>
+            
+            <div class="stat-grid">
+                
+                <div class="stat-box" id="posiciones-box">
+                    <h2>TABLA DE POSICIONES</h2>
+                    <table id="tabla-posiciones">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Equipo</th>
+                                <th>PJ</th>
+                                <th>PG</th>
+                                <th>PE</th>
+                                <th>PP</th>
+                                <th>GF</th>
+                                <th>GC</th>
+                                <th>DG</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                                                <tbody id="tabla-posiciones-body"> 
+                        </tbody>
+                    </table>
+                </div>
 
-            <div>
-                
-                <h2>2. Añadir Jugador/Staff</h2>
-                <div class="admin-controls">
-                    <label for="select-new-equipo">Equipo:</label>
-                    <select id="select-new-equipo"></select>
-                    
-                    <label for="input-new-jugador">Nombre:</label>
-                    <input type="text" id="input-new-jugador" placeholder="Ej: Lionel Messi">
-                    
-                    <label for="input-new-rol">Rol (Opcional):</label>
-                    <input type="text" id="input-new-rol" placeholder="Ej: Delantero / Cuerpo Técnico">
-                    
-                    <button onclick="addNewPlayer()">AÑADIR A LA PLANTILLA</button>
-                    <p id="new-player-message" style="color:var(--color-primary-red); margin-top: 10px;"></p>
-                </div>
-                
-                <h2>3. Edición Manual de Stats</h2>
-                <div class="admin-controls">
-                    <label for="select-jugador">Seleccionar Jugador:</label>
-                    <select id="select-jugador"></select>
-                    
-                    <label for="input-goles">Goles:</label>
-                    <input type="number" id="input-goles" min="0" value="0">
-                    
-                    <label for="input-asistencias">Asistencias:</label>
-                    <input type="number" id="input-asistencias" min="0" value="0">
-                    
-                    <button onclick="savePlayerStats()">GUARDAR STATS MANUALES</button>
-                    <p id="stats-message" style="color:var(--color-primary-red); margin-top: 10px;"></p>
-                </div>
+                <div class="stat-box" id="goleadores-box">
+                    <h2>TABLA DE GOLEADORES</h2>
+                    <table id="tabla-goleadores" class="leader-table">
+                        <thead><tr><th>Jugador</th><th>Equipo</th><th>Goles</th></tr></thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
 
-            </div>
-            
-        </div>
-        
-        <button class="btn-save-all" onclick="saveAllAndRerender()">GUARDAR TODO Y ACTUALIZAR WEB</button>
-    </section>
+                <div class="stat-box" id="asistidores-box">
+                    <h2>TABLA DE ASISTIDORES</h2>
+                    <table id="tabla-asistidores" class="leader-table">
+                        <thead><tr><th>Jugador</th><th>Equipo</th><th>Asist.</th></tr></thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
 
+                <div class="stat-box" id="calendario-box">
+                    <h2>CALENDARIO DE FECHAS</h2>
+                    <div class="match-nav">
+                        <button onclick="prevFecha()"> &lt; </button>
+                        <span id="fecha-titulo">FECHA 1</span>
+                        <button onclick="nextFecha()"> &gt; </button>
+                    </div>
+                    <div id="partidos-container">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <div id="admin-login-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('admin-login-modal')">&times;</span>
-            <h2>Acceso de Administrador</h2>
-            <label for="admin-password">Contraseña:</label>
-            <input type="password" id="admin-password">
-            <button onclick="checkAdminPassword()">Ingresar</button>
-            <p id="password-message" style="color: var(--color-primary-red); margin-top: 10px;"></p>
-        </div>
-    </div>
+        <section id="admin" class="content-section">
+            <h1>PANEL DE ADMINISTRACIÓN</h1>
+            
+            <div class="admin-panel-grid">
+                
+                <div class="admin-box" id="admin-fechas">
+                    <h2>MODIFICAR RESULTADOS</h2>
+                    <select id="select-fecha"></select>
+                    <div id="admin-partidos">
+                        </div>
+                </div>
 
-    <div id="redes-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('redes-modal')">&times;</span>
-            <h2>Síguenos en Redes</h2>
-            <p>¡Conéctate con la Liga JRS en nuestras plataformas!</p>
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="#" target="_blank" style="font-size: 3em; margin: 0 15px; color: #4267B2;"><i class="fab fa-facebook-square"></i></a>
-                <a href="#" target="_blank" style="font-size: 3em; margin: 0 15px; color: #E1306C;"><i class="fab fa-instagram-square"></i></a>
-                <a href="#" target="_blank" style="font-size: 3em; margin: 0 15px; color: #1DA1F2;"><i class="fab fa-twitter-square"></i></a>
-            </div>
-        </div>
-    </div>
+                <div class="admin-box" id="admin-stats">
+                    <h2>EDITAR GOLES / ASISTENCIAS</h2>
+                    
+                    <div class="admin-add-player-box">
+                        <h3>AGREGAR NUEVO JUGADOR / STAFF</h3>
+                        <input type="text" id="input-new-jugador" placeholder="Nombre del nuevo jugador/staff">
+                        <select id="select-new-equipo">
+                            <option value="">-- Selecciona equipo --</option>
+                            </select>
+                        <input type="text" id="input-new-rol" placeholder="Rol (Ej: DT, Delantero, Cuerpo Técnico)">
+                        <button onclick="addNewPlayer()">AGREGAR JUGADOR A LISTAS</button>
+                        <p id="new-player-message" style="color: var(--color-primary-red); margin-top: 5px;"></p>
+                    </div>
 
-    <div id="team-profile-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('team-profile-modal')">&times;</span>
-            <h2 id="team-profile-title" style="color: var(--color-primary-red);">Nombre del Equipo</h2>
-            <div id="team-profile-content">
-                </div>
-        </div>
-    </div>
-    
-    <div id="match-stats-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('match-stats-modal')">&times;</span>
-            <h2 id="stats-match-title" style="color: var(--color-primary-red);">Estadísticas del Partido</h2>
-            <p style="font-size: 0.9em; margin-bottom: 15px;">Asigna goles y asistencias por cada tanto. ¡Deben coincidir con el marcador!</p>
-            
-            <div id="goal-slots-container">
-                </div>
-            
-            <button onclick="saveMatchStats()" style="background-color: var(--color-dark-blue); color: white; padding: 10px; border: none; width: 100%; margin-top: 15px;">GUARDAR ESTADÍSTICAS</button>
-        </div>
-    </div>
-    
-    <script src="script.js"></script> 
-    </body>
+                    <select id="select-jugador">
+                        </select>
+                    
+                    <label for="input-goles" style="display: block; margin-top: 15px;">Goles (Manual):</label>
+                    <input type="number" id="input-goles" min="0" value="0">
+                    
+                    <label for="input-asistencias" style="display: block; margin-top: 15px;">Asistencias (Manual):</label>
+                    <input type="number" id="input-asistencias" min="0" value="0">
+                    
+                    <button onclick="savePlayerStats()">GUARDAR ESTADÍSTICAS MANUALES</button>
+                    <p id="stats-message" style="color: var(--color-primary-red); margin-top: 5px;"></p>
+                </div>
+                
+            </div>
+            <button class="save-button" onclick="saveAllAndRerender()">GUARDAR TODO Y ACTUALIZAR WEB</button>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
 </html>
