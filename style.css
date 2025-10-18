@@ -1,362 +1,372 @@
 /* VARIABLES DE COLOR */
 :root {
-    --color-bg-dark: #1a0000;
-    --color-primary-red: #FF0000; /* ROJO PURO E INTENSO */
-    --color-text-white: #EAEAEA; /* BLANCO GENERAL */
-    --color-transparent-box-bg: rgba(0, 0, 0, 0.9); /* Fondo de cajas oscuras (más opaco) */
-    --color-border-visible: rgba(255, 255, 255, 0.3); /* BORDE SUTIL PERO VISIBLE */
-    --color-sutil-shadow: 0 0 1px var(--color-primary-red); /* BRILLO MÍNIMO */
+    --color-bg-dark: #1a0000;
+    --color-primary-red: #FF0000; /* ROJO PURO E INTENSO */
+    --color-text-white: #EAEAEA; /* BLANCO GENERAL */
+    --color-transparent-box-bg: rgba(0, 0, 0, 0.9); /* Fondo de cajas oscuras (más opaco) */
+    --color-border-visible: rgba(255, 255, 255, 0.3); /* BORDE SUTIL PERO VISIBLE */
+    --color-sutil-shadow: 0 0 1px var(--color-primary-red); /* BRILLO MÍNIMO */
 }
 
 /* ESTILOS GENERALES Y FONDO */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Consolas', monospace;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Consolas', monospace;
 }
 
 body {
-    background: url('https://cdn.discordapp.com/attachments/1383879644545286244/1427675699472367616/JAKJUS_REAL_SOCCER_2.png?ex=68f3ae9b&is=68f25d1b&hm=9b694cb8a5966877befd619d06f6bc8c9b4ec1395d28542d6a846c0f43a3191f&') no-repeat center center fixed;
-    background-size: cover;
-    background-color: #1a0000;
-    color: var(--color-text-white); /* TODO EL TEXTO A BLANCO POR DEFECTO */
-    min-height: 100vh;
-    padding-top: 60px;
+    background: url('https://cdn.discordapp.com/attachments/1383879644545286244/1427675699472367616/JAKJUS_REAL_SOCCER_2.png?ex=68f3ae9b&is=68f25d1b&hm=9b694cb8a5966877befd619d06f6bc8c9b4ec1395d28542d6a846c0f43a3191f&') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #1a0000;
+    color: var(--color-text-white); /* TODO EL TEXTO A BLANCO POR DEFECTO */
+    min-height: 100vh;
+    padding-top: 60px;
 }
 
 /* HEADER Y NAVEGACIÓN MODIFICADA */
 header {
-    background-color: rgba(0, 0, 0, 0.95);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    border-bottom: 2px solid var(--color-border-visible);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.95);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 2px solid var(--color-border-visible);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 .header-title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--color-primary-red); /* JRSLEAGUE en ROJO */
-    text-shadow: var(--color-sutil-shadow);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--color-primary-red); /* JRSLEAGUE en ROJO */
+    text-shadow: var(--color-sutil-shadow);
 }
 
 .header-nav {
-    display: flex;
-    margin-left: auto;
+    display: flex;
+    margin-left: auto;
 }
 
 nav button {
-    background: none;
-    border: 1px solid var(--color-border-visible);
-    color: var(--color-text-white);
-    padding: 8px 12px;
-    margin-right: 10px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: all 0.3s ease;
-    border-radius: 5px;
-    text-transform: uppercase;
-    box-shadow: none;
+    background: none;
+    border: 1px solid var(--color-border-visible);
+    color: var(--color-text-white);
+    padding: 8px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: none;
 }
 
 nav button:hover {
-    color: var(--color-primary-red);
-    background-color: rgba(255, 0, 0, 0.2); /* Usa el nuevo rojo para el hover */
-    text-shadow: none;
-    box-shadow: none;
+    color: var(--color-primary-red);
+    background-color: rgba(255, 0, 0, 0.2); /* Usa el nuevo rojo para el hover */
+    text-shadow: none;
+    box-shadow: none;
 }
 
 /* CONTENIDO PRINCIPAL */
 main {
-    padding: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .content-section {
-    display: none;
-    padding: 20px 0;
+    display: none;
+    padding: 20px 0;
 }
 
 .content-section.active {
-    display: block;
+    display: block;
 }
 
 h1 {
-    font-size: 2.8em;
-    color: var(--color-primary-red); /* Título principal en ROJO (BIENVENIDO, COMPETICIÓN, ADMIN) */
-    text-align: center;
-    margin-bottom: 30px;
-    text-shadow: var(--color-sutil-shadow);
+    font-size: 2.8em;
+    color: var(--color-primary-red); /* Título principal en ROJO (BIENVENIDO, COMPETICIÓN, ADMIN) */
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: var(--color-sutil-shadow);
 }
 
-/* SECCIÓN INICIO - AJUSTES */
+/* SECCIÓN INICIO - AJUSTES (Centrado y Simetría) */
 .inicio-container {
-    min-height: calc(100vh - 100px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .neon-box {
-    background-color: var(--color-transparent-box-bg);
-    padding: 30px;
-    border: 1px solid var(--color-border-visible);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    margin-bottom: 30px;
-    line-height: 1.6;
-    max-width: 900px;
-    width: 100%;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    text-align: center;
+    background-color: var(--color-transparent-box-bg);
+    padding: 30px;
+    border: 1px solid var(--color-border-visible);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 900px;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    text-align: center;
 }
 
 .neon-box.main-info {
-    min-height: 300px;
+    min-height: 300px;
 }
 
 .neon-box.admin-rect {
-    padding: 20px;
-    max-width: 700px;
+    padding: 20px;
+    max-width: 700px;
 }
 
 .neon-box h2 {
-    color: var(--color-text-white); /* Títulos de cajas en BLANCO */
-    text-shadow: none;
-    margin-bottom: 15px;
-    border-bottom: 1px solid var(--color-border-visible);
-    padding-bottom: 5px;
+    color: var(--color-text-white); /* Títulos de cajas en BLANCO */
+    text-shadow: none;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--color-border-visible);
+    padding-bottom: 5px;
 }
 
 .info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .admin-card {
-    background-color: rgba(255, 0, 0, 0.1); /* Toque de rojo puro tenue */
-    border: 1px solid rgba(255, 0, 0, 0.4);
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
+    background-color: rgba(255, 0, 0, 0.1); /* Toque de rojo puro tenue */
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .admin-card h3 {
-    color: var(--color-primary-red); /* HOST OFICIAL, ADMINISTRADOR, CO-ADMIN en ROJO */
-    margin-bottom: 5px;
-    text-shadow: var(--color-sutil-shadow);
+    color: var(--color-primary-red); /* HOST OFICIAL, ADMINISTRADOR, CO-ADMIN en ROJO */
+    margin-bottom: 5px;
+    text-shadow: var(--color-sutil-shadow);
 }
 
 .admin-card p {
-    color: var(--color-primary-red); /* JAKJUS, USUARIO 1, USUARIO 2 en ROJO */
-    text-shadow: var(--color-sutil-shadow);
+    color: var(--color-primary-red); /* JAKJUS, USUARIO 1, USUARIO 2 en ROJO */
+    text-shadow: var(--color-sutil-shadow);
 }
 
-/* SECCIÓN LIGA - DISEÑO DE 4 CUADRADOS */
+/* =================================== */
+/* SECCIÓN LIGA - AJUSTE DE SIMETRÍA SOLICITADO */
+/* =================================== */
 .stat-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1.2fr;
-    grid-template-areas:
-        "posiciones goleadores fechas"
-        "posiciones asistidores fechas";
-    gap: 20px;
-    align-items: start;
+    display: grid;
+    /* Nueva configuración: 3 columnas (Izquierda: Ancha, Centro: Estrecha, Derecha: Ancha) */
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-areas:
+        "posiciones goleadores fechas"
+        "posiciones asistidores fechas";
+    gap: 20px;
+    align-items: start;
 }
 
-/* Asignación de áreas a 4 cajas */
+/* Asignación de áreas para la nueva simetría */
 #posiciones-box {
-    grid-area: posiciones;
-    min-height: 700px;
+    grid-area: posiciones;
 }
 #goleadores-box {
-    grid-area: goleadores;
+    grid-area: goleadores;
 }
 #asistidores-box {
-    grid-area: asistidores;
+    grid-area: asistidores;
 }
 #calendario-box {
-    grid-area: fechas;
-    min-height: 700px;
+    grid-area: fechas;
 }
 
 .stat-box {
-    background-color: var(--color-transparent-box-bg);
-    border: 1px solid var(--color-border-visible);
-    border-radius: 5px;
-    padding: 20px;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: var(--color-transparent-box-bg);
+    border: 1px solid var(--color-border-visible);
+    border-radius: 5px;
+    padding: 20px;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Asegurando que las cajas laterales tengan altura similar en el desktop */
+@media (min-width: 1201px) {
+    #posiciones-box, #calendario-box {
+        min-height: 500px; /* Altura mínima para alineación visual */
+    }
+}
+
+
 .stat-box h2 {
-    color: var(--color-primary-red); /* TABLA DE GOLEADORES, ASISTIDORES, CALENDARIO en ROJO */
-    text-align: center;
-    margin-bottom: 15px;
-    text-shadow: var(--color-sutil-shadow);
-    text-transform: uppercase;
-    font-size: 1.4em;
+    color: var(--color-primary-red); /* TABLA DE GOLEADORES, ASISTIDORES, CALENDARIO en ROJO */
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: var(--color-sutil-shadow);
+    text-transform: uppercase;
+    font-size: 1.4em;
 }
 
 /* TABLAS - MEJORA DE LEGIBILIDAD */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 1em;
-    color: var(--color-text-white); /* Texto de la tabla en BLANCO */
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+    color: var(--color-text-white); /* Texto de la tabla en BLANCO */
 }
 
 th, td {
-    padding: 8px 5px;
-    text-align: center;
-    border-bottom: 1px solid var(--color-border-visible);
-    vertical-align: middle;
+    padding: 8px 5px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border-visible);
+    vertical-align: middle;
 }
 th:nth-child(2), td:nth-child(2) {
-    text-align: left;
+    text-align: left;
 }
 
 thead th {
-    background-color: rgba(255, 0, 0, 0.2); /* Fondo sutil rojo en encabezado */
-    color: var(--color-text-white); /* Encabezados en BLANCO */
-    text-transform: uppercase;
-    font-size: 0.9em;
-    font-weight: bold;
+    background-color: rgba(255, 0, 0, 0.2); /* Fondo sutil rojo en encabezado */
+    color: var(--color-text-white); /* Encabezados en BLANCO */
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: bold;
 }
 
 tbody tr:hover {
-    background-color: rgba(255, 0, 0, 0.3);
+    background-color: rgba(255, 0, 0, 0.3);
 }
 
 /* Estilos de Partidos */
 .match-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .match {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 3px;
-    border-left: 2px solid var(--color-border-visible);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    border-left: 2px solid var(--color-border-visible);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
 }
 
 .match span {
-    width: 33%;
-    text-align: center;
-    color: var(--color-text-white); /* Equipos en BLANCO */
+    width: 33%;
+    text-align: center;
+    color: var(--color-text-white); /* Equipos en BLANCO */
 }
 
 .match span:first-child {
-    text-align: left;
+    text-align: left;
 }
 .match span:last-child {
-    text-align: right;
+    text-align: right;
 }
 
-.match .match-score, 
-.match span:nth-child(2) { 
-    color: var(--color-primary-red); /* Score en ROJO */
-    font-weight: bold;
-    text-shadow: var(--color-sutil-shadow);
+.match .match-score, 
+.match span:nth-child(2) { 
+    color: var(--color-primary-red); /* Score en ROJO */
+    font-weight: bold;
+    text-shadow: var(--color-sutil-shadow);
 }
 
-/* MODAL Y REDES - ARREGLADO */
+/* MODAL Y REDES - ARREGLADO (Botones Redondos en Horizontal) */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo más oscuro */
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    justify-content: center;
-    align-items: center;
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo más oscuro */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex; /* Asegura el centrado */
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-    background-color: var(--color-transparent-box-bg);
-    border: 1px solid var(--color-border-visible);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    padding: 30px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    background-color: var(--color-transparent-box-bg);
+    border: 1px solid var(--color-border-visible);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
 .modal-content h2 {
-    color: var(--color-primary-red); /* Título del modal en ROJO */
-    text-shadow: var(--color-sutil-shadow);
-    border-bottom: 1px solid var(--color-border-visible);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    color: var(--color-primary-red); /* Título del modal en ROJO */
+    text-shadow: var(--color-sutil-shadow);
+    border-bottom: 1px solid var(--color-border-visible);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .redes-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
 }
 
 .red-btn {
-    width: 60px;
-    height: 60px;
-    background-color: var(--color-primary-red); /* Fondo de botón en ROJO */
-    color: white;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    border-radius: 50%;
-    transform: none;
-    transition: all 0.3s ease;
-    box-shadow: none;
-    border: 2px solid rgba(0, 0, 0, 0.7);
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-primary-red); /* Fondo de botón en ROJO */
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 50%;
+    transform: none;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    border: 2px solid rgba(0, 0, 0, 0.7);
 }
 
 .red-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 5px var(--color-primary-red);
-    border: 2px solid var(--color-text-white);
+    transform: scale(1.1);
+    box-shadow: 0 0 5px var(--color-primary-red);
+    border: 2px solid var(--color-text-white);
 }
 
 .inactive {
-    background-color: gray;
-    pointer-events: none;
-    box-shadow: none;
-    opacity: 0.5;
+    background-color: gray;
+    pointer-events: none;
+    box-shadow: none;
+    opacity: 0.5;
 }
 
 .discord-btn { background-color: #5865F2; }
@@ -364,80 +374,80 @@ tbody tr:hover {
 .tiktok-btn { background-color: #69C9D0; }
 .instagram-btn { background-color: #C13584; }
 
-/* SECCIÓN ADMIN - ARREGLADO */
+/* SECCIÓN ADMIN - SIMÉTRICA Y ORGANIZADA (2 Columnas) */
 .admin-panel-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .admin-box {
-    background-color: rgba(26, 0, 0, 0.9);
-    border: 1px solid var(--color-border-visible);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    text-align: center;
+    background-color: rgba(26, 0, 0, 0.9);
+    border: 1px solid var(--color-border-visible);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 .admin-box select, .admin-box input[type="number"], .admin-box input[type="text"], #admin-password {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid var(--color-primary-red);
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-text-white);
-    border-radius: 5px;
-    text-align: center;
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--color-primary-red);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-white);
+    border-radius: 5px;
+    text-align: center;
 }
 
 .admin-box button, .modal-content button, .save-button {
-    background-color: var(--color-primary-red); /* Botón en ROJO */
-    color: var(--color-text-white);
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 15px;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--color-primary-red); /* Botón en ROJO */
+    color: var(--color-text-white);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .admin-box button:hover, .modal-content button:hover, .save-button:hover {
-    background-color: var(--color-text-white);
-    color: #1a0000;
-    box-shadow: 0 0 5px var(--color-text-white);
+    background-color: var(--color-text-white);
+    color: #1a0000;
+    box-shadow: 0 0 5px var(--color-text-white);
 }
 
 /* Estilos para la edición de partidos en Admin */
 .admin-match-edit {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 8px;
-    background-color: rgba(255, 0, 0, 0.1); /* Fondo de partido sutil rojo puro */
-    margin-bottom: 8px;
-    border-radius: 3px;
-    border: 1px solid var(--color-border-visible);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px;
+    background-color: rgba(255, 0, 0, 0.1); /* Fondo de partido sutil rojo puro */
+    margin-bottom: 8px;
+    border-radius: 3px;
+    border: 1px solid var(--color-border-visible);
 }
 
 .admin-match-edit input {
-    width: 40px;
-    padding: 5px;
-    margin: 0 5px;
+    width: 40px;
+    padding: 5px;
+    margin: 0 5px;
 }
 .admin-match-edit span {
-    width: 30%;
-    text-align: left;
-    color: var(--color-text-white);
+    width: 30%;
+    text-align: left;
+    color: var(--color-text-white);
 }
 .admin-match-edit div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-    color: var(--color-text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    color: var(--color-text-white);
 }
 
 /* =================================== */
@@ -446,174 +456,187 @@ tbody tr:hover {
 
 /* Estilos para el link del equipo en la tabla */
 .team-link {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.2s;
-    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+    cursor: pointer;
 }
 .team-link:hover {
-    color: var(--color-primary-red);
+    color: var(--color-primary-red);
 }
 
 /* ESTILOS PARA EL MODAL DE PERFIL DE EQUIPO */
 #team-profile-modal .modal-content {
-    max-width: 600px;
-    text-align: left;
+    max-width: 600px;
+    text-align: left;
 }
 
 #team-profile-title {
-    color: var(--color-primary-red);
-    text-align: center;
-    border-bottom: 2px solid var(--color-border-visible);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    color: var(--color-primary-red);
+    text-align: center;
+    border-bottom: 2px solid var(--color-border-visible);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .profile-section {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
 .profile-section:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .profile-section h2 {
-    color: var(--color-text-white);
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    padding-left: 0;
-    text-align: left;
-    border-bottom: none;
+    color: var(--color-text-white);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    padding-left: 0;
+    text-align: left;
+    border-bottom: none;
 }
 
 .profile-section p, .player-list {
-    font-size: 0.95em;
-    line-height: 1.5;
-    color: var(--color-text-white);
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: var(--color-text-white);
 }
 
 .profile-section strong {
-    color: var(--color-primary-red);
-    font-weight: bold;
+    color: var(--color-primary-red);
+    font-weight: bold;
 }
 
 .player-list {
-    list-style: none;
-    padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .player-list li {
-    background-color: rgba(255, 0, 0, 0.1);
-    margin-bottom: 3px;
-    padding: 5px 10px;
-    border-radius: 3px;
-    border-left: 2px solid var(--color-primary-red);
-    display: flex;
-    justify-content: space-between;
+    background-color: rgba(255, 0, 0, 0.1);
+    margin-bottom: 3px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border-left: 2px solid var(--color-primary-red);
+    display: flex;
+    justify-content: space-between;
 }
 
 .player-list li span {
-    color: var(--color-primary-red);
-    font-weight: bold;
+    color: var(--color-primary-red);
+    font-weight: bold;
 }
 
 /* Ajuste para el nuevo panel de añadir jugador en Admin */
 .admin-add-player-box {
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 0, 0, 0.3);
-    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+    padding-bottom: 15px;
 }
 .admin-add-player-box input, .admin-add-player-box select {
-    margin: 5px auto;
+    margin: 5px auto;
 }
 
 
 /* ESTILOS ESPECÍFICOS PARA EL MODAL DE STATS DE PARTIDO */
 #match-stats-modal .modal-content {
-    max-width: 450px;
-    padding: 25px;
+    max-width: 450px;
+    padding: 25px;
 }
 
 #goal-slots-container {
-    max-height: 400px;
-    overflow-y: auto;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
 }
 
 .goal-slot {
-    background-color: rgba(255, 0, 0, 0.1);
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border-left: 3px solid var(--color-primary-red);
+    background-color: rgba(255, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border-left: 3px solid var(--color-primary-red);
 }
 
 .goal-slot h4 {
-    color: var(--color-text-white);
-    font-size: 1em;
-    margin-bottom: 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 5px;
+    color: var(--color-text-white);
+    font-size: 1em;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
 }
 
 .goal-slot select {
-    width: 100%;
-    margin: 5px 0;
-    padding: 8px;
-    border: 1px solid var(--color-border-visible);
-    background-color: var(--color-background-dark);
-    color: var(--color-text-white);
-    border-radius: 3px;
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    border: 1px solid var(--color-border-visible);
+    background-color: var(--color-background-dark);
+    color: var(--color-text-white);
+    border-radius: 3px;
 }
 
+/* =================================== */
 /* RESPONSIVE */
+/* =================================== */
+
+/* Ajuste para pantallas medianas (1200px) */
 @media (max-width: 1200px) {
     .stat-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "posiciones fechas"
-            "goleadores asistidores";
+        /* 2 columnas: Tabla y Calendario (Anchas), Goleadores/Asistidores abajo */
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "posiciones fechas"
+            "goleadores asistidores";
+    }
+    #posiciones-box, #calendario-box {
+        min-height: auto;
+    }
+    #goleadores-box {
+        grid-area: goleadores;
     }
-    #posiciones-box, #calendario-box {
-        min-height: auto;
+    #asistidores-box {
+        grid-area: asistidores;
     }
 }
+
+/* Ajuste para móviles (800px) */
 @media (max-width: 800px) {
-    .stat-grid {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "posiciones"
-            "goleadores"
-            "asistidores"
-            "fechas";
-    }
-    .admin-panel-grid {
-        grid-template-columns: 1fr;
-    }
-    .header-title {
-        position: static;
-        transform: none;
-        order: -1;
-        margin-right: 20px;
-    }
-    header {
-        justify-content: space-between;
-    }
-    .header-nav {
-        margin-left: auto;
-    }
+    .stat-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "posiciones"
+            "goleadores"
+            "asistidores"
+            "fechas";
+    }
+    .admin-panel-grid {
+        grid-template-columns: 1fr;
+    }
+    .header-title {
+        position: static;
+        transform: none;
+        order: -1;
+        margin-right: 20px;
+    }
+    header {
+        justify-content: space-between;
+    }
+    .header-nav {
+        margin-left: auto;
+    }
 }
 @media (max-width: 600px) {
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-    nav button {
-        padding: 5px 8px;
-        font-size: 0.8em;
-    }
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    nav button {
+        padding: 5px 8px;
+        font-size: 0.8em;
+    }
 }
