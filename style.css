@@ -3,10 +3,11 @@
     --color-bg-dark: #1a0000;
     --color-primary: #FF004C; /* ROJO NEÓN */
     --color-secondary: #EAEAEA; /* BLANCO */
-    --color-text: #EAEAEA;
+    --color-text-red: #FF004C; /* NUEVO: ROJO PARA EL TEXTO PRINCIPAL */
+    --color-text-white: #EAEAEA; /* BLANCO PARA TEXTOS SECUNDARIOS/HEADER */
     --color-transparent-box-bg: rgba(0, 0, 0, 0.85);
-    --color-box-border: #FF004C;
-    --color-border-dash: rgba(255, 0, 76, 0.3);
+    --color-box-border: #FF004C; /* Mantenemos este para la sombra */
+    --color-border-dash: rgba(255, 0, 76, 0.3); /* DETALLE ROJO PARA BORDES DASHED */
 }
 
 /* ESTILOS GENERALES Y FONDO */
@@ -21,7 +22,7 @@ body {
     background: url('https://cdn.discordapp.com/attachments/1383879644545286244/1427675699472367616/JAKJUS_REAL_SOCCER_2.png?ex=68f3ae9b&is=68f25d1b&hm=9b694cb8a5966877befd619d06f6bc8c9b4ec1395d28542d6a846c0f43a3191f&') no-repeat center center fixed;
     background-size: cover;
     background-color: #1a0000;
-    color: var(--color-text);
+    color: var(--color-text-red); /* CAMBIO: TEXTO PREDETERMINADO A ROJO */
     min-height: 100vh;
     padding-top: 60px;
 }
@@ -59,7 +60,7 @@ header {
 nav button {
     background: none;
     border: 1px solid var(--color-primary);
-    color: var(--color-text);
+    color: var(--color-text-white); /* CAMBIO: COLOR DEL TEXTO DEL BOTÓN EN BLANCO */
     padding: 8px 12px;
     margin-right: 10px; /* Separación entre botones */
     cursor: pointer;
@@ -113,8 +114,8 @@ h1 {
 .neon-box {
     background-color: var(--color-transparent-box-bg);
     padding: 30px;
-    border: 1px solid var(--color-box-border);
-    box-shadow: 0 0 15px var(--color-box-border), inset 0 0 5px var(--color-box-border);
+    /* border: 1px solid var(--color-box-border); <--- ELIMINADO EL BORDE DE COLOR */
+    box-shadow: 0 0 15px rgba(255, 0, 76, 0.5); /* Sombra difusa roja */
     border-radius: 10px;
     margin-bottom: 30px;
     line-height: 1.6;
@@ -123,24 +124,23 @@ h1 {
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil blanco/transparente */
 }
 
 .neon-box.main-info {
-    /* Cuadrado principal más grande */
     min-height: 300px;
 }
 
 .neon-box.admin-rect {
-    /* Rectángulo de administradores más corto */
     padding: 20px;
     max-width: 700px;
 }
 
 .neon-box h2 {
-    color: var(--color-text); /* Blanco/Secundario para mejor contraste */
-    text-shadow: 0 0 5px var(--color-text);
+    color: var(--color-text-white); /* CAMBIO: TÍTULOS DE CAJAS EN BLANCO */
+    text-shadow: 0 0 5px var(--color-text-white);
     margin-bottom: 15px;
-    border-bottom: 1px dashed var(--color-border-dash);
+    border-bottom: 1px dashed var(--color-border-dash); /* DETALLE ROJO */
     padding-bottom: 5px;
 }
 
@@ -153,8 +153,8 @@ h1 {
 
 .admin-card {
     background-color: rgba(255, 0, 76, 0.1); /* Toque de rojo */
+    border: 1px solid rgba(255, 0, 76, 0.3); /* CAMBIO: BORDE DELGADO ROJO */
     padding: 15px;
-    border: 1px solid var(--color-primary);
     border-radius: 5px;
     text-align: center;
 }
@@ -167,7 +167,6 @@ h1 {
 /* SECCIÓN LIGA - DISEÑO DE 4 CUADRADOS */
 .stat-grid {
     display: grid;
-    /* 3 COLUMNAS: Posiciones (1.2fr), Centro (1fr), Fechas (1.2fr) */
     grid-template-columns: 1.2fr 1fr 1.2fr;
     grid-template-areas:
         "posiciones goleadores fechas"
@@ -194,12 +193,13 @@ h1 {
 
 .stat-box {
     background-color: var(--color-transparent-box-bg);
-    border: 2px solid var(--color-box-border);
+    /* border: 2px solid var(--color-box-border); <--- ELIMINADO EL BORDE DE COLOR */
     border-radius: 5px;
     padding: 20px;
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     box-shadow: 0 0 10px rgba(255, 0, 76, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil blanco/transparente */
 }
 
 .stat-box h2 {
@@ -216,16 +216,16 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1em;
-    color: var(--color-text);
+    color: var(--color-text-red); /* CAMBIO: TEXTO DE TABLAS A ROJO */
 }
 
 th, td {
     padding: 8px 5px;
     text-align: center;
-    border-bottom: 1px dashed var(--color-border-dash);
+    border-bottom: 1px dashed var(--color-border-dash); /* DETALLE ROJO */
     vertical-align: middle;
 }
-th:nth-child(2), td:nth-child(2) { /* Ajustar alineación para el nombre del Equipo/Jugador */
+th:nth-child(2), td:nth-child(2) {
     text-align: left;
 }
 
@@ -254,7 +254,7 @@ tbody tr:hover {
     padding: 10px;
     margin-bottom: 5px;
     border-radius: 3px;
-    border-left: 2px solid var(--color-secondary);
+    border-left: 2px solid var(--color-primary); /* CAMBIO: BORDE ROJO EN PARTIDOS */
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -354,11 +354,12 @@ tbody tr:hover {
 
 .admin-box {
     background-color: rgba(26, 0, 0, 0.9);
-    border: 2px solid var(--color-primary);
+    /* border: 2px solid var(--color-primary); <--- ELIMINADO EL BORDE DE COLOR */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px var(--color-primary);
+    box-shadow: 0 0 10px rgba(255, 0, 76, 0.4);
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil blanco/transparente */
 }
 
 .admin-box select, .admin-box input[type="number"], .admin-box input[type="text"], #admin-password {
@@ -367,14 +368,14 @@ tbody tr:hover {
     margin: 10px 0;
     border: 1px solid var(--color-primary);
     background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-text);
+    color: var(--color-text-white); /* CAMBIO: TEXTO DE INPUTS EN BLANCO */
     border-radius: 5px;
     text-align: center;
 }
 
 .admin-box button, .modal-content button, .save-button {
     background-color: var(--color-primary);
-    color: var(--color-text);
+    color: var(--color-text-white); /* CAMBIO: COLOR DEL TEXTO DEL BOTÓN EN BLANCO */
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -400,6 +401,7 @@ tbody tr:hover {
     background-color: rgba(255, 0, 76, 0.1);
     margin-bottom: 8px;
     border-radius: 3px;
+    border: 1px solid rgba(255, 0, 76, 0.3); /* CAMBIO: BORDE DELGADO ROJO */
 }
 
 .admin-match-edit input {
@@ -410,12 +412,14 @@ tbody tr:hover {
 .admin-match-edit span {
     width: 30%;
     text-align: left;
+    color: var(--color-text-red); /* CAMBIO: TEXTO DE PARTIDOS EN ROJO */
 }
 .admin-match-edit div {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 30%;
+    color: var(--color-text-red); /* CAMBIO: GUIONES DE RESULTADOS EN ROJO */
 }
 
 
