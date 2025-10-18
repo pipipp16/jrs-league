@@ -10,35 +10,35 @@ const teams = [
 
 // Datos iniciales de la tabla (Sirven como base para el ADMIN)
 let leagueStats = {
-    "valunir":              { PJ: 5, PG: 3, PE: 1, PP: 1, GF: 10, GC: 5, Pts: 0 },
-    "banfield":             { PJ: 5, PG: 3, PE: 0, PP: 2, GF: 15, GC: 8, Pts: 0 },
-    "bristol":              { PJ: 5, PG: 2, PE: 3, PP: 0, GF: 7, GC: 3, Pts: 0 },
-    "joga bonito":          { PJ: 5, PG: 2, PE: 2, PP: 1, GF: 8, GC: 6, Pts: 0 },
-    "white phanter kings":  { PJ: 5, PG: 2, PE: 1, PP: 2, GF: 9, GC: 7, Pts: 0 },
-    "laira":                { PJ: 5, PG: 1, PE: 4, PP: 0, GF: 5, GC: 5, Pts: 0 },
-    "el rejunte de amigos": { PJ: 5, PG: 1, PE: 3, PP: 1, GF: 4, GC: 5, Pts: 0 },
-    "loan":                 { PJ: 5, PG: 1, PE: 2, PP: 2, GF: 7, GC: 11, Pts: 0 },
-    "machetitos":           { PJ: 5, PG: 1, PE: 1, PP: 3, GF: 4, GC: 10, Pts: 0 },
-    "cornudos":             { PJ: 5, PG: 0, PE: 3, PP: 2, GF: 2, GC: 5, Pts: 0 },
-    "wanderers":            { PJ: 5, PG: 0, PE: 4, PP: 1, GF: 3, GC: 4, Pts: 0 },
-    "mamas fc":             { PJ: 5, PG: 0, PE: 2, PP: 3, GF: 4, GC: 9, Pts: 0 }
+    "valunir":              { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "banfield":             { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "bristol":              { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "joga bonito":          { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "white phanter kings":  { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "laira":                { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "el rejunte de amigos": { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "loan":                 { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "machetitos":           { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "cornudos":             { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "wanderers":            { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "mamas fc":             { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 }
 };
 
 // Datos para goleadores y asistidores (Ahora incluyen el equipo)
 let goleadores = [
-    { jugador: "Jugador A", equipo: "valunir", goles: 10 },
-    { jugador: "Jugador B", equipo: "banfield", goles: 8 },
-    { jugador: "Jugador C", equipo: "bristol", goles: 7 },
-    { jugador: "Jugador D", equipo: "joga bonito", goles: 6 },
-    { jugador: "Jugador E", equipo: "valunir", goles: 5 },
+    { jugador: "Jugador A", equipo: "valunir", goles: 0 },
+    { jugador: "Jugador B", equipo: "banfield", goles: 0 },
+    { jugador: "Jugador C", equipo: "bristol", goles: 0 },
+    { jugador: "Jugador D", equipo: "joga bonito", goles: 0 },
+    { jugador: "Jugador E", equipo: "valunir", goles: 0 },
 ];
 
 let asistidores = [
-    { jugador: "Jugador X", equipo: "loan", asistencias: 8 },
-    { jugador: "Jugador Y", equipo: "mamas fc", asistencias: 6 },
-    { jugador: "Jugador Z", equipo: "bristol", asistencias: 5 },
-    { jugador: "Jugador WE", equipo: "valunir", asistencias: 7 },
-    { jugador: "Jugador F", equipo: "banfield", asistencias: 7 },
+    { jugador: "Jugador X", equipo: "loan", asistencias: 0 },
+    { jugador: "Jugador Y", equipo: "mamas fc", asistencias: 0 },
+    { jugador: "Jugador Z", equipo: "bristol", asistencias: 0 },
+    { jugador: "Jugador WE", equipo: "valunir", asistencias: 0 },
+    { jugador: "Jugador F", equipo: "banfield", asistencias: 0 },
 ];
 
 
@@ -46,30 +46,30 @@ let asistidores = [
 let fixture = [
     // FECHA 1
     [
-        { local: "valunir", visitante: "banfield", scoreLocal: 2, scoreVisitante: 1 },
-        { local: "bristol", visitante: "joga bonito", scoreLocal: 1, scoreVisitante: 1 },
-        { local: "white phanter kings", visitante: "laira", scoreLocal: 3, scoreVisitante: 0 },
-        { local: "el rejunte de amigos", visitante: "loan", scoreLocal: 0, scoreVisitante: 0 },
-        { local: "cornudos", visitante: "wanderers", scoreLocal: 0, scoreVisitante: 0 },
-        { local: "mamas fc", visitante: "valunir", scoreLocal: 0, scoreVisitante: 1 }
+        { local: "valunir", visitante: "banfield", scoreLocal: -, scoreVisitante: - },
+        { local: "bristol", visitante: "joga bonito", scoreLocal: -, scoreVisitante: - },
+        { local: "white phanter kings", visitante: "laira", scoreLocal: -, scoreVisitante: - },
+        { local: "el rejunte de amigos", visitante: "loan", scoreLocal: -, scoreVisitante: - },
+        { local: "cornudos", visitante: "wanderers", scoreLocal: -, scoreVisitante: - },
+        { local: "mamas fc", visitante: "valunir", scoreLocal: -, scoreVisitante: - }
     ],
     // FECHA 2
     [
-        { local: "loan", visitante: "mamas fc", scoreLocal: 1, scoreVisitante: 0 },
-        { local: "machetitos", visitante: "el rejunte de amigos", scoreLocal: 2, scoreVisitante: 1 },
-        { local: "laira", visitante: "cornudos", scoreLocal: 2, scoreVisitante: 2 },
-        { local: "joga bonito", visitante: "white phanter kings", scoreLocal: 2, scoreVisitante: 0 },
-        { local: "banfield", visitante: "bristol", scoreLocal: 3, scoreVisitante: 2 },
-        { local: "valunir", visitante: "loan", scoreLocal: 4, scoreVisitante: 0 }
+        { local: "loan", visitante: "mamas fc", scoreLocal: -, scoreVisitante: - },
+        { local: "machetitos", visitante: "el rejunte de amigos", scoreLocal: -, scoreVisitante: - },
+        { local: "laira", visitante: "cornudos", scoreLocal: -, scoreVisitante: - },
+        { local: "joga bonito", visitante: "white phanter kings", scoreLocal: -, scoreVisitante: - },
+        { local: "banfield", visitante: "bristol", scoreLocal: -, scoreVisitante: - },
+        { local: "valunir", visitante: "loan", scoreLocal: -, scoreVisitante: - }
     ],
     // FECHA 3
     [
-        { local: "bristol", visitante: "valunir", scoreLocal: 2, scoreVisitante: 1 },
-        { local: "white phanter kings", visitante: "banfield", scoreLocal: 2, scoreVisitante: 4 },
-        { local: "cornudos", visitante: "joga bonito", scoreLocal: 0, scoreVisitante: 0 },
-        { local: "el rejunte de amigos", visitante: "laira", scoreLocal: 1, scoreVisitante: 1 },
-        { local: "machetitos", visitante: "mamas fc", scoreLocal: 1, scoreVisitante: 0 },
-        { local: "wanderers", visitante: "valunir", scoreLocal: 1, scoreVisitante: 1 }
+        { local: "bristol", visitante: "valunir", scoreLocal: -, scoreVisitante: - },
+        { local: "white phanter kings", visitante: "banfield", scoreLocal: -, scoreVisitante: - },
+        { local: "cornudos", visitante: "joga bonito", scoreLocal: -, scoreVisitante: - },
+        { local: "el rejunte de amigos", visitante: "laira", scoreLocal: -, scoreVisitante: - },
+        { local: "machetitos", visitante: "mamas fc", scoreLocal: -, scoreVisitante: - },
+        { local: "wanderers", visitante: "valunir", scoreLocal: -, scoreVisitante: - }
     ]
 ];
 
