@@ -1,8 +1,8 @@
 // ===================================
-// DATOS DE LA LIGA (Estructura mejorada y REINICIADA a CERO) ⚽
+// DATOS DE LA LIGA (Estructura REINICIADA a CERO) ⚽
 // ===================================
 
-// Equipos con estadísticas en 0
+// Función de utilidad para reiniciar estadísticas
 const initialStatsCero = { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 };
 
 const leagueData = {
@@ -70,84 +70,39 @@ const leagueData = {
 
 const teams = Object.keys(leagueData);
 
-// Goleadores y asistidores en 0 (puedes dejarlos vacíos o con datos de ejemplo en 0)
+// Goleadores y asistidores con 5 entradas en 0
 let leaderStats = {
     goles: [
-        { jugador: "Jugador A", equipo: "BANFIELD", cantidad: 0 },
-        { jugador: "Jugador B", equipo: "VALUNIR", cantidad: 0 },
-        { jugador: "Jugador C", equipo: "BRISTOL", cantidad: 0 },
+        { jugador: "Goleador 1", equipo: "VALUNIR", cantidad: 0 },
+        { jugador: "Goleador 2", equipo: "BANFIELD", cantidad: 0 },
+        { jugador: "Goleador 3", equipo: "BRISTOL", cantidad: 0 },
+        { jugador: "Goleador 4", equipo: "JOGA BONITO", cantidad: 0 },
+        { jugador: "Goleador 5", equipo: "LAIRA", cantidad: 0 },
     ],
     asistencias: [
-        { jugador: "Jugador X", equipo: "VALUNIR", cantidad: 0 },
-        { jugador: "Jugador Y", equipo: "BANFIELD", cantidad: 0 },
-        { jugador: "Jugador Z", equipo: "BRISTOL", cantidad: 0 },
+        { jugador: "Asistidor 1", equipo: "WHITE PHANTER KINGS", cantidad: 0 },
+        { jugador: "Asistidor 2", equipo: "EL REJUNTE DE AMIGOS", cantidad: 0 },
+        { jugador: "Asistidor 3", equipo: "LOAN", cantidad: 0 },
+        { jugador: "Asistidor 4", equipo: "MACHETITOS", cantidad: 0 },
+        { jugador: "Asistidor 5", equipo: "CORNUDOS", cantidad: 0 },
     ]
 };
 
 
-// Calendario de partidos con resultados en 0-0 y sin goles/asistencias registradas
+// Calendario de partidos con los 12 equipos y resultados en 0-0
 const fixture = [
-    // FECHA 1
+    // FECHA 1 (Incluye los 12 equipos, 6 partidos)
     [
         { local: "VALUNIR", visitante: "BANFIELD", resultado: { local: 0, visitante: 0 }, goles: [] },
         { local: "BRISTOL", visitante: "JOGA BONITO", resultado: { local: 0, visitante: 0 }, goles: [] },
         { local: "WHITE PHANTER KINGS", visitante: "LAIRA", resultado: { local: 0, visitante: 0 }, goles: [] },
         { local: "EL REJUNTE DE AMIGOS", visitante: "LOAN", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "CORNUDOS", visitante: "WANDERERS", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "MAMAS FC", visitante: "VALUNIR", resultado: { local: 0, visitante: 0 }, goles: [] }
+        { local: "MACHETITOS", visitante: "CORNUDOS", resultado: { local: 0, visitante: 0 }, goles: [] },
+        { local: "WANDERERS", visitante: "MAMAS FC", resultado: { local: 0, visitante: 0 }, goles: [] }
     ],
-    // FECHA 2
+    // FECHA 2 (Ejemplo de rotación, todo en 0-0)
     [
-        { local: "LOAN", visitante: "MAMAS FC", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "MACHETITOS", visitante: "EL REJUNTE DE AMIGOS", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "LAIRA", visitante: "CORNUDOS", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "JOGA BONITO", visitante: "WHITE PHANTER KINGS", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "BANFIELD", visitante: "BRISTOL", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "VALUNIR", visitante: "LOAN", resultado: { local: 0, visitante: 0 }, goles: [] }
-    ],
-    // FECHA 3
-    [
-        { local: "BRISTOL", visitante: "VALUNIR", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "WHITE PHANTER KINGS", visitante: "BANFIELD", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "CORNUDOS", visitante: "JOGA BONITO", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "EL REJUNTE DE AMIGOS", visitante: "LAIRA", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "MACHETITOS", visitante: "MAMAS FC", resultado: { local: 0, visitante: 0 }, goles: [] },
-        { local: "WANDERERS", visitante: "VALUNIR", resultado: { local: 0, visitante: 0 }, goles: [] }
-    ]
-];
-
-// ******************************************************
-// EL RESTO DEL CÓDIGO JS SIGUE SIENDO EL MISMO
-// (Lógica de tablas, renderizado, admin, modales)
-// ******************************************************
-
-let leagueTable = [];
-let currentFecha = 0;
-const ADMIN_PASSWORD = "ligajrs";
-
-// Todas las funciones de cálculo (calculateStats, sortTable, renderTable, etc.)
-// se mantienen igual, pero ahora operarán sobre datos iniciales en cero.
-
-function calculateStats() { /* ... Lógica sin cambios ... */ }
-function sortTable() { /* ... Lógica sin cambios ... */ }
-function renderTable() { /* ... Lógica sin cambios ... */ }
-function sortAndRenderLeaders() { /* ... Lógica sin cambios ... */ }
-function renderFecha(fechaIndex) { /* ... Lógica sin cambios ... */ }
-function nextFecha() { /* ... Lógica sin cambios ... */ }
-function prevFecha() { /* ... Lógica sin cambios ... */ }
-function closeModal(id) { /* ... Lógica sin cambios ... */ }
-function showTeamModal(teamName) { /* ... Lógica sin cambios ... */ }
-function checkAdminPassword() { /* ... Lógica sin cambios ... */ }
-function initializeAdminPanel() { /* ... Lógica sin cambios ... */ }
-function loadMatchesForAdmin() { /* ... Lógica sin cambios ... */ }
-function saveMatchResult(fechaIndex, matchIndex) { /* ... Lógica sin cambios ... */ }
-function updateLeagueStats(match, newLocalScore, newVisitanteScore) { /* ... Lógica sin cambios ... */ }
-function loadPlayersForAdmin() { /* ... Lógica sin cambios ... */ }
-function addPlayerToTeam() { /* ... Lógica sin cambios ... */ }
-function removePlayerFromTeam(teamName, playerName) { /* ... Lógica sin cambios ... */ }
-function showSection(id) { /* ... Lógica sin cambios ... */ }
-function recalculateAndRenderAll() { /* ... Lógica sin cambios ... */ }
-
-// Eventos y Inicialización se mantienen igual.
-
-document.addEventListener('DOMContentLoaded', () => { /* ... Lógica sin cambios ... */ });
+        { local: "LOAN", visitante: "VALUNIR", resultado: { local: 0, visitante: 0 }, goles: [] },
+        { local: "MAMAS FC", visitante: "MACHETITOS", resultado: { local: 0, visitante: 0 }, goles: [] },
+        { local: "LAIRA", visitante: "EL REJUNTE DE AMIGOS", resultado: { local: 0, visitante: 0 }, goles: [] },
+        { local: "JOGA
