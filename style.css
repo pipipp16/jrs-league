@@ -53,7 +53,7 @@ header {
 
 .header-nav {
     display: flex;
-    margin-left: auto; /* <--- CAMBIO CLAVE: Mueve la navegación a la derecha */
+    margin-left: auto; /* Mueve la navegación a la derecha */
 }
 
 nav button {
@@ -102,3 +102,366 @@ h1 {
 }
 
 /* SECCIÓN INICIO - AJUSTES */
+.inicio-container {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.neon-box {
+    background-color: var(--color-transparent-box-bg);
+    padding: 30px;
+    border: 1px solid var(--color-box-border);
+    box-shadow: 0 0 15px var(--color-box-border), inset 0 0 5px var(--color-box-border);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 900px;
+    width: 100%;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    text-align: center;
+}
+
+.neon-box.main-info {
+    /* Cuadrado principal más grande */
+    min-height: 300px;
+}
+
+.neon-box.admin-rect {
+    /* Rectángulo de administradores más corto */
+    padding: 20px;
+    max-width: 700px;
+}
+
+.neon-box h2 {
+    color: var(--color-text); /* Blanco/Secundario para mejor contraste */
+    text-shadow: 0 0 5px var(--color-text);
+    margin-bottom: 15px;
+    border-bottom: 1px dashed var(--color-border-dash);
+    padding-bottom: 5px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.admin-card {
+    background-color: rgba(255, 0, 76, 0.1); /* Toque de rojo */
+    padding: 15px;
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.admin-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 5px;
+}
+
+/* SECCIÓN LIGA - DISEÑO DE 4 CUADRADOS */
+.stat-grid {
+    display: grid;
+    /* 3 COLUMNAS: Posiciones (1.2fr), Centro (1fr), Fechas (1.2fr) */
+    grid-template-columns: 1.2fr 1fr 1.2fr;
+    grid-template-areas:
+        "posiciones goleadores fechas"
+        "posiciones asistidores fechas";
+    gap: 20px;
+    align-items: start;
+}
+
+/* Asignación de áreas a 4 cajas */
+#posiciones-box {
+    grid-area: posiciones;
+    min-height: 700px;
+}
+#goleadores-box {
+    grid-area: goleadores;
+}
+#asistidores-box {
+    grid-area: asistidores;
+}
+#calendario-box {
+    grid-area: fechas;
+    min-height: 700px;
+}
+
+.stat-box {
+    background-color: var(--color-transparent-box-bg);
+    border: 2px solid var(--color-box-border);
+    border-radius: 5px;
+    padding: 20px;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(255, 0, 76, 0.4);
+}
+
+.stat-box h2 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px var(--color-primary);
+    text-transform: uppercase;
+    font-size: 1.4em;
+}
+
+/* TABLAS - MEJORA DE LEGIBILIDAD */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+    color: var(--color-text);
+}
+
+th, td {
+    padding: 8px 5px;
+    text-align: center;
+    border-bottom: 1px dashed var(--color-border-dash);
+    vertical-align: middle;
+}
+th:nth-child(2), td:nth-child(2) { /* Ajustar alineación para el nombre del Equipo/Jugador */
+    text-align: left;
+}
+
+thead th {
+    background-color: rgba(255, 0, 76, 0.2);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 0, 76, 0.3);
+}
+
+/* Estilos de Partidos */
+.match-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.match {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    border-left: 2px solid var(--color-secondary);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+.match span {
+    width: 33%;
+    text-align: center;
+}
+.match span:first-child {
+    text-align: left;
+}
+.match span:last-child {
+    text-align: right;
+}
+
+/* MODAL Y REDES */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--color-transparent-box-bg);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 20px var(--color-primary);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.redes-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.red-btn {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 50%;
+    transform: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(0, 0, 0, 0.7);
+}
+
+.red-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+}
+
+.inactive {
+    background-color: gray;
+    pointer-events: none;
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+.discord-btn { background-color: #5865F2; }
+.youtube-btn { background-color: #FF0000; }
+.tiktok-btn { background-color: #69C9D0; }
+.instagram-btn { background-color: #C13584; }
+
+/* SECCIÓN ADMIN */
+.admin-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-box {
+    background-color: rgba(26, 0, 0, 0.9);
+    border: 2px solid var(--color-primary);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--color-primary);
+    text-align: center;
+}
+
+.admin-box select, .admin-box input[type="number"], .admin-box input[type="text"], #admin-password {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.admin-box button, .modal-content button, .save-button {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-box button:hover, .modal-content button:hover, .save-button:hover {
+    background-color: var(--color-secondary);
+    color: #1a0000;
+    box-shadow: 0 0 10px var(--color-secondary);
+}
+
+/* Estilos para la edición de partidos en Admin */
+.admin-match-edit {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px;
+    background-color: rgba(255, 0, 76, 0.1);
+    margin-bottom: 8px;
+    border-radius: 3px;
+}
+
+.admin-match-edit input {
+    width: 40px;
+    padding: 5px;
+    margin: 0 5px;
+}
+.admin-match-edit span {
+    width: 30%;
+    text-align: left;
+}
+.admin-match-edit div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+    .stat-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "posiciones fechas"
+            "goleadores asistidores";
+    }
+    #posiciones-box, #calendario-box {
+        min-height: auto;
+    }
+}
+@media (max-width: 800px) {
+    .stat-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "posiciones"
+            "goleadores"
+            "asistidores"
+            "fechas";
+    }
+    .admin-panel-grid {
+        grid-template-columns: 1fr;
+    }
+    .header-title {
+        position: static;
+        transform: none;
+        order: -1;
+        margin-right: 20px;
+    }
+    header {
+        justify-content: space-between;
+    }
+    .header-nav {
+        margin-left: auto; 
+    }
+}
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    nav button {
+        padding: 5px 8px;
+        font-size: 0.8em;
+    }
+}
