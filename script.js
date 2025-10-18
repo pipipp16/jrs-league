@@ -70,7 +70,7 @@ const leagueData = {
 
 const teams = Object.keys(leagueData);
 
-// Goleadores y asistidores con 5 entradas en 0
+// Goleadores y asistidores con 5 entradas en 0 (Iniciales)
 let leaderStats = {
     goles: [
         { jugador: "Goleador 1", equipo: "VALUNIR", cantidad: 0 },
@@ -129,8 +129,8 @@ let leagueTable = [];
 let currentFecha = 0;
 const ADMIN_PASSWORD = "ligajrs";
 
+// ⚠️ MODIFICADA: Ahora solo se enfoca en calcular Pts y DG de los datos ya actualizados.
 function calculateStats() {
-    // Recalcula los puntos y DG basados en los stats de leagueData
     leagueTable = teams.map(teamName => {
         const stats = leagueData[teamName].stats;
         const Pts = (stats.PG * 3) + stats.PE;
@@ -188,18 +188,63 @@ function renderTable() {
 }
 
 // ===================================
-// LÓGICA DE GOLEADORES Y ASISTIDORES
+// LÓGICA DE GOLEADORES Y ASISTIDORES (PROCESAMIENTO)
 // ===================================
 
+// 🆕 FUNCIÓN NUEVA: Procesa todos los partidos y reconstruye las tablas de líderes
+function processAllGoalsAndAssists() {
+    const goalsMap = {}; // {jugador: {equipo: team, cantidad: X}}
+    const assistsMap = {}; // {jugador: {equipo: team, cantidad: X}}
+
+    // Iterar sobre todos los partidos de todo el fixture
+    fixture.flat().forEach(match => {
+        match.goles.forEach(goal => {
+            // Contar Goles
+            if (goal.goleador) {
+                const playerTeam = match.local === goal.equipo ? match.local : match.visitante; // Determinar equipo basado en el partido
+                
+                if (!goalsMap[goal.goleador]) {
+                    goalsMap[goal.goleador] = { jugador: goal.goleador, equipo: goal.equipo, cantidad: 0 };
+                }
+                goalsMap[goal.goleador].cantidad += 1;
+            }
+
+            // Contar Asistencias
+            if (goal.asistidor) {
+                if (!assistsMap[goal.asistidor]) {
+                    assistsMap[goal.asistidor] = { jugador: goal.asistidor, equipo: goal.equipo, cantidad: 0 };
+                }
+                assistsMap[goal.asistidor].cantidad += 1;
+            }
+        });
+    });
+
+    // Convertir mapas a arrays y actualizar leaderStats
+    leaderStats.goles = Object.values(goalsMap);
+    leaderStats.asistencias = Object.values(assistsMap);
+    
+    // Si quedan menos de 5, rellenar con los jugadores iniciales con 0
+    while (leaderStats.goles.length < 5) {
+        // En un caso real, esto no sería necesario si se usan datos reales. Lo dejo simple por ahora.
+        break; 
+    }
+    while (leaderStats.asistencias.length < 5) {
+        break;
+    }
+}
+
+
 function sortAndRenderLeaders() {
+    processAllGoalsAndAssists(); // Asegura que los datos estén actualizados primero
+
     // Ordenar Goleadores (Cantidad de goles)
     leaderStats.goles.sort((a, b) => b.cantidad - a.cantidad);
 
     const goleadoresBody = document.querySelector('#tabla-goleadores tbody');
     goleadoresBody.innerHTML = '';
-    leaderStats.goles.slice(0, 5).forEach(player => { // Mostrar solo los 5 primeros
+    leaderStats.goles.slice(0, 5).forEach((player, index) => { // Mostrar solo los 5 primeros
         const row = goleadoresBody.insertRow();
-        row.innerHTML = `<td>${player.jugador}</td><td>${player.equipo}</td><td>${player.cantidad}</td>`;
+        row.innerHTML = `<td>${index + 1}</td><td>${player.jugador}</td><td>${player.equipo}</td><td>${player.cantidad}</td>`;
     });
 
     // Ordenar Asistidores (Cantidad de asistencias)
@@ -207,9 +252,9 @@ function sortAndRenderLeaders() {
 
     const asistidoresBody = document.querySelector('#tabla-asistidores tbody');
     asistidoresBody.innerHTML = '';
-    leaderStats.asistencias.slice(0, 5).forEach(player => { // Mostrar solo los 5 primeros
+    leaderStats.asistencias.slice(0, 5).forEach((player, index) => { // Mostrar solo los 5 primeros
         const row = asistidoresBody.insertRow();
-        row.innerHTML = `<td>${player.jugador}</td><td>${player.equipo}</td><td>${player.cantidad}</td>`;
+        row.innerHTML = `<td>${index + 1}</td><td>${player.jugador}</td><td>${player.equipo}</td><td>${player.cantidad}</td>`;
     });
 }
 
@@ -236,10 +281,21 @@ function renderFecha(fechaIndex) {
         const matchDiv = document.createElement('div');
         matchDiv.classList.add('match');
 
+        let goalListHTML = '';
+        if (match.goles.length > 0) {
+            goalListHTML = '<ul class="goal-list">';
+            match.goles.forEach(goal => {
+                const asist = goal.asistidor ? ` (Asist: ${goal.asistidor})` : '';
+                goalListHTML += `<li>${goal.goleador}${asist} (${goal.equipo})</li>`;
+            });
+            goalListHTML += '</ul>';
+        }
+
         matchDiv.innerHTML = `
             <span>${match.local}</span>
-            <span class="match-score">${match.resultado.local} - ${match.resultado.visitante}</span>
+            <span class="match-score"><strong>${match.resultado.local} - ${match.resultado.visitante}</strong></span>
             <span>${match.visitante}</span>
+            ${goalListHTML}
         `;
         container.appendChild(matchDiv);
     });
@@ -337,17 +393,114 @@ function loadMatchesForAdmin() {
     fixture[fechaIndex].forEach((match, matchIndex) => {
         const div = document.createElement('div');
         div.classList.add('admin-match-item');
+
+        const localPlayers = leagueData[match.local].players;
+        const visitantePlayers = leagueData[match.visitante].players;
+        const allPlayers = [...localPlayers, ...visitantePlayers];
+        
+        const playerOptions = (team) => {
+            const players = leagueData[team].players;
+            const options = players.map(p => `<option value="${p}">${p}</option>`).join('');
+            return `<option value="">--- Seleccionar ---</option>${options}`;
+        };
+
+        const generateGoalInput = (index, team) => `
+            <div class="goal-entry" data-match-id="${fechaIndex}-${matchIndex}" data-goal-index="${index}" data-team="${team}">
+                <select name="goleador" class="goleador-select">
+                    <optgroup label="${match.local}">${playerOptions(match.local)}</optgroup>
+                    <optgroup label="${match.visitante}">${playerOptions(match.visitante)}</optgroup>
+                </select>
+                <select name="asistidor" class="asistidor-select">
+                    <option value="">(Sin Asistencia)</option>
+                    <optgroup label="${match.local}">${playerOptions(match.local)}</optgroup>
+                    <optgroup label="${match.visitante}">${playerOptions(match.visitante)}</optgroup>
+                </select>
+                <select name="equipo" class="equipo-select" style="width: 100px;">
+                    <option value="${match.local}">${match.local}</option>
+                    <option value="${match.visitante}">${match.visitante}</option>
+                </select>
+            </div>
+        `;
+
+        // Generar UI para los goles guardados
+        let savedGoalsHTML = '';
+        if (match.goles.length > 0) {
+            savedGoalsHTML += '<h4>Goles Registrados:</h4>';
+            match.goles.forEach((goal, index) => {
+                savedGoalsHTML += `
+                    <div class="goal-entry" data-match-id="${fechaIndex}-${matchIndex}" data-goal-index="${index}" data-team="${goal.equipo}">
+                        <select name="goleador" class="goleador-select">
+                            <option value="${goal.goleador}">${goal.goleador}</option>
+                            <optgroup label="${match.local}">${playerOptions(match.local)}</optgroup>
+                            <optgroup label="${match.visitante}">${playerOptions(match.visitante)}</optgroup>
+                        </select>
+                        <select name="asistidor" class="asistidor-select">
+                            <option value="${goal.asistidor || ''}">${goal.asistidor || '(Sin Asistencia)'}</option>
+                            <option value="">(Sin Asistencia)</option>
+                            <optgroup label="${match.local}">${playerOptions(match.local)}</optgroup>
+                            <optgroup label="${match.visitante}">${playerOptions(match.visitante)}</optgroup>
+                        </select>
+                        <select name="equipo" class="equipo-select" style="width: 100px;">
+                            <option value="${match.local}" ${match.local === goal.equipo ? 'selected' : ''}>${match.local}</option>
+                            <option value="${match.visitante}" ${match.visitante === goal.equipo ? 'selected' : ''}>${match.visitante}</option>
+                        </select>
+                    </div>
+                `;
+            });
+        }
+        
         div.innerHTML = `
             <p><strong>${match.local}</strong> vs <strong>${match.visitante}</strong></p>
-            <label>Resultado: </label>
-            <input type="number" id="local-${fechaIndex}-${matchIndex}" value="${match.resultado.local}" min="0" style="width: 50px;"> -
-            <input type="number" id="visitante-${fechaIndex}-${matchIndex}" value="${match.resultado.visitante}" min="0" style="width: 50px;">
-            <button onclick="saveMatchResult(${fechaIndex}, ${matchIndex})">Guardar Resultado</button>
-            <div id="stats-${fechaIndex}-${matchIndex}">
-                </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <label>Resultado:</label>
+                <input type="number" id="local-${fechaIndex}-${matchIndex}" value="${match.resultado.local}" min="0" style="width: 50px;"> -
+                <input type="number" id="visitante-${fechaIndex}-${matchIndex}" value="${match.resultado.visitante}" min="0" style="width: 50px;">
+            </div>
+            
+            <h4>Goles (${match.resultado.local + match.resultado.visitante} en total):</h4>
+            <div id="goals-container-${fechaIndex}-${matchIndex}" class="goals-container">
+                ${savedGoalsHTML}
+            </div>
+            
+            <button onclick="addGoalInput(${fechaIndex}, ${matchIndex}, '${match.local}', '${match.visitante}')" style="margin-top: 5px;">+ Agregar Gol</button>
+            <button onclick="saveMatchResult(${fechaIndex}, ${matchIndex})" style="margin-top: 10px; background-color: var(--color-primary);">Guardar Resultado y Goles</button>
+            <hr>
         `;
         matchList.appendChild(div);
     });
+}
+
+// 🆕 FUNCIÓN NUEVA: Agrega dinámicamente el formulario de un gol.
+function addGoalInput(fechaIndex, matchIndex, teamLocal, teamVisitante) {
+    const container = document.getElementById(`goals-container-${fechaIndex}-${matchIndex}`);
+    const newIndex = container.children.length;
+
+    const playerOptions = (team) => {
+        const players = leagueData[team].players;
+        const options = players.map(p => `<option value="${p}">${p}</option>`).join('');
+        return `<option value="">--- Seleccionar ---</option>${options}`;
+    };
+
+    const newGoalHTML = `
+        <div class="goal-entry" data-match-id="${fechaIndex}-${matchIndex}" data-goal-index="${newIndex}">
+            <select name="goleador" class="goleador-select">
+                <optgroup label="${teamLocal}">${playerOptions(teamLocal)}</optgroup>
+                <optgroup label="${teamVisitante}">${playerOptions(teamVisitante)}</optgroup>
+            </select>
+            <select name="asistidor" class="asistidor-select">
+                <option value="">(Sin Asistencia)</option>
+                <optgroup label="${teamLocal}">${playerOptions(teamLocal)}</optgroup>
+                <optgroup label="${teamVisitante}">${playerOptions(teamVisitante)}</optgroup>
+            </select>
+            <select name="equipo" class="equipo-select" style="width: 100px;">
+                <option value="${teamLocal}">${teamLocal}</option>
+                <option value="${teamVisitante}">${teamVisitante}</option>
+            </select>
+            <button onclick="this.parentElement.remove()" style="background-color: #dc3545; color: white;">Eliminar</button>
+        </div>
+    `;
+
+    container.insertAdjacentHTML('beforeend', newGoalHTML);
 }
 
 // 4. Guardar Resultado y Forzar Sincronización
@@ -357,63 +510,113 @@ function saveMatchResult(fechaIndex, matchIndex) {
     const localScore = parseInt(localInput.value);
     const visitanteScore = parseInt(visitanteInput.value);
 
-    if (isNaN(localScore) || isNaN(visitanteScore)) {
-        alert("Por favor, introduce un número válido.");
+    if (isNaN(localScore) || isNaN(visitanteScore) || localScore < 0 || visitanteScore < 0) {
+        alert("Por favor, introduce un número válido para los resultados (mayor o igual a cero).");
         return;
     }
 
     const match = fixture[fechaIndex][matchIndex];
-    
-    // 1. Actualizar las estadísticas de la tabla (función auxiliar)
-    updateLeagueStats(match, localScore, visitanteScore);
+    const goalsContainer = document.getElementById(`goals-container-${fechaIndex}-${matchIndex}`);
+    const goalEntries = goalsContainer.querySelectorAll('.goal-entry');
 
-    // 2. Actualizar el objeto fixture
+    // 1. Validar que el número de goles ingresados coincida con el resultado
+    if (goalEntries.length !== (localScore + visitanteScore)) {
+        alert(`Error: Se registraron ${goalEntries.length} goles, pero el resultado es ${localScore} - ${visitanteScore} (${localScore + visitanteScore} total).`);
+        return;
+    }
+
+    // 2. Procesar Goles/Asistencias del formulario
+    const newGoals = [];
+    let calculatedLocalScore = 0;
+    let calculatedVisitanteScore = 0;
+
+    goalEntries.forEach(entry => {
+        const goleador = entry.querySelector('.goleador-select').value;
+        const asistidor = entry.querySelector('.asistidor-select').value;
+        const equipo = entry.querySelector('.equipo-select').value;
+
+        if (!goleador) {
+            alert("Debe seleccionar un goleador para cada gol.");
+            throw new Error("Missing Goleador");
+        }
+
+        newGoals.push({
+            goleador: goleador,
+            asistidor: asistidor || null, // Guardar null si no hay asistidor
+            equipo: equipo
+        });
+
+        // Recalcular el resultado basado en los goles ingresados
+        if (equipo === match.local) {
+            calculatedLocalScore++;
+        } else if (equipo === match.visitante) {
+            calculatedVisitanteScore++;
+        }
+    });
+
+    // 3. Validar consistencia de resultado numérico vs goles
+    if (localScore !== calculatedLocalScore || visitanteScore !== calculatedVisitanteScore) {
+         alert(`Error Crítico: El resultado numérico (${localScore}-${visitanteScore}) no coincide con el conteo de goles ingresados (${calculatedLocalScore}-${calculatedVisitanteScore}). Revise los equipos seleccionados en los goles.`);
+         return;
+    }
+
+
+    // 4. Actualizar el objeto fixture
     match.resultado.local = localScore;
     match.resultado.visitante = visitanteScore;
+    match.goles = newGoals; // GUARDAR LISTA DE GOLES EN EL FIXTURE
     
-    // 3. Recalcular y Renderizar las Tablas Públicas
+    // 5. Recalcular y Renderizar TODO
+    recalculateAllStatsFromFixture();
     recalculateAndRenderAll();
-    renderFecha(currentFecha); // Para actualizar el calendario si estamos en esa fecha
-
-    alert(`Resultado de ${match.local} ${localScore} - ${visitanteScore} ${match.visitante} guardado y estadísticas actualizadas.`);
     
-    // Nota: La lógica completa de Goles/Asistencias requiere más UI y funciones, 
-    // pero la actualización de las tablas principales ya está funcionando.
+    // Volver a cargar los partidos para reflejar el cambio en el panel admin
+    loadMatchesForAdmin(); 
+
+    alert(`Resultado de ${match.local} ${localScore} - ${visitanteScore} ${match.visitante} y Goles/Asistencias guardados. Tablas actualizadas.`);
 }
 
-// FUNCIÓN AUXILIAR PARA ACTUALIZAR ESTADÍSTICAS DEL EQUIPO
-// ⚠️ ESTA FUNCIÓN ES BÁSICA: En una liga real, se recalculan TODOS los partidos.
-// Aquí, para mantener el ejemplo simple, solo se actualiza el PJ/GF/GC, etc.
-function updateLeagueStats(match, newLocalScore, newVisitanteScore) {
-    const local = leagueData[match.local].stats;
-    const visitante = leagueData[match.visitante].stats;
-    
-    // Nota: Para una lógica robusta, se debe hacer una función `recalculateAllStatsFromFixture()`
-    // que corra todos los partidos desde 0. Esta versión simplificada asume que el cambio es incremental.
+// 🆕 FUNCIÓN NUEVA: Recalcula completamente la Tabla de Posiciones desde el fixture
+function recalculateAllStatsFromFixture() {
+    // 1. Reiniciar TODAS las estadísticas de los equipos
+    teams.forEach(teamName => {
+        leagueData[teamName].stats = { ...initialStatsCero };
+    });
 
-    // 1. Actualizar PJ y Goles a Favor/Contra
-    local.PJ = local.PJ + 1; 
-    visitante.PJ = visitante.PJ + 1;
-    local.GF = local.GF + newLocalScore;
-    local.GC = local.GC + newVisitanteScore;
-    visitante.GF = visitante.GF + newVisitanteScore;
-    visitante.GC = visitante.GC + newLocalScore;
+    // 2. Recorrer TODO el fixture para reconstruir las estadísticas
+    fixture.flat().forEach(match => {
+        const localStats = leagueData[match.local].stats;
+        const visitanteStats = leagueData[match.visitante].stats;
+        const localScore = match.resultado.local;
+        const visitanteScore = match.resultado.visitante;
 
-    // 2. Actualizar PG, PE, PP (Solo considera el último resultado)
-    if (newLocalScore > newVisitanteScore) {
-        local.PG = local.PG + 1;
-        visitante.PP = visitante.PP + 1;
-    } else if (newLocalScore < newVisitanteScore) {
-        local.PP = local.PP + 1;
-        visitante.PG = visitante.PG + 1;
-    } else {
-        local.PE = local.PE + 1;
-        visitante.PE = visitante.PE + 1;
-    }
+        if (localScore + visitanteScore > 0) { // Solo si el partido se jugó
+            // PJ
+            localStats.PJ += 1;
+            visitanteStats.PJ += 1;
+
+            // GF/GC
+            localStats.GF += localScore;
+            localStats.GC += visitanteScore;
+            visitanteStats.GF += visitanteScore;
+            visitanteStats.GC += localScore;
+
+            // PG/PE/PP
+            if (localScore > visitanteScore) {
+                localStats.PG += 1;
+                visitanteStats.PP += 1;
+            } else if (localScore < visitanteScore) {
+                localStats.PP += 1;
+                visitanteStats.PG += 1;
+            } else {
+                localStats.PE += 1;
+                visitanteStats.PE += 1;
+            }
+        }
+    });
 }
 
-
-// 5. Gestión de Jugadores
+// 5. Gestión de Jugadores (Sin cambios)
 function loadPlayersForAdmin() {
     const teamName = document.getElementById('admin-select-team').value;
     const playersList = document.getElementById('current-players-list');
@@ -488,6 +691,7 @@ window.saveMatchResult = saveMatchResult;
 window.loadMatchesForAdmin = loadMatchesForAdmin;
 window.loadPlayersForAdmin = loadPlayersForAdmin;
 window.addPlayerToTeam = addPlayerToTeam;
+window.addGoalInput = addGoalInput; // 🆕 Nueva función global
 
 
 // Eventos del Modal
