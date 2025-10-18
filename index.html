@@ -20,7 +20,7 @@
 
         <div id="redes-modal" class="modal">
             <div class="modal-content">
-                <span class="close-btn" onclick="closeModal('redes-modal')">&times;</span>
+                <span class="close" onclick="closeModal('redes-modal')">&times;</span>
                 <h2>REDES DE JRSLEAGUE</h2>
                 <div class="redes-buttons">
                     <a href="https://discord.gg/w4nN6njBX7" target="_blank" class="red-btn discord-btn">
@@ -41,13 +41,36 @@
         
         <div id="admin-login-modal" class="modal">
             <div class="modal-content">
-                <span class="close-btn" onclick="closeModal('admin-login-modal')">&times;</span>
+                <span class="close" onclick="closeModal('admin-login-modal')">&times;</span>
                 <h2>ACCESO DE ADMINISTRADOR</h2>
                 <input type="password" id="admin-password" placeholder="Contraseña de administrador">
                 <button onclick="checkAdminPassword()">INGRESAR</button>
                 <p id="password-message" style="color: var(--color-primary); margin-top: 10px;"></p>
             </div>
         </div>
+
+        <div id="team-profile-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('team-profile-modal')">×</span>
+                <h2 id="team-profile-title">Nombre del Equipo</h2>
+                <div id="team-profile-content">
+                    </div>
+            </div>
+        </div>
+
+        <div id="match-stats-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('match-stats-modal')">×</span>
+                <h2 id="stats-match-title">Goles y Asistencias</h2>
+                <p style="text-align: center; color: var(--color-primary-red); font-size: 0.9em;">Asigna goles y asistencias por cada tanto. ¡Deben coincidir con el marcador!</p>
+                
+                <div id="goal-slots-container">
+                    </div>
+
+                <button onclick="saveMatchStats()" style="margin-top: 20px;">GUARDAR ESTADÍSTICAS DEL PARTIDO</button>
+            </div>
+        </div>
+
     </header>
 
     <main>
@@ -146,16 +169,34 @@
                     <h2>MODIFICAR RESULTADOS</h2>
                     <select id="select-fecha"></select>
                     <div id="admin-partidos">
-                    </div>
+                        </div>
                 </div>
 
                 <div class="admin-box" id="admin-stats">
                     <h2>EDITAR GOLES / ASISTENCIAS</h2>
-                    <select id="select-jugador"></select>
-                    <p>Goles: <input type="number" id="input-goles" min="0"></p>
-                    <p>Asistencias: <input type="number" id="input-asistencias" min="0"></p>
-                    <button onclick="savePlayerStats()">GUARDAR ESTADÍSTICAS</button>
-                    <p id="stats-message" style="margin-top: 10px;"></p>
+                    
+                    <div class="admin-add-player-box">
+                        <h3>AGREGAR NUEVO JUGADOR / STAFF</h3>
+                        <input type="text" id="input-new-jugador" placeholder="Nombre del nuevo jugador/staff">
+                        <select id="select-new-equipo">
+                            <option value="">-- Selecciona equipo --</option>
+                            </select>
+                        <input type="text" id="input-new-rol" placeholder="Rol (Ej: DT, Delantero, Cuerpo Técnico)">
+                        <button onclick="addNewPlayer()">AGREGAR JUGADOR A LISTAS</button>
+                        <p id="new-player-message" style="color: var(--color-primary-red); margin-top: 5px;"></p>
+                    </div>
+
+                    <select id="select-jugador">
+                        </select>
+                    
+                    <label for="input-goles" style="display: block; margin-top: 15px;">Goles (Manual):</label>
+                    <input type="number" id="input-goles" min="0" value="0">
+                    
+                    <label for="input-asistencias" style="display: block; margin-top: 15px;">Asistencias (Manual):</label>
+                    <input type="number" id="input-asistencias" min="0" value="0">
+                    
+                    <button onclick="savePlayerStats()">GUARDAR ESTADÍSTICAS MANUALES</button>
+                    <p id="stats-message" style="color: var(--color-primary-red); margin-top: 5px;"></p>
                 </div>
                 
             </div>
