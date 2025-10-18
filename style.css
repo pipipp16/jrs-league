@@ -321,6 +321,25 @@ tbody tr:hover {
     margin-bottom: 20px;
 }
 
+/* Clases de cierre de modal: usa .close en lugar de .close-btn */
+.close { 
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFF;
+    opacity: 0.8;
+    cursor: pointer;
+    line-height: 1; /* Asegura el centrado vertical del 'x' */
+}
+
+.close:hover,
+.close:focus {
+    color: var(--color-primary-red);
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 1;
+}
+
 .redes-buttons {
     display: flex;
     flex-wrap: wrap;
