@@ -1,5 +1,6 @@
 // ===================================
-// DATOS DE LA LIGA ⚽ (Con Equipo en jugadores)
+// DATOS DE LA LIGA ⚽ (CON DETALLES Y JUGADORES)
+// DATOS RESETEADOS A CERO
 // ===================================
 
 const teams = [
@@ -8,70 +9,171 @@ const teams = [
     "cornudos", "wanderers", "mamas fc"
 ];
 
-// Datos iniciales de la tabla (Sirven como base para el ADMIN)
+// Datos iniciales de la tabla (TODOS EN CERO)
 let leagueStats = {
-    "valunir":              { PJ: 5, PG: 3, PE: 1, PP: 1, GF: 10, GC: 5, Pts: 0 },
-    "banfield":             { PJ: 5, PG: 3, PE: 0, PP: 2, GF: 15, GC: 8, Pts: 0 },
-    "bristol":              { PJ: 5, PG: 2, PE: 3, PP: 0, GF: 7, GC: 3, Pts: 0 },
-    "joga bonito":          { PJ: 5, PG: 2, PE: 2, PP: 1, GF: 8, GC: 6, Pts: 0 },
-    "white phanter kings":  { PJ: 5, PG: 2, PE: 1, PP: 2, GF: 9, GC: 7, Pts: 0 },
-    "laira":                { PJ: 5, PG: 1, PE: 4, PP: 0, GF: 5, GC: 5, Pts: 0 },
-    "el rejunte de amigos": { PJ: 5, PG: 1, PE: 3, PP: 1, GF: 4, GC: 5, Pts: 0 },
-    "loan":                 { PJ: 5, PG: 1, PE: 2, PP: 2, GF: 7, GC: 11, Pts: 0 },
-    "machetitos":           { PJ: 5, PG: 1, PE: 1, PP: 3, GF: 4, GC: 10, Pts: 0 },
-    "cornudos":             { PJ: 5, PG: 0, PE: 3, PP: 2, GF: 2, GC: 5, Pts: 0 },
-    "wanderers":            { PJ: 5, PG: 0, PE: 4, PP: 1, GF: 3, GC: 4, Pts: 0 },
-    "mamas fc":             { PJ: 5, PG: 0, PE: 2, PP: 3, GF: 4, GC: 9, Pts: 0 }
+    "valunir":              { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "banfield":             { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "bristol":              { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "joga bonito":          { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "white phanter kings":  { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "laira":                { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "el rejunte de amigos": { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "loan":                 { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "machetitos":           { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "cornudos":             { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "wanderers":            { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 },
+    "mamas fc":             { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 }
 };
 
-// Datos para goleadores y asistidores (Ahora incluyen el equipo)
+// Datos para goleadores y asistidores (TODOS EN CERO)
 let goleadores = [
-    { jugador: "Jugador A", equipo: "valunir", goles: 10 },
-    { jugador: "Jugador B", equipo: "banfield", goles: 8 },
-    { jugador: "Jugador C", equipo: "bristol", goles: 7 },
-    { jugador: "Jugador D", equipo: "joga bonito", goles: 6 },
-    { jugador: "Jugador E", equipo: "valunir", goles: 5 },
+    { jugador: "Jugador A", equipo: "valunir", goles: 0 },
+    { jugador: "Jugador B", equipo: "banfield", goles: 0 },
+    { jugador: "Jugador C", equipo: "bristol", goles: 0 },
+    { jugador: "Jugador D", equipo: "joga bonito", goles: 0 },
+    { jugador: "Jugador E", equipo: "valunir", goles: 0 },
+    // Jugadores iniciales para editar stats
+    { jugador: "Jugador X", equipo: "loan", goles: 0 },
+    { jugador: "Jugador Y", equipo: "mamas fc", goles: 0 },
 ];
 
 let asistidores = [
-    { jugador: "Jugador X", equipo: "loan", asistencias: 8 },
-    { jugador: "Jugador Y", equipo: "mamas fc", asistencias: 6 },
-    { jugador: "Jugador Z", equipo: "bristol", asistencias: 5 },
-    { jugador: "Jugador WE", equipo: "valunir", asistencias: 7 },
-    { jugador: "Jugador F", equipo: "banfield", asistencias: 7 },
+    { jugador: "Jugador X", equipo: "loan", asistencias: 0 },
+    { jugador: "Jugador Y", equipo: "mamas fc", asistencias: 0 },
+    { jugador: "Jugador Z", equipo: "bristol", asistencias: 0 },
+    { jugador: "Jugador WE", equipo: "valunir", asistencias: 0 },
+    { jugador: "Jugador F", equipo: "banfield", asistencias: 0 },
 ];
 
+// === NUEVA ESTRUCTURA DE DETALLES DE EQUIPO ===
+const teamDetails = {
+    "valunir": {
+        descripcion: "Equipo campeón de la temporada pasada, conocido por su juego ofensivo y rápido. Es el gran favorito.",
+        dt: "Juan Pérez",
+        capitan: "Jugador A (Goleador)",
+        jugadores: [
+            { nombre: "Jugador A", rol: "Delantero (C)" },
+            { nombre: "Jugador E", rol: "Mediocampista" },
+            { nombre: "Técnico Suplente", rol: "Cuerpo Técnico" }
+        ],
+    },
+    "banfield": {
+        descripcion: "Un equipo tradicionalmente fuerte que busca el campeonato este año, con una defensa sólida.",
+        dt: "Carlos López",
+        capitan: "Jugador B",
+        jugadores: [
+            { nombre: "Jugador B", rol: "Delantero" },
+            { nombre: "Jugador F", rol: "Defensa" }
+        ]
+    },
+    "bristol": {
+        descripcion: "La revelación del torneo. Bristol ha demostrado ser difícil de vencer.",
+        dt: "María Rodríguez",
+        capitan: "Jugador C",
+        jugadores: [
+            { nombre: "Jugador C", rol: "Delantero" },
+            { nombre: "Jugador Z", rol: "Volante" }
+        ]
+    },
+    "joga bonito": {
+        descripcion: "Fieles a su nombre, buscan el juego bonito aunque les falte algo de consistencia.",
+        dt: "Leo Martínez",
+        capitan: "Jugador D",
+        jugadores: [
+            { nombre: "Jugador D", rol: "Volante Creativo" }
+        ]
+    },
+    "white phanter kings": {
+        descripcion: "Un equipo con mucha garra, siempre dan pelea hasta el último minuto.",
+        dt: "Anónimo",
+        capitan: "Capitán WP",
+        jugadores: [
+            { nombre: "Jugador Fantasma", rol: "Defensa" }
+        ]
+    },
+    "laira": {
+        descripcion: "El equipo del empate. Difícil de meterles goles.",
+        dt: "DT Laira",
+        capitan: "Capitán Laira",
+        jugadores: []
+    },
+    "el rejunte de amigos": {
+        descripcion: "Literalmente, el rejunte. Juegan por amor a la camiseta y la amistad.",
+        dt: "No Aplica",
+        capitan: "Capitán Rejunte",
+        jugadores: []
+    },
+    "loan": {
+        descripcion: "Equipo con potencial, pero le cuesta cerrar los partidos. Necesitan más puntería.",
+        dt: "DT Loan",
+        capitan: "Jugador X",
+        jugadores: [
+            { nombre: "Jugador X", rol: "Defensa" }
+        ]
+    },
+    "machetitos": {
+        descripcion: "Un equipo duro en el medio campo, no apto para sensibles.",
+        dt: "DT Machetitos",
+        capitan: "Capitán Machetitos",
+        jugadores: []
+    },
+    "cornudos": {
+        descripcion: "Les falta gol, pero su defensa está empezando a rendir.",
+        dt: "DT Cornudos",
+        capitan: "Capitán Cornudos",
+        jugadores: []
+    },
+    "wanderers": {
+        descripcion: "Tienen muchos empates, deben empezar a ganar para subir en la tabla.",
+        dt: "DT Wanderers",
+        capitan: "Capitán Wanderers",
+        jugadores: []
+    },
+    "mamas fc": {
+        descripcion: "El equipo menos goleador. Tienen que mejorar la ofensiva.",
+        dt: "DT Mamas FC",
+        capitan: "Jugador Y",
+        jugadores: [
+            { nombre: "Jugador Y", rol: "Volante" }
+        ]
+    }
+    // Asegúrate de completar los demás equipos!
+};
 
-// Calendario de partidos por fecha
+// Calendario de partidos por fecha (Con scores en 0 para iniciar y espacio para stats)
 let fixture = [
     // FECHA 1
     [
-        { local: "valunir", visitante: "banfield", scoreLocal: 2, scoreVisitante: 1 },
-        { local: "bristol", visitante: "joga bonito", scoreLocal: 1, scoreVisitante: 1 },
-        { local: "white phanter kings", visitante: "laira", scoreLocal: 3, scoreVisitante: 0 },
-        { local: "el rejunte de amigos", visitante: "loan", scoreLocal: 0, scoreVisitante: 0 },
-        { local: "cornudos", visitante: "wanderers", scoreLocal: 0, scoreVisitante: 0 },
-        { local: "mamas fc", visitante: "valunir", scoreLocal: 0, scoreVisitante: 1 }
+        { local: "valunir", visitante: "banfield", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "bristol", visitante: "joga bonito", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "white phanter kings", visitante: "laira", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "el rejunte de amigos", visitante: "loan", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "cornudos", visitante: "wanderers", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "mamas fc", visitante: "valunir", scoreLocal: 0, scoreVisitante: 0, stats: [] }
     ],
     // FECHA 2
     [
-        { local: "loan", visitante: "mamas fc", scoreLocal: 1, scoreVisitante: 0 },
-        { local: "machetitos", visitante: "el rejunte de amigos", scoreLocal: 2, scoreVisitante: 1 },
-        { local: "laira", visitante: "cornudos", scoreLocal: 2, scoreVisitante: 2 },
-        { local: "joga bonito", visitante: "white phanter kings", scoreLocal: 2, scoreVisitante: 0 },
-        { local: "banfield", visitante: "bristol", scoreLocal: 3, scoreVisitante: 2 },
-        { local: "valunir", visitante: "loan", scoreLocal: 4, scoreVisitante: 0 }
+        { local: "loan", visitante: "mamas fc", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "machetitos", visitante: "el rejunte de amigos", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "laira", visitante: "cornudos", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "joga bonito", visitante: "white phanter kings", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "banfield", visitante: "bristol", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "valunir", visitante: "loan", scoreLocal: 0, scoreVisitante: 0, stats: [] }
     ],
     // FECHA 3
     [
-        { local: "bristol", visitante: "valunir", scoreLocal: 2, scoreVisitante: 1 },
-        { local: "white phanter kings", visitante: "banfield", scoreLocal: 2, scoreVisitante: 4 },
-        { local: "cornudos", visitante: "joga bonito", scoreLocal: 0, scoreVisitante: 0 },
-        { local: "el rejunte de amigos", visitante: "laira", scoreLocal: 1, scoreVisitante: 1 },
-        { local: "machetitos", visitante: "mamas fc", scoreLocal: 1, scoreVisitante: 0 },
-        { local: "wanderers", visitante: "valunir", scoreLocal: 1, scoreVisitante: 1 }
+        { local: "bristol", visitante: "valunir", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "white phanter kings", visitante: "banfield", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "cornudos", visitante: "joga bonito", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "el rejunte de amigos", visitante: "laira", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "machetitos", visitante: "mamas fc", scoreLocal: 0, scoreVisitante: 0, stats: [] },
+        { local: "wanderers", visitante: "valunir", scoreLocal: 0, scoreVisitante: 0, stats: [] }
     ]
 ];
+
+// Variables temporales para el modal de stats
+let currentMatchIndex = -1;
+let currentFechaIndex = -1;
 
 // ===================================
 // LÓGICA DE TABLA DE POSICIONES
@@ -83,6 +185,9 @@ function calculateStats() {
     // Calcula Puntos y DG
     leagueTable = teams.map(teamName => {
         const stats = leagueStats[teamName];
+        // Verifica si el equipo existe en leagueStats
+        if (!stats) return null; 
+
         const Pts = (stats.PG * 3) + stats.PE;
         const DG = stats.GF - stats.GC;
 
@@ -97,7 +202,7 @@ function calculateStats() {
             DG: DG,
             Pts: Pts
         };
-    });
+    }).filter(team => team !== null); // Elimina equipos nulos por si acaso
 }
 
 function sortTable() {
@@ -119,9 +224,11 @@ function renderTable() {
 
     leagueTable.forEach((team, index) => {
         const row = tableBody.insertRow();
+        
+        // === Agregar el link para abrir el perfil del equipo ===
         row.innerHTML = `
             <td>${index + 1}</td>
-            <td>${team.nombre}</td>
+            <td><a href="#" class="team-link" onclick="openTeamProfile('${team.nombre}')">${team.nombre}</a></td>
             <td>${team.PJ}</td>
             <td>${team.PG}</td>
             <td>${team.PE}</td>
@@ -133,6 +240,51 @@ function renderTable() {
         `;
     });
 }
+
+// ===================================
+// LÓGICA DE PERFIL DE EQUIPO (PÚBLICO)
+// ===================================
+
+function openTeamProfile(teamName) {
+    const teamKey = teamName.toLowerCase();
+    const details = teamDetails[teamKey]; // Busca los datos
+
+    if (!details) {
+        alert(`No hay detalles disponibles para ${teamName}.`);
+        return;
+    }
+
+    const modalTitle = document.getElementById('team-profile-title');
+    const modalContent = document.getElementById('team-profile-content');
+    
+    // Genera la lista de jugadores
+    const playersListHtml = details.jugadores.map(p => 
+        `<li>${p.nombre} - <span>${p.rol}</span></li>`
+    ).join('');
+
+    let htmlContent = `
+        <div class="profile-section">
+            <h2>DESCRIPCIÓN</h2>
+            <p>${details.descripcion}</p>
+        </div>
+        <div class="profile-section">
+            <h2>CUERPO TÉCNICO</h2>
+            <p><strong>DT:</strong> ${details.dt}</p>
+            <p><strong>CAPITÁN:</strong> ${details.capitan}</p>
+        </div>
+        <div class="profile-section">
+            <h2>JUGADORES Y STAFF (${details.jugadores.length})</h2>
+            <ul class="player-list">
+                ${playersListHtml}
+            </ul>
+        </div>
+    `;
+
+    modalTitle.textContent = teamName;
+    modalContent.innerHTML = htmlContent;
+    openModal('team-profile-modal');
+}
+
 
 // ===================================
 // LÓGICA DE GOLEADORES Y ASISTIDORES
@@ -178,7 +330,7 @@ function renderFecha(fechaIndex) {
     }
 
     if (!fechaData) {
-        container.innerHTML = `<p style="text-align:center; color: var(--color-primary);">No hay datos para esta fecha.</p>`;
+        container.innerHTML = `<p style="text-align:center; color: var(--color-primary-red);">No hay datos para esta fecha.</p>`;
         title.textContent = `FECHA DESCONOCIDA`;
         return;
     }
@@ -187,9 +339,13 @@ function renderFecha(fechaIndex) {
     container.innerHTML = '';
 
     fechaData.forEach(match => {
+        // Muestra '-' si el score es 0, si no, muestra el score
+        const scoreLocalDisplay = match.scoreLocal === 0 ? '-' : match.scoreLocal;
+        const scoreVisitanteDisplay = match.scoreVisitante === 0 ? '-' : match.scoreVisitante;
+        const resultado = `${scoreLocalDisplay} - ${scoreVisitanteDisplay}`;
+
         const matchDiv = document.createElement('div');
         matchDiv.classList.add('match');
-        const resultado = `${match.scoreLocal} - ${match.scoreVisitante}`;
 
         matchDiv.innerHTML = `
             <span>${match.local.toUpperCase()}</span>
@@ -247,7 +403,7 @@ document.getElementById('admin-btn').addEventListener('click', () => {
 
 // Cerrar modales al hacer click fuera
 window.onclick = function(event) {
-    if (event.target.id === 'redes-modal' || event.target.id === 'admin-login-modal') {
+    if (event.target.id === 'redes-modal' || event.target.id === 'admin-login-modal' || event.target.id === 'team-profile-modal' || event.target.id === 'match-stats-modal') {
         event.target.style.display = "none";
     }
 }
@@ -289,6 +445,7 @@ function initAdminPanel() {
     const selectJugador = document.getElementById('select-jugador');
     selectJugador.innerHTML = '<option value="">Selecciona un jugador</option>';
     
+    // Crear una lista única y combinada de jugadores
     const allPlayers = {};
     [...goleadores, ...asistidores].forEach(p => {
         allPlayers[p.jugador] = { ...p };
@@ -303,11 +460,68 @@ function initAdminPanel() {
     
     selectJugador.onchange = loadPlayerStats;
 
+    // 3. Llenar el NUEVO selector de Equipos para añadir jugador
+    const selectNewEquipo = document.getElementById('select-new-equipo');
+    selectNewEquipo.innerHTML = '<option value="">-- Selecciona equipo --</option>';
+    teams.forEach(teamName => {
+        const option = document.createElement('option');
+        option.value = teamName;
+        option.textContent = teamName.toUpperCase();
+        selectNewEquipo.appendChild(option);
+    });
+
     // Cargar la primera fecha por defecto
     if (fixture.length > 0) {
         renderAdminMatches(0);
     }
 }
+
+// === NUEVA LÓGICA PARA AÑADIR JUGADORES/STAFF ===
+function addNewPlayer() {
+    const playerName = document.getElementById('input-new-jugador').value.trim();
+    const playerTeam = document.getElementById('select-new-equipo').value.trim();
+    const playerRol = document.getElementById('input-new-rol').value.trim() || 'Jugador';
+    const message = document.getElementById('new-player-message');
+
+    if (!playerName || !playerTeam) {
+        message.textContent = "¡Error! Ingresa nombre y selecciona equipo.";
+        return;
+    }
+    
+    const playerKey = playerName.toLowerCase();
+    
+    // 1. Validar que el jugador no exista ya en los detalles del equipo
+    const team = teamDetails[playerTeam];
+    if (team) {
+        let playerExistsInDetails = team.jugadores.some(p => p.nombre.toLowerCase() === playerKey);
+        if (playerExistsInDetails) {
+            message.textContent = `¡Error! ${playerName.toUpperCase()} ya está listado en ${playerTeam.toUpperCase()}.`;
+            return;
+        }
+        // Agregar a la lista de detalles del equipo (Cuerpo Técnico/Jugador)
+        team.jugadores.push({ nombre: playerName, rol: playerRol });
+    }
+
+    // 2. Agregar a las listas de Goleadores/Asistidores (solo si es un Jugador y no staff)
+    if (playerRol.toLowerCase().includes('jugador') || playerRol.toLowerCase().includes('delantero') || playerRol.toLowerCase().includes('defensa') || playerRol.toLowerCase().includes('volante') || playerRol.toLowerCase().includes('arquero')) {
+         // Solo añade si no existe aún para evitar duplicados en la lista de stats
+        let existsInGoleadores = goleadores.some(p => p.jugador.toLowerCase() === playerKey);
+        if (!existsInGoleadores) {
+            goleadores.push({ jugador: playerName, equipo: playerTeam, goles: 0 });
+            asistidores.push({ jugador: playerName, equipo: playerTeam, asistencias: 0 });
+        }
+    }
+    
+    // 3. Limpiar campos y actualizar
+    document.getElementById('input-new-jugador').value = '';
+    document.getElementById('select-new-equipo').value = '';
+    document.getElementById('input-new-rol').value = '';
+    message.textContent = `${playerName.toUpperCase()} agregado a ${playerTeam.toUpperCase()}.`;
+    
+    // Refrescar el selector principal de edición de stats
+    initAdminPanel(); 
+}
+
 
 function renderAdminMatches(fechaIndex) {
     const partidosContainer = document.getElementById('admin-partidos');
@@ -320,165 +534,12 @@ function renderAdminMatches(fechaIndex) {
         const matchDiv = document.createElement('div');
         matchDiv.classList.add('admin-match-edit');
 
+        // Función onchange que llama al modal de stats
+        const onChangeAction = `updateMatchScoreAndOpenStats(${fechaIndex}, ${matchIndex}, this.value, 'local')`;
+
         matchDiv.innerHTML = `
             <span>${match.local.toUpperCase()}</span>
             <div>
-                <input type="number" min="0" value="${match.scoreLocal}" data-team="${match.local}" data-match-index="${matchIndex}" data-type="local" onchange="updateMatchScore(${fechaIndex}, ${matchIndex}, this.value, 'local')">
+                <input type="number" min="0" value="${match.scoreLocal}" data-team="${match.local}" data-match-index="${matchIndex}" data-type="local" onchange="${onChangeAction}">
                 -
-                <input type="number" min="0" value="${match.scoreVisitante}" data-team="${match.visitante}" data-match-index="${matchIndex}" data-type="visitante" onchange="updateMatchScore(${fechaIndex}, ${matchIndex}, this.value, 'visitante')">
-            </div>
-            <span>${match.visitante.toUpperCase()}</span>
-        `;
-        partidosContainer.appendChild(matchDiv);
-    });
-}
-
-function updateMatchScore(fechaIndex, matchIndex, score, type) {
-    const newScore = parseInt(score);
-    if (isNaN(newScore) || newScore < 0) return;
-
-    if (type === 'local') {
-        fixture[fechaIndex][matchIndex].scoreLocal = newScore;
-    } else {
-        fixture[fechaIndex][matchIndex].scoreVisitante = newScore;
-    }
-}
-
-function loadPlayerStats() {
-    const selectedPlayer = document.getElementById('select-jugador').value;
-    const inputGoles = document.getElementById('input-goles');
-    const inputAsistencias = document.getElementById('input-asistencias');
-
-    if (!selectedPlayer) {
-        inputGoles.value = '';
-        inputAsistencias.value = '';
-        return;
-    }
-
-    // Buscar y cargar goles
-    const golData = goleadores.find(p => p.jugador === selectedPlayer);
-    inputGoles.value = golData ? golData.goles : 0;
-
-    // Buscar y cargar asistencias
-    const asistData = asistidores.find(p => p.jugador === selectedPlayer);
-    inputAsistencias.value = asistData ? asistData.asistencias : 0;
-}
-
-function savePlayerStats() {
-    const selectedPlayer = document.getElementById('select-jugador').value;
-    const inputGoles = parseInt(document.getElementById('input-goles').value) || 0;
-    const inputAsistencias = parseInt(document.getElementById('input-asistencias').value) || 0;
-    const message = document.getElementById('stats-message');
-
-    if (!selectedPlayer) {
-        message.textContent = "Selecciona un jugador primero.";
-        return;
-    }
-
-    // 1. Actualizar Goleadores
-    let golIndex = goleadores.findIndex(p => p.jugador === selectedPlayer);
-    if (golIndex !== -1) {
-        goleadores[golIndex].goles = inputGoles;
-    } else {
-        // Si el jugador no estaba en la lista de goleadores, se podría añadir aquí
-        // Por ahora, solo actualizamos si existe
-    }
-    // 2. Actualizar Asistidores
-    let asistIndex = asistidores.findIndex(p => p.jugador === selectedPlayer);
-    if (asistIndex !== -1) {
-        asistidores[asistIndex].asistencias = inputAsistencias;
-    } else {
-        // Si el jugador no estaba en la lista de asistidores, se podría añadir aquí
-        // Por ahora, solo actualizamos si existe
-    }
-
-    message.textContent = `Estadísticas de ${selectedPlayer.toUpperCase()} guardadas localmente. Presiona "GUARDAR TODO" para actualizar la web.`;
-}
-
-// ----------------------------------------------------
-// LÓGICA DE RECALCULAR TODAS LAS ESTADÍSTICAS
-// ----------------------------------------------------
-function recalculateLeagueStats() {
-    // Reiniciar estadísticas de equipos
-    teams.forEach(team => {
-        leagueStats[team] = { PJ: 0, PG: 0, PE: 0, PP: 0, GF: 0, GC: 0, Pts: 0 };
-    });
-
-    // Recorrer el fixture y calcular
-    fixture.forEach(fecha => {
-        fecha.forEach(match => {
-            const local = leagueStats[match.local];
-            const visitante = leagueStats[match.visitante];
-            const scoreL = match.scoreLocal;
-            const scoreV = match.scoreVisitante;
-
-            // Actualizar PJ
-            local.PJ++;
-            visitante.PJ++;
-
-            // Actualizar Goles
-            local.GF += scoreL;
-            local.GC += scoreV;
-            visitante.GF += scoreV;
-            visitante.GC += scoreL;
-
-            // Actualizar PG/PE/PP
-            if (scoreL > scoreV) {
-                local.PG++;
-                visitante.PP++;
-            } else if (scoreL < scoreV) {
-                local.PP++;
-                visitante.PG++;
-            } else {
-                local.PE++;
-                visitante.PE++;
-            }
-        });
-    });
-}
-
-function saveAllAndRerender() {
-    // 1. Recalcular todas las estadísticas de la liga a partir del fixture
-    recalculateLeagueStats();
-
-    // 2. Ejecutar las funciones de renderizado
-    calculateStats();
-    sortTable();
-    renderTable();
-    sortAndRenderLeaders();
-    renderFecha(currentFecha); // Renderiza la fecha actual
-
-    // 3. Notificación
-    alert("¡Estadísticas actualizadas con éxito! Los cambios ya son visibles en la sección LIGA.");
-}
-
-// ===================================
-// INICIALIZACIÓN (Al cargar la página)
-// ===================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Recalcular stats con los datos iniciales y luego renderizar
-    recalculateLeagueStats();
-    calculateStats();
-    sortTable();
-    renderTable();
-
-    // Ordenar y mostrar goleadores y asistidores
-    sortAndRenderLeaders();
-
-    // Mostrar la primera fecha del calendario
-    renderFecha(currentFecha);
-
-    // Asegurar que la sección 'Inicio' esté activa al cargar
-    showSection('inicio');
-});
-
-// Hacemos las funciones globales para que los botones 'onclick' en el HTML funcionen
-window.showSection = showSection;
-window.closeModal = closeModal;
-window.nextFecha = nextFecha;
-window.prevFecha = prevFecha;
-window.checkAdminPassword = checkAdminPassword;
-window.savePlayerStats = savePlayerStats;
-window.saveAllAndRerender = saveAllAndRerender;
-window.updateMatchScore = updateMatchScore;
+                <input type="number" min="0" value="${match.scoreVisitante}" data-team="${match.visitante
