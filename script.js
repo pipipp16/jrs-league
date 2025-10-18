@@ -259,6 +259,7 @@ function sortAndRenderLeaders() {
 // LÓGICA DE FECHAS INTERACTIVA
 // ===================================
 
+// 🌟 CORRECCIÓN APLICADA: Se elimina el bloque que genera la lista de goles (ul.goal-list)
 function renderFecha(fechaIndex) {
     const fechaData = fixture[fechaIndex];
     const container = document.getElementById('partidos-container');
@@ -277,21 +278,11 @@ function renderFecha(fechaIndex) {
         const matchDiv = document.createElement('div');
         matchDiv.classList.add('match');
 
-        let goalListHTML = '';
-        if (match.goles.length > 0) {
-            goalListHTML = '<ul class="goal-list">';
-            match.goles.forEach(goal => {
-                const asist = goal.asistidor ? ` (Asist: ${goal.asistidor})` : '';
-                goalListHTML += `<li>${goal.goleador}${asist} (${goal.equipo})</li>`;
-            });
-            goalListHTML += '</ul>';
-        }
-
+        // Se renderiza solo el resultado numérico
         matchDiv.innerHTML = `
             <span>${match.local}</span>
             <span class="match-score"><strong>${match.resultado.local} - ${match.resultado.visitante}</strong></span>
             <span>${match.visitante}</span>
-            ${goalListHTML}
         `;
         container.appendChild(matchDiv);
     });
@@ -553,7 +544,7 @@ function saveMatchResult(fechaIndex, matchIndex) {
     // Volver a cargar los partidos para reflejar el cambio en el panel admin
     loadMatchesForAdmin(); 
     
-    // ⭐️ CORRECCIÓN APLICADA: Actualiza la sección de Fechas en la LIGA principal
+    // ⭐️ CORRECCIÓN MANTENIDA: Actualiza la sección de Fechas en la LIGA principal
     renderFecha(currentFecha); 
 
     alert(`Resultado de ${match.local} ${localScore} - ${visitanteScore} ${match.visitante} y Goles/Asistencias guardados. Tablas actualizadas.`);
