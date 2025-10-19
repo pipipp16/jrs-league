@@ -1,193 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JRSLEAGUE | JAKJUS REAL SOCCER LEAGUE</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRSLEAGUE | JAKJUS REAL SOCCER LEAGUE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="logo">JRSLEAGUE</div>
-        <nav>
-            <button onclick="showSection('inicio')">INICIO</button>
-            <button onclick="showSection('liga')">LIGA</button>
-            <button id="redes-btn">REDES</button>
-            <button id="admin-btn">ADMIN</button>
-        </nav>
+    <header>
+        <div class="logo">JRSLEAGUE</div>
+        <nav>
+            <button onclick="showSection('inicio')">INICIO</button>
+            <button onclick="showSection('liga')">LIGA</button>
+            <button id="redes-btn">REDES</button>
+            <button id="admin-btn">ADMIN</button>
+        </nav>
 
-        <div id="redes-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal('redes-modal')">&times;</span>
-                <h2>REDES DE JRSLEAGUE</h2>
-                <div class="redes-buttons">
-                    <a href="https://discord.gg/w4nN6njBX7" target="_blank" class="red-btn discord-btn">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                    <a href="https://youtube.com/@jrsleaguehaxball?si=vv0zg3hMeUPLeM75" target="_blank" class="red-btn youtube-btn">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@jrsleague7?is_from_webapp=1&sender_device=pc" target="_blank" class="red-btn tiktok-btn">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                    <a href="#" class="red-btn instagram-btn inactive">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div id="admin-password-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal('admin-password-modal')">&times;</span>
-                <h2>ACCESO DE ADMINISTRADOR</h2>
-                <input type="password" id="admin-password-input" placeholder="Contraseña de Admin">
-                <p id="admin-password-error" style="color: red; margin-top: 10px;"></p>
-                <button onclick="checkAdminPassword()">INGRESAR</button>
-            </div>
-        </div>
-    </header>
+        <div id="redes-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('redes-modal')">&times;</span>
+                <h2>REDES DE JRSLEAGUE</h2>
+                <div class="redes-buttons">
+                    <a href="https://discord.gg/w4nN6njBX7" target="_blank" class="red-btn discord-btn">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://youtube.com/@jrsleaguehaxball?si=vv0zg3hMeUPLeM75" target="_blank" class="red-btn youtube-btn">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@jrsleague7?is_from_webapp=1&sender_device=pc" target="_blank" class="red-btn tiktok-btn">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="#" class="red-btn instagram-btn inactive">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="admin-password-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('admin-password-modal')">&times;</span>
+                <h2>ACCESO DE ADMINISTRADOR</h2>
+                <input type="password" id="admin-password-input" placeholder="Contraseña de Admin">
+                <p id="admin-password-error" style="color: red; margin-top: 10px;"></p>
+                <button onclick="checkAdminPassword()">INGRESAR</button>
+            </div>
+        </div>
+    </header>
 
-    <main>
-        <section id="inicio" class="content-section active">
-            <div class="inicio-container">
-                <h1>BIENVENIDO A LA JRSLEAGUE</h1>
-                <div class="info-box main-info"> <h2>¿QUÉ ES JRSLEAGUE?</h2>
-                    <p>La JAKJUS REAL SOCCER LEAGUE es la liga de fútbol virtual más competitiva de Discord. Buscamos llevar la pasión del fútbol a un nuevo nivel, combinando estrategia, habilidad y una comunidad dedicada.</p>
-                </div>
-                
-                <div class="info-box admin-info-rectangle"> <h2>CUERPO ADMINISTRATIVO</h2>
-                    <div class="info-grid">
-                        <div class="admin-card">
-                            <h3>HOST OFICIAL</h3>
-                            <p>JAKJUS</p>
-                        </div>
-                        <div class="admin-card">
-                            <h3>ADMINISTRADOR</h3>
-                            <p>USUARIO 1</p>
-                        </div>
-                        <div class="admin-card">
-                            <h3>CO-ADMIN</h3>
-                            <p>USUARIO 2</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main>
+        <section id="inicio" class="content-section active">
+            <div class="inicio-container">
+                <h1>BIENVENIDO A LA JRSLEAGUE</h1>
+                <div class="info-box main-info"> <h2>¿QUÉ ES JRSLEAGUE?</h2>
+                    <p>La JAKJUS REAL SOCCER LEAGUE es la liga de fútbol virtual más competitiva de Discord. Buscamos llevar la pasión del fútbol a un nuevo nivel, combinando estrategia, habilidad y una comunidad dedicada.</p>
+                </div>
+                
+                <div class="info-box admin-info-rectangle"> <h2>CUERPO ADMINISTRATIVO</h2>
+                    <div class="info-grid">
+                                                <div class="admin-card full-span">
+                            <h3>FUNDADOR</h3>
+                            <p>cirordz</p>
+                        </div>
+                        <div class="admin-card">
+                            <h3>PROPIETARIO</h3>
+                            <p>void.105</p>
+                        </div>
+                        <div class="admin-card">
+                            <h3>PROPIETARIO</h3>
+                            <p>joaquin5969</p>
+                        </div>
+                        <div class="admin-card">
+                            <h3>ADMINISTRADOR</h3>
+                            <p>criss._abz (Creador de la Pag)</p>
+                        </div>
+                        <div class="admin-card">
+                            <h3>ADMINISTRADOR</h3>
+                            <p>ferminaso</p>
+                        </div>
+                        <div class="admin-card">
+                            <h3>ADMINISTRADOR</h3>
+                            <p>sargshadow</p>
+                        </div>
+                        <div class="admin-card">
+                            <h3>ADMINISTRADOR</h3>
+                            <p>mateoceballosahre</p>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="liga" class="content-section">
-            <h1>COMPETICIÓN Y ESTADÍSTICAS</h1>
-            
-            <div class="stat-grid">
-                <div class="stat-box" id="posiciones-box">
-                    <h2>TABLA DE POSICIONES</h2>
-                    <table id="tabla-posiciones">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Equipo</th>
-                                <th>Pts</th> <th>PG</th>
-                                <th>PE</th>
-                                <th>PP</th>
-                                <th>GF</th>
-                                <th>GC</th>
-                                <th>DG</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
+        <section id="liga" class="content-section">
+            <h1>COMPETICIÓN Y ESTADÍSTICAS</h1>
+            
+            <div class="stat-grid">
+                <div class="stat-box" id="posiciones-box">
+                    <h2>TABLA DE POSICIONES</h2>
+                    <table id="tabla-posiciones">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Equipo</th>
+                                <th>Pts</th> <th>PG</th>
+                                <th>PE</th>
+                                <th>PP</th>
+                                <th>GF</th>
+                                <th>GC</th>
+                                <th>DG</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
 
-                <div class="stat-box" id="goleadores-box">
-                    <h2>TABLA DE GOLEADORES</h2>
-                    <table id="tabla-goleadores" class="leader-table">
-                        <thead><tr><th>Jugador</th><th>Equipo</th><th>Goles</th></tr></thead> <tbody>
-                        </tbody>
-                    </table>
-                </div>
+                <div class="stat-box" id="goleadores-box">
+                    <h2>TABLA DE GOLEADORES</h2>
+                    <table id="tabla-goleadores" class="leader-table">
+                        <thead><tr><th>Jugador</th><th>Equipo</th><th>Goles</th></tr></thead> <tbody>
+                        </tbody>
+                    </table>
+                </div>
 
-                <div class="stat-box" id="asistidores-box">
-                    <h2>TABLA DE ASISTIDORES</h2>
-                    <table id="tabla-asistidores" class="leader-table">
-                        <thead><tr><th>Jugador</th><th>Equipo</th><th>Asistencias</th></tr></thead> <tbody>
-                        </tbody>
-                    </table>
-                </div>
+                <div class="stat-box" id="asistidores-box">
+                    <h2>TABLA DE ASISTIDORES</h2>
+                    <table id="tabla-asistidores" class="leader-table">
+                        <thead><tr><th>Jugador</th><th>Equipo</th><th>Asistencias</th></tr></thead> <tbody>
+                        </tbody>
+                    </table>
+                </div>
 
-                <div class="stat-box" id="calendario-box">
-                    <h2>CALENDARIO DE FECHAS</h2>
-                    <div class="match-nav">
-                        <button onclick="prevFecha()"> &lt; </button>
-                        <span id="fecha-titulo">FECHA 1</span>
-                        <button onclick="nextFecha()"> &gt; </button>
-                    </div>
-                    <div id="partidos-container">
-                        </div>
-                </div>
-            </div>
-        </section>
+                <div class="stat-box" id="calendario-box">
+                    <h2>CALENDARIO DE FECHAS</h2>
+                    <div class="match-nav">
+                        <button onclick="prevFecha()"> &lt; </button>
+                        <span id="fecha-titulo">FECHA 1</span>
+                        <button onclick="nextFecha()"> &gt; </button>
+                    </div>
+                    <div id="partidos-container">
+                        </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="admin" class="content-section">
-            <h1>PANEL DE ADMINISTRACIÓN</h1>
+        <section id="admin" class="content-section">
+            <h1>PANEL DE ADMINISTRACIÓN</h1>
 
-            <div class="admin-grid">
-                <div class="admin-box full-width">
-                    <h2>MODIFICAR RESULTADOS DE FECHA</h2>
-                    <div class="admin-section-content">
-                        <label for="admin-select-fecha">Seleccionar Fecha:</label>
-                        <select id="admin-select-fecha" onchange="loadMatchesForAdmin()"></select>
-                        <div id="admin-match-list">
-                            </div>
-                    </div>
-                </div>
+            <div class="admin-grid">
+                <div class="admin-box full-width">
+                    <h2>MODIFICAR RESULTADOS DE FECHA</h2>
+                    <div class="admin-section-content">
+                        <label for="admin-select-fecha">Seleccionar Fecha:</label>
+                        <select id="admin-select-fecha" onchange="loadMatchesForAdmin()"></select>
+                        <div id="admin-match-list">
+                            </div>
+                    </div>
+                </div>
 
-                <div class="admin-box">
-                    <h2>GESTIÓN DE JUGADORES</h2>
-                    <div class="admin-section-content">
-                        <label for="admin-select-team">Seleccionar Equipo:</label>
-                        <select id="admin-select-team" onchange="loadPlayersForAdmin()"></select>
-                        
-                        <h3>Añadir Jugador</h3>
-                        <input type="text" id="new-player-name" placeholder="Nombre del Jugador">
-                        <button onclick="addPlayerToTeam()">Añadir</button>
+                <div class="admin-box">
+                    <h2>GESTIÓN DE JUGADORES</h2>
+                    <div class="admin-section-content">
+                        <label for="admin-select-team">Seleccionar Equipo:</label>
+                        <select id="admin-select-team" onchange="loadPlayersForAdmin()"></select>
+                        
+                        <h3>Añadir Jugador</h3>
+                        <input type="text" id="new-player-name" placeholder="Nombre del Jugador">
+                        <button onclick="addPlayerToTeam()">Añadir</button>
 
-                        <h3>Jugadores del Equipo</h3>
-                        <ul id="current-players-list">
-                            </ul>
-                    </div>
-                </div>
-                
-                <div class="admin-box">
-                    <h2>GESTIÓN DE GOLES/ASISTENCIAS</h2>
-                    <div class="admin-section-content">
-                        <p>Los goles y asistencias se añaden al modificar el resultado de un partido.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                        <h3>Jugadores del Equipo</h3>
+                        <ul id="current-players-list">
+                            </ul>
+                    </div>
+                </div>
+                
+                <div class="admin-box">
+                    <h2>GESTIÓN DE GOLES/ASISTENCIAS</h2>
+                    <div class="admin-section-content">
+                        <p>Los goles y asistencias se añaden al modificar el resultado de un partido.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div id="team-info-modal" class="modal">
-            <div class="modal-content team-modal-content">
-                <span class="close-btn" onclick="closeModal('team-info-modal')">&times;</span>
-                <h2 id="team-modal-name"></h2>
-                <div class="team-details">
-                    <h3>ESTADÍSTICAS CLAVE</h3>
-                    <p><strong>Puntos:</strong> <span id="team-modal-pts"></span></p>
-                    <p><strong>Diferencia de Gol:</strong> <span id="team-modal-dg"></span></p>
-                    
-                    <h3>JUGADORES</h3>
-                    <ul id="team-modal-players"></ul>
-                    
-                    <h3>CUERPO TÉCNICO (Ejemplo)</h3>
-                    <p id="team-modal-coach">DT: Nombre DT</p>
-                </div>
-            </div>
-        </div>
+        <div id="team-info-modal" class="modal">
+            <div class="modal-content team-modal-content">
+                <span class="close-btn" onclick="closeModal('team-info-modal')">&times;</span>
+                <h2 id="team-modal-name"></h2>
+                <div class="team-details">
+                    <h3>ESTADÍSTICAS CLAVE</h3>
+                    <p><strong>Puntos:</strong> <span id="team-modal-pts"></span></p>
+                    <p><strong>Diferencia de Gol:</strong> <span id="team-modal-dg"></span></p>
+                    
+                    <h3>JUGADORES</h3>
+                    <ul id="team-modal-players"></ul>
+                    
+                    <h3>CUERPO TÉCNICO (Ejemplo)</h3>
+                    <p id="team-modal-coach">DT: Nombre DT</p>
+                </div>
+            </div>
+        </div>
 
-    </main>
+    </main>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
