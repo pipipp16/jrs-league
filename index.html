@@ -11,13 +11,13 @@
     <header>
         <nav class="navbar">
             <ul>
-                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#" class="nav-link" data-page="inicio">Inicio</a></li>
 
                 <li class="dropdown">
                     <button class="dropbtn">Modalidades</button>
                     <div class="dropdown-content">
-                        <a href="primera.html">PRIMERA DIVISION</a>
-                        <a href="segunda.html">SEGUNDA DIVISION</a>
+                        <a href="#" class="nav-link" data-page="primera">PRIMERA DIVISION</a>
+                        <a href="#" class="nav-link" data-page="segunda">SEGUNDA DIVISION</a>
                     </div>
                 </li>
 
@@ -35,32 +35,118 @@
         </nav>
     </header>
 
-    <main id="inicio-page">
-        <h1 class="titulo-liga">JAKJUS REAL SOCCER LEAGUE</h1>
+    <main>
+        
+        <section id="page-inicio" class="page-content active">
+            <h1 class="titulo-liga">JAKJUS REAL SOCCER LEAGUE</h1>
 
-        <section class="info-liga-container">
-            <h2>Acerca de la JRS</h2>
-            <p>La **JRS** es tu liga de fútbol x6, vibrante y competitiva. Actualmente contamos con dos divisiones: la **1era con 10 equipos** y la **2da con 6 equipos**, donde la pasión y la habilidad se encuentran en cada partido.</p>
+            <section class="info-liga-container">
+                <h2>Acerca de la JRS</h2>
+                <p>La **JRS** es tu liga de fútbol x6, vibrante y competitiva. Actualmente contamos con dos divisiones: la **1era con 10 equipos** y la **2da con 6 equipos**, donde la pasión y la habilidad se encuentran en cada partido.</p>
+            </section>
+
+            <section class="lideres-container">
+                <h2>Líderes de la Liga</h2>
+                <div class="lideres-grid">
+                    <div class="lider">
+                        <p>Ciro</p>
+                        <small>Fundador</small>
+                    </div>
+                    <div class="lider">
+                        <p>Alfaro y Void</p>
+                        <small>Owners</small>
+                    </div>
+                    <div class="lider">
+                        <p>Pipi, Fermin, Pito</p>
+                        <small>Admins</small>
+                    </div>
+                </div>
+            </section>
         </section>
 
-        <section class="lideres-container">
-            <h2>Líderes de la Liga</h2>
-            <div class="lideres-grid">
-                <div class="lider">
-                    <p>Ciro</p>
-                    <small>Fundador</small>
+        <section id="page-primera" class="page-content">
+            <h1 class="titulo-liga">PRIMERA DIVISIÓN</h1>
+            
+            <div class="content-grid">
+                <div class="tabla-posiciones-container">
+                    <h3>Tabla de Posiciones</h3>
+                    <div id="tabla-posiciones-primera">
+                        <p>Cargando tabla de posiciones...</p>
+                    </div>
                 </div>
-                <div class="lider">
-                    <p>Alfaro y Void</p>
-                    <small>Owners</small>
+
+                <div class="stats-container">
+                    <div class="maximos-goleadores">
+                        <h3>Máximos Goleadores (Top 5)</h3>
+                        <div id="tabla-goleadores-primera">
+                            <p>Cargando goleadores...</p>
+                        </div>
+                    </div>
+                    <div class="maximos-asistidores">
+                        <h3>Máximos Asistidores (Top 5)</h3>
+                        <div id="tabla-asistidores-primera">
+                            <p>Cargando asistidores...</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="lider">
-                    <p>Pipi, Fermin, Pito</p>
-                    <small>Admins</small>
+
+                <div class="fechas-container">
+                    <h3>Fechas</h3>
+                    <div id="selector-fechas">
+                        <button id="fecha-prev">« Anterior</button>
+                        <span id="fecha-actual">Fecha 1</span>
+                        <button id="fecha-next">Siguiente »</button>
+                    </div>
+                    <div id="resultados-fecha">
+                        <p>Selecciona una fecha para ver los resultados.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <section id="page-segunda" class="page-content">
+            <h1 class="titulo-liga">SEGUNDA DIVISIÓN</h1>
+             <div class="info-liga-container">
+                <p>Contenido de la Segunda División. Aquí se mostrarían tablas similares a la Primera, usando datos específicos de la Segunda División.</p>
+            </div>
+        </section>
+
+        <section id="page-admin" class="page-content">
+            <h1 class="titulo-liga">ÁREA DE ADMINISTRACIÓN</h1>
+        
+            <div class="admin-container info-liga-container">
+                <h2>Modificación de Datos</h2>
+                <p class="admin-warning">⚠️ **ADVERTENCIA:** Solo personal autorizado debe usar esta sección. Los cambios aquí afectan directamente las tablas de la liga.</p>
+            
+                <div class="modificacion-seccion">
+                    <h3>1. Modificar Resultados de Fechas</h3>
+                    <select id="select-division">
+                        <option value="primera">Primera División</option>
+                        <option value="segunda">Segunda División</option>
+                    </select>
+                    <select id="select-fecha">
+                        <option value="1">Fecha 1</option>
+                        <option value="2">Fecha 2</option>
+                    </select>
+
+                    <div id="formulario-resultados">
+                        <p>Formulario para ingresar o modificar resultados de la fecha seleccionada.</p>
+                        <input type="text" placeholder="Equipo A Goles"> - <input type="text" placeholder="Equipo B Goles">
+                        <button class="admin-btn-action">Guardar Resultados</button>
+                    </div>
+                </div>
+
+                <div class="modificacion-seccion">
+                    <h3>2. Modificar Goleadores y Asistidores</h3>
+                    <p>Aquí se podría tener un formulario para añadir goles y asistencias a jugadores específicos.</p>
+                    <input type="text" placeholder="Nombre del Jugador">
+                    <input type="number" placeholder="Goles (+/-)">
+                    <input type="number" placeholder="Asistencias (+/-)">
+                    <button class="admin-btn-action">Actualizar Estadísticas</button>
+                </div>
+            </div>
+        </section>
+        
     </main>
 
     <script src="script.js"></script> 
