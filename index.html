@@ -3,152 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JRS - Jakjus Real Soccer League</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>JAKJUS REAL SOCCER - Liga Oficial</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Estilos personalizados para un mejor aspecto */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Fondo oscuro */
+        }
+        .division-tab {
+            transition: all 0.2s;
+            cursor: pointer;
+            border-radius: 0.5rem 0.5rem 0 0;
+            border-bottom: 2px solid transparent;
+        }
+        .division-tab.active {
+            background-color: #161b22;
+            color: #4CAF50; /* Verde vibrante */
+            border-bottom: 2px solid #4CAF50;
+        }
+        .division-tab:not(.active):hover {
+            background-color: #21262d;
+        }
+        .table-header {
+            background-color: #161b22;
+            color: #a0a0a0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        .team-row:nth-child(even) {
+            background-color: #161b22;
+        }
+        .team-row:nth-child(odd) {
+            background-color: #0d1117;
+        }
+        .team-row:hover {
+            background-color: #21262d;
+        }
+        /* Clase para las posiciones de Champions/Ascenso (Top 4) */
+        .rank-ascenso {
+            background-color: #14532d; /* Verde oscuro */
+        }
+        /* Clase para las posiciones de Descenso/Playoffs (Bottom 2/3) */
+        .rank-descenso {
+            background-color: #7f1d1d; /* Rojo oscuro */
+        }
+    </style>
 </head>
-<body>
+<body class="p-4 md:p-8">
 
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li><a href="#" class="nav-link" data-page="inicio">Inicio</a></li>
+    <div class="max-w-4xl mx-auto bg-gray-900 text-white rounded-xl shadow-2xl overflow-hidden">
+        
+        <!-- Header Principal -->
+        <header class="p-6 bg-gray-800 border-b border-gray-700">
+            <h1 class="text-4xl font-extrabold text-center text-green-400 flex items-center justify-center">
+                <i data-lucide="trophy" class="w-8 h-8 mr-2"></i>
+                JAKJUS REAL SOCCER
+            </h1>
+            <p class="text-center text-gray-400 mt-1">Tabla de Posiciones y Resultados - Temporada 2025</p>
+        </header>
 
-                <li class="dropdown">
-                    <button class="dropbtn">Modalidades</button>
-                    <div class="dropdown-content">
-                        <a href="#" class="nav-link" data-page="primera">PRIMERA DIVISION</a>
-                        <a href="#" class="nav-link" data-page="segunda">SEGUNDA DIVISION</a>
-                    </div>
-                </li>
-
-                <li class="dropdown">
-                    <button class="dropbtn">Redes</button>
-                    <div class="dropdown-content">
-                        <a href="https://youtube.com/@jrsleaguehaxball?si=vv0zg3hMeUPLeM75" target="_blank">YouTube</a>
-                        <a href="https://www.tiktok.com/@jrsleague7?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
-                        <a href="https://discord.gg/w4nN6njBX7" target="_blank">Discord</a>
-                    </div>
-                </li>
-
-                <li><a href="#" id="admin-btn">Admin</a></li> 
-            </ul>
+        <!-- Navegación de Divisiones -->
+        <nav class="flex justify-center bg-gray-900 border-b border-gray-700">
+            <div id="tab-primera" class="division-tab active p-3 text-sm font-semibold text-center w-1/2 md:w-48" onclick="switchDivision('Primera')">
+                <i data-lucide="chevrons-up" class="w-4 h-4 inline-block mr-1"></i>
+                Primera División
+            </div>
+            <div id="tab-segunda" class="division-tab p-3 text-sm font-semibold text-center w-1/2 md:w-48" onclick="switchDivision('Segunda')">
+                <i data-lucide="chevrons-down" class="w-4 h-4 inline-block mr-1"></i>
+                Segunda División
+            </div>
         </nav>
-    </header>
 
-    <main>
-        
-        <section id="page-inicio" class="page-content active">
-            <h1 class="titulo-liga">JAKJUS REAL SOCCER LEAGUE</h1>
-
-            <section class="info-liga-container">
-                <h2>Acerca de la JRS</h2>
-                <p>La **JRS** es tu liga de fútbol x6, vibrante y competitiva. Actualmente contamos con dos divisiones: la **1era con 10 equipos** y la **2da con 6 equipos**, donde la pasión y la habilidad se encuentran en cada partido.</p>
+        <main id="content" class="p-4 md:p-6">
+            <h2 id="division-title" class="text-2xl font-bold mb-4 text-gray-200"></h2>
+            
+            <!-- Tabla de Posiciones -->
+            <section id="standings-section" class="mb-8">
+                <h3 class="text-xl font-semibold mb-3 text-green-400">Tabla de Clasificación</h3>
+                <div class="overflow-x-auto rounded-lg border border-gray-700">
+                    <table class="min-w-full divide-y divide-gray-700">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="py-2 px-3 text-left">#</th>
+                                <th class="py-2 px-3 text-left">Equipo</th>
+                                <th class="py-2 px-3 text-center">PJ</th>
+                                <th class="py-2 px-3 text-center">PG</th>
+                                <th class="py-2 px-3 text-center">PE</th>
+                                <th class="py-2 px-3 text-center">PP</th>
+                                <th class="py-2 px-3 text-center">GF</th>
+                                <th class="py-2 px-3 text-center">GC</th>
+                                <th class="py-2 px-3 text-center">DG</th>
+                                <th class="py-2 px-3 text-center font-bold text-green-400">PTS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standings-body" class="divide-y divide-gray-700 text-sm text-gray-300">
+                            <!-- Filas de equipos se insertarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
-            <section class="lideres-container">
-                <h2>Líderes de la Liga</h2>
-                <div class="lideres-grid">
-                    <div class="lider">
-                        <p>Ciro</p>
-                        <small>Fundador</small>
-                    </div>
-                    <div class="lider">
-                        <p>Alfaro y Void</p>
-                        <small>Owners</small>
-                    </div>
-                    <div class="lider">
-                        <p>Pipi, Fermin, Pito</p>
-                        <small>Admins</small>
-                    </div>
+            <!-- Partidos (Jornadas) -->
+            <section id="fixtures-section">
+                <h3 class="text-xl font-semibold mb-3 text-green-400">Jornada</h3>
+                <div id="fixtures-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Partidos se insertarán aquí -->
                 </div>
             </section>
-        </section>
-
-        <section id="page-primera" class="page-content">
-            <h1 class="titulo-liga">PRIMERA DIVISIÓN</h1>
-            
-            <div class="content-grid">
-                <div class="tabla-posiciones-container">
-                    <h3>Tabla de Posiciones</h3>
-                    <div id="tabla-posiciones-primera">
-                        <p>Cargando tabla de posiciones...</p>
-                    </div>
-                </div>
-
-                <div class="stats-container">
-                    <div class="maximos-goleadores">
-                        <h3>Máximos Goleadores (Top 5)</h3>
-                        <div id="tabla-goleadores-primera">
-                            <p>Cargando goleadores...</p>
-                        </div>
-                    </div>
-                    <div class="maximos-asistidores">
-                        <h3>Máximos Asistidores (Top 5)</h3>
-                        <div id="tabla-asistidores-primera">
-                            <p>Cargando asistidores...</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="fechas-container">
-                    <h3>Fechas</h3>
-                    <div id="selector-fechas">
-                        <button id="fecha-prev">« Anterior</button>
-                        <span id="fecha-actual">Fecha 1</span>
-                        <button id="fecha-next">Siguiente »</button>
-                    </div>
-                    <div id="resultados-fecha">
-                        <p>Selecciona una fecha para ver los resultados.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="page-segunda" class="page-content">
-            <h1 class="titulo-liga">SEGUNDA DIVISIÓN</h1>
-             <div class="info-liga-container">
-                <p>Contenido de la Segunda División. Aquí se mostrarían tablas similares a la Primera, usando datos específicos de la Segunda División.</p>
-            </div>
-        </section>
-
-        <section id="page-admin" class="page-content">
-            <h1 class="titulo-liga">ÁREA DE ADMINISTRACIÓN</h1>
+        </main>
         
-            <div class="admin-container info-liga-container">
-                <h2>Modificación de Datos</h2>
-                <p class="admin-warning">⚠️ **ADVERTENCIA:** Solo personal autorizado debe usar esta sección. Los cambios aquí afectan directamente las tablas de la liga.</p>
+        <!-- Información de las reglas de clasificación -->
+        <footer class="p-6 bg-gray-800 text-sm text-gray-400 border-t border-gray-700">
+            <p class="font-semibold mb-2">Leyenda de Clasificación:</p>
+            <ul id="legend-list" class="space-y-1">
+                <!-- Leyenda se insertará aquí -->
+            </ul>
+        </footer>
+    </div>
+
+    <script>
+        // --- DATA IN-MEMORY (SIN FIREBASE) ---
+        // Definición de equipos con las abreviaciones corregidas
+        const TEAMS_DATA = [
+            // PRIMERA DIVISIÓN (10 equipos)
+            { id: "T1", name: "Machetes FC", abbr: "MCH", division: "Primera", logoColor: "bg-indigo-700" },
+            { id: "T2", name: "Cornudos FC", abbr: "CFC", division: "Primera", logoColor: "bg-red-600" },
+            { id: "T3", name: "Antigordas FC", abbr: "AGS", division: "Primera", logoColor: "bg-green-700" },
+            { id: "T4", name: "White Phanther Kings", abbr: "WPK", division: "Primera", logoColor: "bg-gray-800" },
+            { id: "T5", name: "Docksud", abbr: "DS", division: "Primera", logoColor: "bg-blue-800" },
+            { id: "T6", name: "Banfield", abbr: "BAN", division: "Primera", logoColor: "bg-green-500" },
+            { id: "T7", name: "Bristol City", abbr: "BCH", division: "Primera", logoColor: "bg-red-800" },
+            { id: "T8", name: "Valunir FC", abbr: "VFC", division: "Primera", logoColor: "bg-yellow-500" },
+            { id: "T9", name: "Wanderers", abbr: "WAN", division: "Primera", logoColor: "bg-teal-500" },
+            { id: "T10", name: "Loan FC", abbr: "LOAN", division: "Primera", logoColor: "bg-purple-700" },
+
+            // SEGUNDA DIVISIÓN (6 equipos)
+            { id: "S1", name: "Machetitos", abbr: "MLL", division: "Segunda", logoColor: "bg-indigo-400" },
+            { id: "S2", name: "Aguilas del Condor", abbr: "ADC", division: "Segunda", logoColor: "bg-sky-500" },
+            { id: "S3", name: "Joga Bonito", abbr: "JBFC", division: "Segunda", logoColor: "bg-lime-600" },
+            { id: "S4", name: "Spartans FC", abbr: "SPA", division: "Segunda", logoColor: "bg-red-400" },
+            { id: "S5", name: "Laira FC", abbr: "LFC", division: "Segunda", logoColor: "bg-orange-500" },
+            { id: "S6", name: "Mamas FC", abbr: "MA", division: "Segunda", logoColor: "bg-pink-500" }
+        ];
+
+        // Definición de partidos con resultados
+        const FIXTURES_DATA = [
+            // Primera - Fecha 1
+            { matchId: "M1", division: "Primera", date: "2025-11-15", teamA: "T1", teamB: "T2", scoreA: 3, scoreB: 1, played: true },
+            { matchId: "M2", division: "Primera", date: "2025-11-15", teamA: "T3", teamB: "T4", scoreA: 2, scoreB: 2, played: true },
+            { matchId: "M3", division: "Primera", date: "2025-11-15", teamA: "T5", teamB: "T6", scoreA: 0, scoreB: 1, played: true },
+            { matchId: "M4", division: "Primera", date: "2025-11-15", teamA: "T7", teamB: "T8", scoreA: 4, scoreB: 0, played: true },
+            { matchId: "M5", division: "Primera", date: "2025-11-15", teamA: "T9", teamB: "T10", scoreA: 1, scoreB: 1, played: true },
             
-                <div class="modificacion-seccion">
-                    <h3>1. Modificar Resultados de Fechas</h3>
-                    <select id="select-division">
-                        <option value="primera">Primera División</option>
-                        <option value="segunda">Segunda División</option>
-                    </select>
-                    <select id="select-fecha">
-                        <option value="1">Fecha 1</option>
-                        <option value="2">Fecha 2</option>
-                    </select>
+            // Primera - Fecha 2 (Pendientes)
+            { matchId: "M6", division: "Primera", date: "2025-11-22", teamA: "T1", teamB: "T3", scoreA: 0, scoreB: 0, played: true },
+            { matchId: "M7", division: "Primera", date: "2025-11-22", teamA: "T2", teamB: "T4", scoreA: 2, scoreB: 3, played: true },
+            { matchId: "M8", division: "Primera", date: "2025-11-22", teamA: "T5", teamB: "T7", scoreA: null, scoreB: null, played: false },
+            { matchId: "M9", division: "Primera", date: "2025-11-22", teamA: "T6", teamB: "T9", scoreA: null, scoreB: null, played: false },
+            { matchId: "M10", division: "Primera", date: "2025-11-22", teamA: "T8", teamB: "T10", scoreA: null, scoreB: null, played: false },
 
-                    <div id="formulario-resultados">
-                        <p>Formulario para ingresar o modificar resultados de la fecha seleccionada.</p>
-                        <input type="text" placeholder="Equipo A Goles"> - <input type="text" placeholder="Equipo B Goles">
-                        <button class="admin-btn-action">Guardar Resultados</button>
-                    </div>
-                </div>
-
-                <div class="modificacion-seccion">
-                    <h3>2. Modificar Goleadores y Asistidores</h3>
-                    <p>Aquí se podría tener un formulario para añadir goles y asistencias a jugadores específicos.</p>
-                    <input type="text" placeholder="Nombre del Jugador">
-                    <input type="number" placeholder="Goles (+/-)">
-                    <input type="number" placeholder="Asistencias (+/-)">
-                    <button class="admin-btn-action">Actualizar Estadísticas</button>
-                </div>
-            </div>
-        </section>
+            // Segunda - Fecha 1
+            { matchId: "S1", division: "Segunda", date: "2025-11-16", teamA: "S1", teamB: "S2", scoreA: 5, scoreB: 0, played: true },
+            { matchId: "S2", division: "Segunda", date: "2025-11-16", teamA: "S3", teamB: "S4", scoreA: 1, scoreB: 2, played: true },
+            { matchId: "S3", division: "Segunda", date: "2025-11-16", teamA: "S5", teamB: "S6", scoreA: 3, scoreB: 3, played: true },
+            
+            // Segunda - Fecha 2 (Pendientes)
+            { matchId: "S4", division: "Segunda", date: "2025-11-23", teamA: "S1", teamB: "S3", scoreA: 1, scoreB: 1, played: true },
+            { matchId: "S5", division: "Segunda", date: "2025-11-23", teamA: "S2", teamB: "S4", scoreA: null, scoreB: null, played: false },
+            { matchId: "S6", division: "Segunda", date: "2025-11-23", teamA: "S5", teamB: "S6", scoreA: null, scoreB: null, played: false },
+        ];
         
-    </main>
+        // Mapeo de ID a Equipo para búsqueda rápida
+        const teamMap = TEAMS_DATA.reduce((map, team) => {
+            map[team.id] = team;
+            return map;
+        }, {});
 
-    <script src="script.js"></script> 
+        // Estado global de la división activa
+        let currentDivision = 'Primera';
+
+        // --- LÓGICA DE CÁLCULO Y RENDERIZADO ---
+
+        /**
+         * Calcula la tabla de posiciones para una división específica.
+         * @param {string} division - 'Primera' o 'Segunda'.
+         * @returns {Array<Object>} Lista de equipos con estadísticas, ordenados.
+         */
+        const calculateStandings = (division) => {
+            const teams = TEAMS_DATA.filter(t => t.division === division).map(t => ({
+                ...t,
+                P: 0, G: 0, E: 0, D: 0, GF: 0, GC: 0, Pts: 0
+            }));
+
+            const divisionFixtures = FIXTURES_DATA.filter(f => f.division === division && f.played);
+
+            teams.forEach(team => {
+                divisionFixtures.forEach(fixture => {
+                    const isTeamA = fixture.teamA === team.id;
+                    const isTeamB = fixture.teamB === team.id;
+
+                    if (isTeamA || isTeamB) {
+                        const scoreA = fixture.scoreA;
+                        const scoreB = fixture.scoreB;
+
+                        // Partidos Jugados (P)
+                        team.P++;
+
+                        // Goles a Favor (GF) y Goles en Contra (GC)
+                        team.GF += isTeamA ? scoreA : scoreB;
+                        team.GC += isTeamA ? scoreB : scoreA;
+
+                        // Resultados (G, E, D, Pts)
+                        if (scoreA === scoreB) { // Empate
+                            team.E++;
+                            team.Pts += 1;
+                        } else if ((isTeamA && scoreA > scoreB) || (isTeamB && scoreB > scoreA)) { // Victoria
+                            team.G++;
+                            team.Pts += 3;
+                        } else { // Derrota
+                            team.D++;
+                        }
+                    }
+                });
+                team.DG = team.GF - team.GC; // Diferencia de Goles (DG)
+            });
+
+            // Ordenar: Pts (desc), DG (desc), GF (desc)
+            return teams.sort((a, b) => {
+                if (b.Pts !== a.Pts) return b.Pts - a.Pts;
+                if (b.DG !== a.DG) return b.DG - a.DG;
+                return b.GF - a.GF;
+            });
+        };
+
+        /**
+         * Renderiza la tabla de posiciones.
+         * @param {Array<Object>} standings - Datos de la tabla ya calculados y ordenados.
+         */
+        const renderStandings = (standings) => {
+            const standingsBody = document.getElementById('standings-body');
+            standingsBody.innerHTML = '';
+            const isPrimera = currentDivision === 'Primera';
+
+            standings.forEach((team, index) => {
+                const rank = index + 1;
+                let rowClass = 'team-row';
+
+                if (isPrimera) {
+                    // Primera División (10 equipos)
+                    if (rank <= 4) { // Puestos de Champions / Ascenso
+                        rowClass += ' rank-ascenso';
+                    } else if (rank >= 9) { // Puestos de Descenso
+                        rowClass += ' rank-descenso';
+                    }
+                } else {
+                    // Segunda División (6 equipos)
+                    if (rank <= 2) { // Ascenso directo
+                        rowClass += ' rank-ascenso';
+                    } else if (rank >= 5) { // Descenso / Promoción
+                        rowClass += ' rank-descenso';
+                    }
+                }
+
+                const html = `
+                    <tr class="${rowClass}">
+                        <td class="py-2 px-3 text-center font-bold">${rank}</td>
+                        <td class="py-2 px-3 flex items-center">
+                            <div class="w-4 h-4 rounded-full ${team.logoColor} mr-2"></div>
+                            <span class="font-semibold text-white">${team.abbr}</span>
+                            <span class="text-gray-400 ml-2 hidden sm:inline">(${team.name})</span>
+                        </td>
+                        <td class="py-2 px-3 text-center">${team.P}</td>
+                        <td class="py-2 px-3 text-center">${team.G}</td>
+                        <td class="py-2 px-3 text-center">${team.E}</td>
+                        <td class="py-2 px-3 text-center">${team.D}</td>
+                        <td class="py-2 px-3 text-center">${team.GF}</td>
+                        <td class="py-2 px-3 text-center">${team.GC}</td>
+                        <td class="py-2 px-3 text-center">${team.DG > 0 ? '+' : ''}${team.DG}</td>
+                        <td class="py-2 px-3 text-center font-black text-lg text-green-400">${team.Pts}</td>
+                    </tr>
+                `;
+                standingsBody.insertAdjacentHTML('beforeend', html);
+            });
+        };
+
+        /**
+         * Renderiza los partidos.
+         * @param {string} division - 'Primera' o 'Segunda'.
+         */
+        const renderFixtures = (division) => {
+            const fixturesList = document.getElementById('fixtures-list');
+            fixturesList.innerHTML = '';
+
+            const divisionFixtures = FIXTURES_DATA.filter(f => f.division === division);
+
+            // Determinar las jornadas (usando un Set para encontrar fechas únicas)
+            const dates = [...new Set(divisionFixtures.map(f => f.date))].sort();
+
+            dates.forEach((date, index) => {
+                const jornadaFixtures = divisionFixtures.filter(f => f.date === date);
+
+                let fixtureHtml = `<div class="md:col-span-2">
+                    <h4 class="text-lg font-semibold mt-4 mb-2 p-2 bg-gray-800 rounded-lg text-center border-b border-gray-700">
+                        Jornada ${index + 1} - ${new Date(date).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}
+                    </h4>
+                </div>`;
+
+                jornadaFixtures.forEach(f => {
+                    const teamA = teamMap[f.teamA];
+                    const teamB = teamMap[f.teamB];
+                    const status = f.played ? 'Finalizado' : 'Pendiente';
+                    const score = f.played ? `${f.scoreA} - ${f.scoreB}` : 'vs';
+                    const statusClass = f.played ? 'bg-green-700' : 'bg-yellow-600';
+
+                    fixtureHtml += `
+                        <div class="p-4 bg-gray-800 rounded-lg border border-gray-700 flex flex-col justify-between hover:border-green-400 transition-colors">
+                            <span class="text-xs font-medium ${statusClass} text-white px-2 py-0.5 rounded-full self-start mb-2">${status}</span>
+                            <div class="flex justify-between items-center text-lg font-bold">
+                                <!-- Equipo A -->
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 rounded-full ${teamA.logoColor} mr-2"></div>
+                                    <span class="text-gray-200">${teamA.abbr}</span>
+                                </div>
+                                
+                                <span class="mx-4 text-xl font-extrabold text-green-400">${score}</span>
+
+                                <!-- Equipo B -->
+                                <div class="flex items-center">
+                                    <span class="text-gray-200">${teamB.abbr}</span>
+                                    <div class="w-4 h-4 rounded-full ${teamB.logoColor} ml-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                fixturesList.insertAdjacentHTML('beforeend', fixtureHtml);
+            });
+        };
+
+        /**
+         * Renderiza la leyenda de clasificación en el footer.
+         * @param {string} division - 'Primera' o 'Segunda'.
+         */
+        const renderLegend = (division) => {
+            const legendList = document.getElementById('legend-list');
+            legendList.innerHTML = '';
+            
+            if (division === 'Primera') {
+                legendList.innerHTML = `
+                    <li class="flex items-center"><span class="w-3 h-3 rounded-full rank-ascenso mr-2"></span>Posiciones 1-4: Clasificación a Champions League JAKJUS.</li>
+                    <li class="flex items-center"><span class="w-3 h-3 rounded-full rank-descenso mr-2"></span>Posiciones 9-10: Descenso Directo a Segunda División.</li>
+                    <li><span class="ml-1"></span>Posiciones 5-8: Permanencia en Primera División.</li>
+                `;
+            } else {
+                legendList.innerHTML = `
+                    <li class="flex items-center"><span class="w-3 h-3 rounded-full rank-ascenso mr-2"></span>Posiciones 1-2: Ascenso Directo a Primera División.</li>
+                    <li class="flex items-center"><span class="w-3 h-3 rounded-full rank-descenso mr-2"></span>Posiciones 5-6: Promoción / Descenso a Tercera (o permanencia).</li>
+                    <li><span class="ml-1"></span>Posiciones 3-4: Permanencia en Segunda División.</li>
+                `;
+            }
+        };
+
+        /**
+         * Función principal para renderizar la aplicación.
+         */
+        const renderApp = () => {
+            document.getElementById('division-title').textContent = `${currentDivision} División`;
+
+            // Actualizar botones de navegación
+            document.querySelectorAll('.division-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(`tab-${currentDivision.toLowerCase()}`).classList.add('active');
+
+            const standings = calculateStandings(currentDivision);
+            renderStandings(standings);
+            renderFixtures(currentDivision);
+            renderLegend(currentDivision);
+            
+            // Re-inicializar iconos de Lucide (necesario cuando se añade HTML)
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        };
+
+        /**
+         * Cambia la división activa y re-renderiza.
+         * @param {string} division - 'Primera' o 'Segunda'.
+         */
+        window.switchDivision = (division) => {
+            currentDivision = division;
+            renderApp();
+        };
+
+        // Iniciar la aplicación al cargar la página
+        document.addEventListener('DOMContentLoaded', renderApp);
+    </script>
 </body>
 </html>
